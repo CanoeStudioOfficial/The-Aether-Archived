@@ -3,6 +3,7 @@ package com.gildedgames.the_aether.world.gen;
 import java.util.Random;
 import java.util.Set;
 
+import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.world.gen.components.ComponentGoldenDungeon;
 import com.gildedgames.the_aether.world.gen.components.ComponentGoldenIsland;
 import com.gildedgames.the_aether.world.gen.components.ComponentGoldenIslandStub;
@@ -73,9 +74,9 @@ public class MapGenGoldenDungeon extends MapGenStructure
     {
         RandomTracker randomTracker = new RandomTracker();
 
-        if (randomTracker.testRandom(this.rand,140) != 0)
+        if (randomTracker.testRandom(this.rand, AetherConfig.world_gen.golden_dungeon_primary_chance) != 0)
         {
-            if (randomTracker.testRandom(this.rand,170) != 0)
+            if (randomTracker.testRandom(this.rand, AetherConfig.world_gen.golden_dungeon_secondary_chance) != 0)
             {
                 return false;
             }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
+import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.blocks.dungeon.BlockDungeonBase;
 import com.gildedgames.the_aether.blocks.dungeon.BlockTreasureChest;
@@ -58,9 +59,9 @@ public class BronzeDungeon extends AetherDungeonVirtual
 
 		RandomTracker randomTracker = new RandomTracker();
 
-		if (randomTracker.testRandom(random,15) != 0)
+		if (randomTracker.testRandom(random, AetherConfig.world_gen.bronze_dungeon_primary_chance) != 0)
 		{
-			if (randomTracker.testRandom(random,40) != 0)
+			if (randomTracker.testRandom(random, AetherConfig.world_gen.bronze_dungeon_secondary_chance) != 0)
 			{
 				return false;
 			}

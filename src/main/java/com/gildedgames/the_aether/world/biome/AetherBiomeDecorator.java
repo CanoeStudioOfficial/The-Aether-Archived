@@ -132,12 +132,12 @@ public class AetherBiomeDecorator extends BiomeDecorator
 		{
 			if (AetherConfig.world_gen.pink_aerclouds || Loader.isModLoaded("lost_aether"))
 			{
-				this.generateClouds(EnumCloudType.Pink, 1, 50, this.nextInt(64) + 110);
+				this.generateClouds(EnumCloudType.Pink, 1, AetherConfig.world_gen.pink_aercloud_spawn_chance, this.nextInt(64) + 110);
 			}
 
-			this.generateClouds(EnumCloudType.Golden, 4, 50, this.nextInt(64) + 96);
-			this.generateClouds(EnumCloudType.Blue, 8, 26, this.nextInt(64) + 32);
-			this.generateClouds(EnumCloudType.Cold, 16, 14, this.nextInt(64) + 64);
+			this.generateClouds(EnumCloudType.Golden, 4, AetherConfig.world_gen.golden_aercloud_spawn_chance, this.nextInt(64) + 96);
+			this.generateClouds(EnumCloudType.Blue, 8, AetherConfig.world_gen.blue_aercloud_spawn_chance, this.nextInt(64) + 32);
+			this.generateClouds(EnumCloudType.Cold, 16, AetherConfig.world_gen.cold_aercloud_spawn_chance, this.nextInt(64) + 64);
 		}
 
 		if (TerrainGen.decorate(worldIn, random, pos, EventType.FLOWERS))
@@ -159,7 +159,7 @@ public class AetherBiomeDecorator extends BiomeDecorator
 				this.skyroot_tree.generate(this.world, this.rand, this.world.getHeight(this.chunkPos.add(this.nextInt(8) + 8, 0, this.nextInt(8) + 8)));
 			}
 
-			if (this.shouldSpawn(37))
+			if (this.shouldSpawn(AetherConfig.world_gen.crystal_island_spawn_chance))
 			{
 				this.crystal_island.generate(this.world, this.rand, this.chunkPos.add(8, this.nextInt(64) + 32, 8));
 			}

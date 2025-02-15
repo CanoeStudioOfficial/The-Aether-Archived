@@ -41,6 +41,50 @@ public class AetherConfig
 		
 		@Config.Comment("Enables natural Pink Aercloud generation")
 		public boolean pink_aerclouds = false;
+
+		@Config.RangeInt(min=1, max=1000000)
+		@Config.Comment("Pink Aerclouds will generate in about 1/X number of chunks.")
+		public int pink_aercloud_spawn_chance = 50;
+
+		@Config.RangeInt(min=1, max=1000000)
+		@Config.Comment("Golden Aerclouds will generate in about 1/X number of chunks.")
+		public int golden_aercloud_spawn_chance = 50;
+
+		@Config.RangeInt(min=1, max=1000000)
+		@Config.Comment("Blue Aerclouds will generate in about 1/X number of chunks.")
+		public int blue_aercloud_spawn_chance = 26;
+
+		@Config.RangeInt(min=1, max=1000000)
+		@Config.Comment("Cold Aerclouds will generate in about 1/X number of chunks.")
+		public int cold_aercloud_spawn_chance = 14;
+
+		@Config.RangeInt(min=1, max=1000000)
+		@Config.Comment("Crystal Tree Islands will generate in about 1/X number of chunks.")
+		public int crystal_island_spawn_chance = 37;
+
+		@Config.RangeInt(min=1, max=1000000)
+		@Config.Comment("Spawn attempt 1 for Bronze Dungeons. Will succeed in about 1/X chunks.")
+		public int bronze_dungeon_primary_chance = 15;
+
+		@Config.RangeInt(min=1, max=1000000)
+		@Config.Comment("Spawn attempt 2 for Bronze Dungeons. Will succeed in about 1/X chunks.")
+		public int bronze_dungeon_secondary_chance = 40;
+
+		@Config.RangeInt(min=1, max=1000000)
+		@Config.Comment("Spawn attempt 1 for Silver Dungeons. Will succeed in about 1/X chunks.")
+		public int silver_dungeon_primary_chance = 110;
+
+		@Config.RangeInt(min=1, max=1000000)
+		@Config.Comment("Spawn attempt 2 for Silver Dungeons. Will succeed in about 1/X chunks.")
+		public int silver_dungeon_secondary_chance = 150;
+
+		@Config.RangeInt(min=1, max=1000000)
+		@Config.Comment("Spawn attempt 1 for Golden Dungeons. Will succeed in about 1/X chunks.")
+		public int golden_dungeon_primary_chance = 140;
+
+		@Config.RangeInt(min=1, max=1000000)
+		@Config.Comment("Spawn attempt 2 for Golden Dungeons. Will succeed in about 1/X chunks.")
+		public int golden_dungeon_secondary_chance = 170;
 	}
 	
 	public static final VisualOptions visual_options = new VisualOptions();
@@ -120,6 +164,43 @@ public class AetherConfig
 
 		@Config.Comment("Disables eternal day making time cycle in the Aether without having to kill the Sun Spirit. This is mainly intended for use in modpacks.")
 		public boolean disable_eternal_day = false;
+	}
+
+	public static final MoaStats moastats = new MoaStats();
+
+	public static class MoaStats {
+
+		@Config.RangeInt(min=0, max=10000)
+		@Config.Comment("The number of times that a blue Moa can jump.")
+		public int blue_moa_jumps = 3;
+
+		@Config.RangeDouble(min=0.1F, max=3F)
+		@Config.Comment("How fast a blue Moa can run.")
+		public float blue_moa_speed = 0.3F;
+
+		@Config.RangeInt(min=0, max=10000)
+		@Config.Comment("The number of times that an orange Moa can jump.")
+		public int orange_moa_jumps = 2;
+
+		@Config.RangeDouble(min=0.1F, max=3F)
+		@Config.Comment("How fast an orange Moa can run.")
+		public float orange_moa_speed = 0.6F;
+
+		@Config.RangeInt(min=0, max=10000)
+		@Config.Comment("The number of times that a white Moa can jump.")
+		public int white_moa_jumps = 4;
+
+		@Config.RangeDouble(min=0.1F, max=3F)
+		@Config.Comment("How fast a white Moa can run.")
+		public float white_moa_speed = 0.3F;
+
+		@Config.RangeInt(min=0, max=10000)
+		@Config.Comment("The number of times that a black Moa can jump.")
+		public int black_moa_jumps = 8;
+
+		@Config.RangeDouble(min=0.1F, max=3F)
+		@Config.Comment("How fast a black Moa can run.")
+		public float black_moa_speed = 0.3F;
 	}
 
 	public static final Spawnrates spawnrates = new Spawnrates();
