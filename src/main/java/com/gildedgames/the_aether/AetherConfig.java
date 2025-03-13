@@ -24,6 +24,11 @@ public class AetherConfig
 		@Config.RequiresMcRestart
 		@Config.Comment("Set the Dimension ID for the Aether.")
 		public int aether_dimension_id = 4;
+
+		@Config.RangeInt(min=2, max=256)
+		@Config.RequiresMcRestart
+		@Config.Comment("Set the Dimension ID when FALLING FROM the Aether.")
+		public int falling_dimension_id = 0;
 	}
 
 	public static final WorldGenOptions world_gen = new WorldGenOptions();
