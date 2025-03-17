@@ -3,6 +3,7 @@ package com.gildedgames.the_aether.world.gen;
 import java.util.Random;
 import java.util.Set;
 
+import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.world.gen.components.ComponentSilverDungeon;
 import com.gildedgames.the_aether.world.util.RandomTracker;
 import net.minecraft.nbt.NBTTagCompound;
@@ -64,14 +65,14 @@ public class MapGenSilverDungeon extends MapGenStructure
         return null;
     }
 
-	@Override
+    @Override
     protected boolean canSpawnStructureAtCoords(int chunkX, int chunkZ)
     {
         RandomTracker randomTracker = new RandomTracker();
 
-        if (randomTracker.testRandom(this.rand, 110) != 0)
+        if (randomTracker.testRandom(this.rand, AetherConfig.world_gen.silver_dungeon_primary_chance) != 0)
         {
-            if (randomTracker.testRandom(this.rand, 150) != 0)
+            if (randomTracker.testRandom(this.rand, AetherConfig.world_gen.silver_dungeon_secondary_chance) != 0)
             {
                 return false;
             }

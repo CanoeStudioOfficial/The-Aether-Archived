@@ -510,12 +510,14 @@ public class PlayerAether implements IPlayerAether
 	/*
 	 * The teleporter which sends the player to the Aether/Overworld
 	 */
+
 	public void teleportPlayer(boolean shouldSpawnPortal)
 	{
 		if (this.thePlayer instanceof EntityPlayerMP)
 		{			
 			int previousDimension = this.thePlayer.dimension;
-			int transferDimension = previousDimension == AetherConfig.dimension.aether_dimension_id ? 0 : AetherConfig.dimension.aether_dimension_id;
+
+			int transferDimension = previousDimension == AetherConfig.dimension.aether_dimension_id ? AetherConfig.dimension.falling_dimension_id : AetherConfig.dimension.aether_dimension_id;
 
 			if (ForgeHooks.onTravelToDimension(this.thePlayer, transferDimension))
 			{
