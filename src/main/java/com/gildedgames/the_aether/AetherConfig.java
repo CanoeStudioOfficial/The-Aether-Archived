@@ -16,6 +16,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @Config.LangKey(Aether.modid + ".config.title")
 public class AetherConfig
 {
+
+
 	public static final Dimension dimension = new Dimension();
 
 	public static class Dimension
@@ -206,6 +208,139 @@ public class AetherConfig
 		@Config.RangeDouble(min=0.1F, max=3F)
 		@Config.Comment("How fast a black Moa can run.")
 		public float black_moa_speed = 0.3F;
+	}
+
+	public static final AddonOptions addon_options = new AddonOptions();
+
+	public static class AddonOptions
+	{
+		@Config.Comment("Enables the Skyroot Crafting Table")
+		@Config.RequiresMcRestart
+		public boolean enable_skyroot_crafting_table = true;
+
+		@Config.Comment("Enables the Skyroot Chest")
+		@Config.RequiresMcRestart
+		public boolean enable_skyroot_chest = true;
+
+		@Config.Comment("Enables the Aetherion Chest")
+		@Config.RequiresMcRestart
+		public boolean enable_aetherion_chest = true;
+
+		@Config.Comment("Enables the Skyroot Sign")
+		@Config.RequiresMcRestart
+		public boolean enable_skyroot_sign = true;
+
+		@Config.Comment("Enables the Skyroot Ladder")
+		@Config.RequiresMcRestart
+		public boolean enable_skyroot_ladder = true;
+
+		@Config.Comment("Enables Doors")
+		@Config.RequiresMcRestart
+		public boolean enable_doors = true;
+
+		@Config.Comment("Enables the Skyroot Door")
+		@Config.RequiresMcRestart
+		public boolean enable_skyroot_door = true;
+
+		@Config.Comment("Enables the Zanite Door")
+		@Config.RequiresMcRestart
+		public boolean enable_zanite_door = true;
+
+		@Config.Comment("Enables Trapdoors")
+		@Config.RequiresMcRestart
+		public boolean enable_trapdoors = true;
+
+		@Config.Comment("Enables the Skyroot Trapdoor")
+		@Config.RequiresMcRestart
+		public boolean enable_skyroot_trapdoor = true;
+
+		@Config.Comment("Enables the Zanite Trapdoor")
+		@Config.RequiresMcRestart
+		public boolean enable_zanite_trapdoor = true;
+
+		@Config.Comment("Enables Pressure Plates")
+		@Config.RequiresMcRestart
+		public boolean enable_pressure_plates = true;
+
+		@Config.Comment("Enables the Skyroot Pressure Plate")
+		@Config.RequiresMcRestart
+		public boolean enable_skyroot_pressure_plate = true;
+
+		@Config.Comment("Enables the Holystone Pressure Plate")
+		@Config.RequiresMcRestart
+		public boolean enable_holystone_pressure_plate = true;
+
+		@Config.Comment("Enables the Zanite Pressure Plate")
+		@Config.RequiresMcRestart
+		public boolean enable_zanite_pressure_plate = true;
+
+		@Config.Comment("Enables Buttons")
+		@Config.RequiresMcRestart
+		public boolean enable_buttons = true;
+
+		@Config.Comment("Enables the Skyroot Button")
+		@Config.RequiresMcRestart
+		public boolean enable_skyroot_button = true;
+
+		@Config.Comment("Enables the Holystone Button")
+		@Config.RequiresMcRestart
+		public boolean enable_holystone_button = true;
+
+		@Config.Comment("Enables the Aether Lever")
+		@Config.RequiresMcRestart
+		public boolean enable_aether_lever = true;
+
+		@Config.Comment("Enables Zanite Bars")
+		@Config.RequiresMcRestart
+		public boolean enable_zanite_bars = true;
+
+		@Config.Comment("Enables Quicksoil Glass Pane")
+		@Config.RequiresMcRestart
+		public boolean enable_quicksoil_glass_pane = true;
+
+		@Config.Comment("Enables Ambrosium Block")
+		@Config.RequiresMcRestart
+		public boolean enable_ambrosium_block = true;
+
+		@Config.Comment("Enables Cockatrice Meat")
+		@Config.RequiresMcRestart
+		public boolean enable_cockatrice_meat = true;
+	}
+
+	public static boolean enable_skyroot_door() {
+		return addon_options.enable_doors && addon_options.enable_skyroot_door;
+	}
+
+	public static boolean enable_zanite_door() {
+		return addon_options.enable_doors && addon_options.enable_zanite_door;
+	}
+
+	public static boolean enable_skyroot_trapdoor() {
+		return addon_options.enable_trapdoors && addon_options.enable_skyroot_trapdoor;
+	}
+
+	public static boolean enable_zanite_trapdoor() {
+		return addon_options.enable_trapdoors && addon_options.enable_zanite_trapdoor;
+	}
+
+	public static boolean enable_skyroot_pressure_plate() {
+		return addon_options.enable_pressure_plates && addon_options.enable_skyroot_pressure_plate;
+	}
+
+	public static boolean enable_holystone_pressure_plate() {
+		return addon_options.enable_pressure_plates && addon_options.enable_holystone_pressure_plate;
+	}
+
+	public static boolean enable_zanite_pressure_plate() {
+		return addon_options.enable_pressure_plates && addon_options.enable_zanite_pressure_plate;
+	}
+
+	public static boolean enable_skyroot_button() {
+		return addon_options.enable_buttons && addon_options.enable_skyroot_button;
+	}
+
+	public static boolean enable_holystone_button() {
+		return addon_options.enable_buttons && addon_options.enable_holystone_button;
 	}
 
 	public static final Spawnrates spawnrates = new Spawnrates();

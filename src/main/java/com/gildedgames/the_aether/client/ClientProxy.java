@@ -32,7 +32,10 @@ public class ClientProxy extends CommonProxy
 
 		registerEvent(new BlockRendering());
 		registerEvent(new ItemRendering());
+		registerEvent(new com.gildedgames.the_aether.addon.client.renders.blocks.BlockRendering());
+		registerEvent(new com.gildedgames.the_aether.addon.client.renders.items.ItemRendering());
 		AetherEntityRenderingRegistry.initialize();
+		com.gildedgames.the_aether.addon.client.renders.AetherAddonEntityRenderingRegistry.initialize();
 
 		MinecraftForge.EVENT_BUS.register(new AetherClientEvents());
 	}

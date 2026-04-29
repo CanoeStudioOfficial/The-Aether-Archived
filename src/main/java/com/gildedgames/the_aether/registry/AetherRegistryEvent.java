@@ -1,5 +1,9 @@
 package com.gildedgames.the_aether.registry;
 
+import com.gildedgames.the_aether.addon.blocks.BlocksAetherAddon;
+import com.gildedgames.the_aether.addon.dictionary.AetherAddonDictionary;
+import com.gildedgames.the_aether.addon.items.ItemsAetherAddon;
+import com.gildedgames.the_aether.addon.registry.AetherAddonRegistries;
 import com.gildedgames.the_aether.dictionary.AetherDictionary;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 import com.gildedgames.the_aether.registry.sounds.SoundsAether;
@@ -14,6 +18,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.registries.IForgeRegistryModifiable;
 
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.api.accessories.AetherAccessory;
@@ -34,16 +39,20 @@ public class AetherRegistryEvent
 	public void onRegisterBlockEvent(RegistryEvent.Register<Block> event)
 	{
 		BlocksAether.registerBlocks(event.getRegistry());
+		BlocksAetherAddon.registerBlocks(event.getRegistry());
 	}
 
 	@SubscribeEvent
 	public void onRegisterItemEvent(RegistryEvent.Register<Item> event)
 	{
 		BlocksAether.registerItems(event.getRegistry());
+		BlocksAetherAddon.registerItems(event.getRegistry());
 
 		ItemsAether.itemRegistry = event.getRegistry();
 
 		ItemsAether.initialization();
+		ItemsAetherAddon.itemRegistry = event.getRegistry();
+		ItemsAetherAddon.initialization();
 		AetherCreativeTabs.initialization();
 	}
 
@@ -75,8 +84,11 @@ public class AetherRegistryEvent
 	public void onRegisterCraftingEvent(RegistryEvent.Register<IRecipe> event)
 	{
 		AetherDictionary.initialization();
+		AetherAddonDictionary.initialization();
 
 		event.getRegistry().register(new RecipeAccessoryDyes().setRegistryName("aether_dyed_gloves"));
+
+		AetherAddonRegistries.initializeRecipes((IForgeRegistryModifiable<IRecipe>) event.getRegistry());
 	}
 
 	@SubscribeEvent
@@ -98,6 +110,7 @@ public class AetherRegistryEvent
 	public void onRegisterEnchantmentEvent(RegistryEvent.Register<AetherEnchantment> event)
 	{
 		AetherRegistries.initializeEnchantments(event.getRegistry());
+		AetherAddonRegistries.initializeEnchantments(event.getRegistry());
 	}
 
 	@SubscribeEvent

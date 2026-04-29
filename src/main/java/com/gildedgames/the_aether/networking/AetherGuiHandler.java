@@ -1,5 +1,9 @@
 package com.gildedgames.the_aether.networking;
 
+import com.gildedgames.the_aether.addon.client.gui.GuiAetherionChest;
+import com.gildedgames.the_aether.addon.client.gui.inventory.GuiAetherCrafting;
+import com.gildedgames.the_aether.addon.containers.ContainerSkyrootWorkbench;
+import com.gildedgames.the_aether.addon.tile_entities.TileEntityAetherionChest;
 import com.gildedgames.the_aether.tile_entities.TileEntityEnchanter;
 import com.gildedgames.the_aether.tile_entities.TileEntityFreezer;
 import com.gildedgames.the_aether.tile_entities.TileEntityIncubator;
@@ -29,7 +33,7 @@ import com.gildedgames.the_aether.containers.ContainerLore;
 public class AetherGuiHandler implements IGuiHandler
 {
 
-	public static final int accessories = 1, enchanter = 2, freezer = 3, incubator = 4, treasure_chest = 5, lore = 6;
+	public static final int accessories = 1, enchanter = 2, freezer = 3, incubator = 4, treasure_chest = 5, lore = 6, skyroot_crafting = 7, aetherion_chest = 8;
 
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
@@ -57,6 +61,14 @@ public class AetherGuiHandler implements IGuiHandler
 		else if (ID == lore)
 		{
 			return new ContainerLore(player.inventory);
+		}
+		else if (ID == skyroot_crafting)
+		{
+			return new ContainerSkyrootWorkbench(player.inventory, world, new BlockPos(x, y, z));
+		}
+		else if (ID == aetherion_chest)
+		{
+			return new ContainerChest(player.inventory, ((TileEntityAetherionChest) world.getTileEntity(new BlockPos(x, y, z))).getInventoryFor(player), player);
 		}
 
 		return null;
@@ -89,6 +101,14 @@ public class AetherGuiHandler implements IGuiHandler
 		else if (ID == lore)
 		{
 			return new GuiLore(player.inventory);
+		}
+		else if (ID == skyroot_crafting)
+		{
+			return new GuiAetherCrafting(player.inventory, world);
+		}
+		else if (ID == aetherion_chest)
+		{
+			return new GuiAetherionChest(player.inventory, (TileEntityAetherionChest) world.getTileEntity(new BlockPos(x, y, z)));
 		}
 
 		return null;

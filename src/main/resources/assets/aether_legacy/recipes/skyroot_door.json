@@ -1,4 +1,4 @@
-{
+﻿{
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "##",
@@ -11,7 +11,7 @@
     }
   },
   "result": {
-    "item": "minecraft:wooden_door",
+    "item": "aether_legacy:skyroot_door",
     "count": 3
   }
 }

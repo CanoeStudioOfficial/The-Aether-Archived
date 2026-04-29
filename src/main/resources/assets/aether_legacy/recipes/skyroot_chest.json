@@ -1,4 +1,4 @@
-{
+﻿{
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "###",
@@ -13,6 +13,6 @@
     ]
   },
   "result": {
-    "item": "minecraft:chest"
+    "item": "aether_legacy:skyroot_chest"
   }
 }

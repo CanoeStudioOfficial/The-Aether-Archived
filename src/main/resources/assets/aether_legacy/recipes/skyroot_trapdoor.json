@@ -1,4 +1,4 @@
-{
+﻿{
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "###",
@@ -12,7 +12,7 @@
     ]
   },
   "result": {
-    "item": "minecraft:trapdoor",
+    "item": "aether_legacy:skyroot_trapdoor",
     "count": 2
   }
 }

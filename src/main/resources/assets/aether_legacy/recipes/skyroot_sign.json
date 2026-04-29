@@ -1,4 +1,4 @@
-{
+﻿{
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "###",
@@ -16,7 +16,7 @@
     }
   },
   "result": {
-    "item": "minecraft:sign",
+    "item": "aether_legacy:skyroot_sign",
     "count": 3
   }
 }

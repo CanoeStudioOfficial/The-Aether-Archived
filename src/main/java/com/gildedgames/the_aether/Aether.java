@@ -1,5 +1,8 @@
 package com.gildedgames.the_aether;
 
+import com.gildedgames.the_aether.addon.blocks.BlocksAetherAddon;
+import com.gildedgames.the_aether.addon.player.capability.PlayerAetherManagerAddon;
+import com.gildedgames.the_aether.addon.tile_entities.AetherAddonTileEntities;
 import com.gildedgames.the_aether.advancements.AetherAdvancements;
 import com.gildedgames.the_aether.api.player.IPlayerAether;
 import com.gildedgames.the_aether.api.player.IPlayerAetherStorage;
@@ -52,11 +55,13 @@ public class Aether
 		CapabilityManager.INSTANCE.register(IPlayerAether.class, new IPlayerAetherStorage(), () -> null);
 
 		BlocksAether.initialization();
+		BlocksAetherAddon.initialization();
 		BlocksAether.initializeHarvestLevels();
 		SoundsAether.initialization();
 		LootConditionsAether.initialization();
 		LootFunctionsAether.initialization();
 		AetherAdvancements.initialization();
+		AetherAddonLootTables.initialization();
 		AetherNetworkingManager.preInitialization();
 
 		if(Loader.isModLoaded("crafttweaker"))
@@ -65,6 +70,7 @@ public class Aether
 		}
 
 		CommonProxy.registerEvent(new AetherRegistryEvent());
+		CommonProxy.registerEvent(new com.gildedgames.the_aether.addon.registry.AetherAddonRegistryEvent());
 
 		proxy.preInitialization();
 	}
@@ -73,8 +79,10 @@ public class Aether
 	public void initialization(FMLInitializationEvent event)
 	{
 		PlayerAetherManager.initialization();
+		PlayerAetherManagerAddon.initialization();
 		AetherEntities.initialization();
 		AetherTileEntities.initialization();
+		AetherAddonTileEntities.initialization();
 		BiomeStorage.handleBiomeConfig();
 		AetherWorld.initialization();
 
