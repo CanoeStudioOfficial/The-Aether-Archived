@@ -1,7 +1,6 @@
 package com.gildedgames.the_aether;
 
 import com.gildedgames.the_aether.addon.blocks.BlocksAetherAddon;
-import com.gildedgames.the_aether.addon.player.capability.PlayerAetherManagerAddon;
 import com.gildedgames.the_aether.addon.tile_entities.AetherAddonTileEntities;
 import com.gildedgames.the_aether.advancements.AetherAdvancements;
 import com.gildedgames.the_aether.api.player.IPlayerAether;
@@ -61,7 +60,6 @@ public class Aether
 		LootConditionsAether.initialization();
 		LootFunctionsAether.initialization();
 		AetherAdvancements.initialization();
-		AetherAddonLootTables.initialization();
 		AetherNetworkingManager.preInitialization();
 
 		if(Loader.isModLoaded("crafttweaker"))
@@ -79,7 +77,6 @@ public class Aether
 	public void initialization(FMLInitializationEvent event)
 	{
 		PlayerAetherManager.initialization();
-		PlayerAetherManagerAddon.initialization();
 		AetherEntities.initialization();
 		AetherTileEntities.initialization();
 		AetherAddonTileEntities.initialization();

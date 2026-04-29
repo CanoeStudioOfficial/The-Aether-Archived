@@ -43,6 +43,7 @@ public class AetherRankings
 		addTesterRank("869aed85-9dc0-4187-92d7-6064c202a844"); // SunflowerAspen
 		addTesterRank("8ab9311e-6b8d-4633-80d5-e1798b1c6a96"); // Silver_David
 		addTesterRank("c4fa4377-5147-43bd-b571-e0e0db46e4f6"); // Anabree
+		addTesterRank("3804712e-6015-4b16-9301-50305e1ad9d8"); // AlexiosKomnenos_
 		
 		//Modding Legacy Contributor
 		addContributor("6f8be24f-03f3-4288-9218-16c9ecc08c8f"); // Jonathing
