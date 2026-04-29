@@ -33,8 +33,6 @@ import com.gildedgames.the_aether.items.ItemsAether;
 public class ItemAccessory extends Item implements IBauble
 {
 
-	public static final String ROOT = Aether.modAddress() + "textures/slots/slot_";
-
 	protected final AccessoryType accessoryType;
 
 	public ResourceLocation texture, texture_slim, texture_elytra, texture_inactive, texture_inactive_slim;
