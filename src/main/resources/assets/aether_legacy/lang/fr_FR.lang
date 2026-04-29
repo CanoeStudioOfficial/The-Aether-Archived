@@ -293,14 +293,7 @@ advancement.aether_legacy.gold_dungeon.desc=Battre le boss du donjon d'Or
 advancement.aether_legacy.loreception.desc=Déposer un livre du savoir dans un livre du savoir
 
 # Creative Tabs Names
-tab.aether_blocks=Blocs de l'Aether 
-tab.aether_tools=Outils de l'Aether 
-tab.aether_weapons=Armes de l'Aether 
-tab.aether_armor=Armures de l'Aether 
-tab.aether_food=Nourriture de l'Aether 
-tab.aether_accessories=Accessoires de l'Aether 
-tab.aether_material=Matériaux de l'Aether 
-tab.aether_misc=Objets Divers de l'Aether
+tab.aether=Blocs de l'Aether 
 
 # Tab Names
 tab.accessories.name=Accessoires

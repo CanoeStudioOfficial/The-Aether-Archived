@@ -41,7 +41,7 @@ public class BlockAetherGrass extends Block implements IGrowable
 
 		this.setTickRandomly(true);
 		this.setHardness(0.2F);
-		this.setCreativeTab(AetherCreativeTabs.blocks);
+		this.setCreativeTab(AetherCreativeTabs.aether);
 		this.setSoundType(SoundType.PLANT);
 		this.setDefaultState(this.getDefaultState().withProperty(double_drop, Boolean.TRUE).withProperty(SNOWY, Boolean.FALSE).withProperty(dungeon_block, Boolean.FALSE));
 	}

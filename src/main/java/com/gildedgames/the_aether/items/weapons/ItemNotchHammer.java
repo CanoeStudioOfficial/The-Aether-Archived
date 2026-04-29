@@ -22,7 +22,7 @@ public class ItemNotchHammer extends ItemSword
 	public ItemNotchHammer()
 	{
 		super(ToolMaterial.IRON);
-        this.setCreativeTab(AetherCreativeTabs.weapons);
+        this.setCreativeTab(AetherCreativeTabs.aether);
 	}
 
 	@Override

@@ -47,7 +47,7 @@ public class ItemSkyrootBucket extends Item
 
 		this.setHasSubtypes(true);
 		this.setContainerItem(this);
-		this.setCreativeTab(AetherCreativeTabs.misc);
+		this.setCreativeTab(AetherCreativeTabs.aether);
 	}
 
 	@Override

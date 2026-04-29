@@ -35,7 +35,7 @@ public class BlockAmbrosiumOre extends Block
 		this.setHardness(3F);
 		this.setResistance(5F);
 		this.setSoundType(SoundType.STONE);
-		this.setCreativeTab(AetherCreativeTabs.blocks);
+		this.setCreativeTab(AetherCreativeTabs.aether);
 		this.setDefaultState(this.getDefaultState().withProperty(double_drop, Boolean.TRUE));
 	}
 

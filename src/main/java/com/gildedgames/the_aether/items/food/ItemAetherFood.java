@@ -12,13 +12,13 @@ public class ItemAetherFood extends ItemFood
 	public ItemAetherFood(int healAmmount) 
 	{
 		super(healAmmount, false);
-		this.setCreativeTab(AetherCreativeTabs.food);
+		this.setCreativeTab(AetherCreativeTabs.aether);
 	}
 
 	public ItemAetherFood(int healAmmount, float saturationAmmount) 
 	{
 		super(healAmmount, saturationAmmount, false);
-		this.setCreativeTab(AetherCreativeTabs.food);
+		this.setCreativeTab(AetherCreativeTabs.aether);
 	}
 
 	@Override

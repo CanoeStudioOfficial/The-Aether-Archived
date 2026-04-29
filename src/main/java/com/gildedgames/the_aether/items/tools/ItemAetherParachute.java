@@ -19,7 +19,7 @@ public class ItemAetherParachute extends Item
 	{
 		this.setMaxDamage(20);
 		this.setMaxStackSize(1);
-		this.setCreativeTab(AetherCreativeTabs.misc);
+		this.setCreativeTab(AetherCreativeTabs.aether);
     }
 
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer entityplayer, EnumHand hand)

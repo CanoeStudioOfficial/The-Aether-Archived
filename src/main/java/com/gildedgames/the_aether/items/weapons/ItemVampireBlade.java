@@ -16,7 +16,7 @@ public class ItemVampireBlade extends ItemSword
     {
     	super(ToolMaterial.DIAMOND);
 
-        this.setCreativeTab(AetherCreativeTabs.weapons);
+        this.setCreativeTab(AetherCreativeTabs.aether);
     }
 
 	@Override

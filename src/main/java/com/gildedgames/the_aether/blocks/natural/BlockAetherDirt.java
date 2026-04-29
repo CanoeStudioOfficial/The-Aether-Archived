@@ -29,7 +29,7 @@ public class BlockAetherDirt extends Block
 
 		this.setHardness(0.2F);
 		this.setSoundType(SoundType.GROUND);
-		this.setCreativeTab(AetherCreativeTabs.blocks);
+		this.setCreativeTab(AetherCreativeTabs.aether);
 		this.setDefaultState(this.getDefaultState().withProperty(double_drop, Boolean.TRUE));
 	}
 

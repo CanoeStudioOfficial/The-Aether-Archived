@@ -21,7 +21,7 @@ public class ItemPigSlayer extends ItemSword
     {
         super(ToolMaterial.IRON);
         this.setMaxDamage(200);
-        this.setCreativeTab(AetherCreativeTabs.weapons);
+        this.setCreativeTab(AetherCreativeTabs.aether);
     }
 
 	@Override

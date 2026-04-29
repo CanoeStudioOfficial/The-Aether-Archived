@@ -293,14 +293,7 @@ advancement.aether_legacy.gold_dungeon.desc=Versla de gouden kerkerbaas
 advancement.aether_legacy.loreception.desc=Stop een boek van overlevering in een boek van overlevering.
 
 # Creative Tabs Names
-tab.aether_blocks=Aether Bouwblokken
-tab.aether_tools=Aether Gereedschap
-tab.aether_weapons=Aether Wapens
-tab.aether_armor=Aether Harnas
-tab.aether_food=Aether Voedsel
-tab.aether_accessories=Aether Accessoires
-tab.aether_material=Aether Materialen
-tab.aether_misc=Aether Diversen
+tab.aether=Aether Bouwblokken
 
 # Tab Names
 tab.accessories.name=Accessoires

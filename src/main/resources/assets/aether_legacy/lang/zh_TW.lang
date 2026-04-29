@@ -293,14 +293,7 @@ advancement.aether_legacy.gold_dungeon.desc=擊敗黃金地牢的BOSS──太�
 advancement.aether_legacy.loreception.desc=閱讀知識之書
 
 # Creative Tabs Names
-tab.aether_blocks=天堂方塊
-tab.aether_tools=天堂工具
-tab.aether_weapons=天堂武器
-tab.aether_armor=天堂防具
-tab.aether_food=天堂食物
-tab.aether_accessories=天堂飾品
-tab.aether_material=天堂材料
-tab.aether_misc=天堂雜項
+tab.aether=天堂方塊
 
 # Tab Names
 tab.accessories.name=飾品

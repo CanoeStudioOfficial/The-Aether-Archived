@@ -16,7 +16,7 @@ public class ItemCandyCaneSword extends ItemSword
     public ItemCandyCaneSword()
     {
         super(ToolMaterial.GOLD);
-        this.setCreativeTab(AetherCreativeTabs.weapons);
+        this.setCreativeTab(AetherCreativeTabs.aether);
     }
 
     @Override

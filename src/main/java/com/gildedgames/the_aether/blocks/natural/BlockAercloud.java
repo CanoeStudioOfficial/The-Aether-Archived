@@ -40,7 +40,7 @@ public class BlockAercloud extends Block implements IAetherMeta
 
 		this.setHardness(0.2F);
 		this.setSoundType(SoundType.CLOTH);
-		this.setCreativeTab(AetherCreativeTabs.blocks);
+		this.setCreativeTab(AetherCreativeTabs.aether);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(cloud_type, EnumCloudType.Cold));
 	}
 

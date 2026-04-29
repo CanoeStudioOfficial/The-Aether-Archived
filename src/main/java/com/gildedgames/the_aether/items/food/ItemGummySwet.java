@@ -14,7 +14,7 @@ public class ItemGummySwet extends ItemAetherFood
 		super(20);
 
 		this.setHasSubtypes(true);
-		this.setCreativeTab(AetherCreativeTabs.food);
+		this.setCreativeTab(AetherCreativeTabs.aether);
 	}
 
 	@Override

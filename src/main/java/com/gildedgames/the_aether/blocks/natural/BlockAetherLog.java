@@ -48,7 +48,7 @@ public class BlockAetherLog extends BlockLog implements IAetherMeta
 
 		this.setHardness(2.0F);
         this.setSoundType(SoundType.WOOD);
-		this.setCreativeTab(AetherCreativeTabs.blocks);
+		this.setCreativeTab(AetherCreativeTabs.aether);
 		this.setDefaultState(this.getDefaultState().withProperty(wood_type, EnumLogType.Skyroot).withProperty(double_drop, Boolean.TRUE).withProperty(LOG_AXIS, BlockLog.EnumAxis.Y));
 	}
 

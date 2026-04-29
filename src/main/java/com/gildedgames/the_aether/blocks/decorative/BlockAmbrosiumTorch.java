@@ -22,7 +22,7 @@ public class BlockAmbrosiumTorch extends BlockTorch
         this.setTickRandomly(true);
         this.setLightLevel(0.9375F);
         this.setSoundType(SoundType.WOOD);
-		this.setCreativeTab(AetherCreativeTabs.blocks);
+		this.setCreativeTab(AetherCreativeTabs.aether);
     }
 
     @SideOnly(Side.CLIENT)

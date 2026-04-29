@@ -22,7 +22,7 @@ public class ItemLightningKnife extends Item
     public ItemLightningKnife()
     {
         this.setMaxStackSize(16);
-        this.setCreativeTab(AetherCreativeTabs.weapons);
+        this.setCreativeTab(AetherCreativeTabs.aether);
     }
 
 	@Override

@@ -293,14 +293,7 @@ advancement.aether_legacy.gold_dungeon.desc=Pokonaj bossa złotego lochu
 advancement.aether_legacy.loreception.desc=Włóż księgę wiedzy w księgę wiedzy.
 
 # Creative Tabs Names
-tab.aether_blocks=Bloki Aetheru
-tab.aether_tools=Narzędzia Aetheru
-tab.aether_weapons=Bronie Aetheru
-tab.aether_armor=Zbroja Aetheru
-tab.aether_food=ŻywnoŚæ Aetheru
-tab.aether_accessories=Akcesoria Aetheru
-tab.aether_material=Materiały Aetheru
-tab.aether_misc=Różne Aetheru
+tab.aether=Bloki Aetheru
 
 # Tab Names
 tab.accessories.name=Akcesoria

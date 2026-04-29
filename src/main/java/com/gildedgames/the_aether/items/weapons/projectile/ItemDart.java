@@ -49,7 +49,7 @@ public class ItemDart extends Item
     {
         super();
         this.setHasSubtypes(true);
-        this.setCreativeTab(AetherCreativeTabs.weapons);
+        this.setCreativeTab(AetherCreativeTabs.aether);
         BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(this, DISPENSER_BEHAVIOR);
     }
 

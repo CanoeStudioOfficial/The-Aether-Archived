@@ -293,14 +293,7 @@ advancement.aether_legacy.gold_dungeon.desc=Defeat the golden dungeon boss
 advancement.aether_legacy.loreception.desc=Put a book of lore inside a book of lore.
 
 # Creative Tabs Names
-tab.aether_blocks=Aether Blocks
-tab.aether_tools=Aether Tools
-tab.aether_weapons=Aether Weapons
-tab.aether_armor=Aether Armor
-tab.aether_food=Aether Foods
-tab.aether_accessories=Aether Accessories
-tab.aether_material=Aether Materials
-tab.aether_misc=Aether Miscellaneous
+tab.aether=Aether Blocks
 
 # Tab Names
 tab.accessories.name=Accessories

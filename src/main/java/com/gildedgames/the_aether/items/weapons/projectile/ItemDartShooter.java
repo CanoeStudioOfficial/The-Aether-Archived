@@ -30,7 +30,7 @@ public class ItemDartShooter extends Item
 	{
 		this.maxStackSize = 1;
 		this.setHasSubtypes(true);
-		this.setCreativeTab(AetherCreativeTabs.weapons);
+		this.setCreativeTab(AetherCreativeTabs.aether);
 	}
 
 	@Override

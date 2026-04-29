@@ -293,14 +293,7 @@ advancement.aether_legacy.gold_dungeon.desc=斩杀黄金地牢的烈阳巨灵
 advancement.aether_legacy.loreception.desc=将一本天境传说塞进另一本里
 
 # Creative Tabs Names
-tab.aether_blocks=天境往事 方块
-tab.aether_tools=天境往事 工具
-tab.aether_weapons=天境往事 武器
-tab.aether_armor=天境往事 护甲
-tab.aether_food=天境往事 食物
-tab.aether_accessories=天境往事 饰品
-tab.aether_material=天境往事 材料
-tab.aether_misc=天境往事 杂项
+tab.aether=天境
 
 # Tab Names
 tab.accessories.name=饰品

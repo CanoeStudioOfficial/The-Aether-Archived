@@ -22,7 +22,7 @@ public class ItemCloudStaff extends Item
 
 	public ItemCloudStaff()
 	{
-		this.setCreativeTab(AetherCreativeTabs.misc);
+		this.setCreativeTab(AetherCreativeTabs.aether);
 		this.setMaxDamage(60);
 		this.setMaxStackSize(1);
 	}

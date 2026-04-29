@@ -36,7 +36,7 @@ public class ItemValkyrieLance extends Item
 		this.maxStackSize = 1;
 		this.setMaxDamage(material.getMaxUses());
 		this.attackDamage = 3.0F + material.getAttackDamage();
-		this.setCreativeTab(AetherCreativeTabs.weapons);
+		this.setCreativeTab(AetherCreativeTabs.aether);
 	}
 
 	@Override

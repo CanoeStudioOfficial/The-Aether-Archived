@@ -26,7 +26,7 @@ public class ItemSkyrootBed extends Item
     public ItemSkyrootBed()
     {
         this.maxStackSize = 1;
-        this.setCreativeTab(AetherCreativeTabs.blocks);
+        this.setCreativeTab(AetherCreativeTabs.aether);
     }
 
     @Override

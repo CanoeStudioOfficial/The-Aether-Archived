@@ -27,7 +27,7 @@ public class ItemZaniteSword extends ItemSword
 	@Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items)
     {
-    	if (tab == AetherCreativeTabs.weapons || tab == CreativeTabs.SEARCH)
+    	if (tab == AetherCreativeTabs.aether || tab == CreativeTabs.SEARCH)
     	{
             items.add(new ItemStack(this));
     	}

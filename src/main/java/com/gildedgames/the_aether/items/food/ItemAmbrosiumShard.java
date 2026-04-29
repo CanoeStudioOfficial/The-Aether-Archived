@@ -21,7 +21,7 @@ public class ItemAmbrosiumShard extends ItemAetherFood
 	public ItemAmbrosiumShard()
 	{
 		super(0);
-		this.setCreativeTab(AetherCreativeTabs.material);
+		this.setCreativeTab(AetherCreativeTabs.aether);
 		
 		this.setAlwaysEdible();
 	}

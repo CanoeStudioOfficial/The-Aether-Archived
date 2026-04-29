@@ -38,7 +38,7 @@ public class BlockDungeonBase extends Block implements IAetherMeta
 
 		this.setSoundType(SoundType.STONE);
 		this.setHardness(isLocked ? -1F : 0.5F);
-		this.setCreativeTab(isLocked ? null : AetherCreativeTabs.blocks);
+		this.setCreativeTab(isLocked ? null : AetherCreativeTabs.aether);
 		this.setDefaultState(this.getDefaultState().withProperty(dungeon_stone, EnumStoneType.Carved));
 	}
 

@@ -293,14 +293,7 @@ advancement.aether_legacy.gold_dungeon.desc=Dich dem Boss im Golddungeon stellen
 advancement.aether_legacy.loreception.desc=Lege ein Buch der Weisheit in ein Buch der Weisheit.
 
 # Creative Tabs Names
-tab.aether_blocks=Aether Blöcke
-tab.aether_tools=Aether Werkzeuge
-tab.aether_weapons=Aether Waffen
-tab.aether_armor=Aether Rüstung
-tab.aether_food=Aether Lebensmittel
-tab.aether_accessories=Aether Zubehör
-tab.aether_material=Aether Materialien
-tab.aether_misc=Aether Diverses
+tab.aether=Aether Blöcke
 
 # Tab Names
 tab.accessories.name=Zubehör

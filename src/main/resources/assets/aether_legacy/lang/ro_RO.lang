@@ -293,14 +293,7 @@ advancement.aether_legacy.gold_dungeon.desc=Învinge șeful din temnița de aur
 advancement.aether_legacy.loreception.desc=Pune o carte a învățăturii într-o carte a învățăturii
 
 # Creative Tabs Names
-tab.aether_blocks=Blocuri Aether
-tab.aether_tools=Unelte Aether
-tab.aether_weapons=Arme Aether
-tab.aether_armor=Armuri Aether
-tab.aether_food=Mâncare Aether
-tab.aether_accessories=Accesorii Aether
-tab.aether_material=Materiale Aether
-tab.aether_misc=Diverse Aether
+tab.aether=Blocuri Aether
 
 # Tab Names
 tab.accessories.name=Accesorii

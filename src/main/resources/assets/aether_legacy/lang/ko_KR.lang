@@ -293,14 +293,7 @@ advancement.aether_legacy.gold_dungeon.desc=황금 던전의 보스를 처치하
 advancement.aether_legacy.loreception.desc=지식의 서 안에 지식의 서를 두세요
 
 # Creative Tabs 이름
-tab.aether_blocks=에더 블록
-tab.aether_tools=에더 도구
-tab.aether_weapons=에더 무기
-tab.aether_armor=에더 갑옷
-tab.aether_food=에더 음식
-tab.aether_accessories=에더 악세서리
-tab.aether_material=에더 재료
-tab.aether_misc=에더 기타
+tab.aether=에더 블록
 
 # Tab 이름
 tab.accessories.name=악세서리

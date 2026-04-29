@@ -62,7 +62,7 @@ public abstract class ItemAetherTool extends ItemTool
 	@Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items)
     {
-    	if (tab == AetherCreativeTabs.tools || tab == CreativeTabs.SEARCH)
+    	if (tab == AetherCreativeTabs.aether || tab == CreativeTabs.SEARCH)
     	{
             items.add(new ItemStack(this));
     	}

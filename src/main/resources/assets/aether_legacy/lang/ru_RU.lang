@@ -293,14 +293,7 @@ advancement.aether_legacy.gold_dungeon.desc=Одолейте золотого б
 advancement.aether_legacy.loreception.desc=Положите книгу рая в книгу рая
 
 # Creative Tabs Names
-tab.aether_blocks=Aether Блоки
-tab.aether_tools=Aether Инструменты
-tab.aether_weapons=Aether Оружие
-tab.aether_armor=Aether Броня
-tab.aether_food=Aether Еда
-tab.aether_accessories=Aether  Аксессуары
-tab.aether_material=Aether Материалы
-tab.aether_misc=Aether Разное
+tab.aether=Aether Блоки
 
 # Tab Names
 tab.accessories.name=Аксессуары

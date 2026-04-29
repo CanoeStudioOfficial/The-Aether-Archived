@@ -293,14 +293,7 @@ advancement.aether_legacy.gold_dungeon.desc=Derrota el jefe de la mazmorra de or
 advancement.aether_legacy.loreception.desc=Read a book of lore
 
 # Creative Tabs Names
-tab.aether_blocks=Bloques del Aether
-tab.aether_tools=Herramientas del Aether
-tab.aether_weapons=Armas del Aether
-tab.aether_armor=Aether Armor Armadura del Aether
-tab.aether_food=Aether Foods Comida del Aether
-tab.aether_accessories=Aether Accessories Accesorios del Aether
-tab.aether_material=Aether Materials Materiales del Aether
-tab.aether_misc=Aether Miscellaneous
+tab.aether=Bloques del Aether
 
 # Tab Names
 tab.accessories.name=Accesorios

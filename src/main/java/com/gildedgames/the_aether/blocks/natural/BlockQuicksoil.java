@@ -30,7 +30,7 @@ public class BlockQuicksoil extends Block
 		this.setHardness(0.5F);
 		this.setDefaultSlipperiness(1.1F);
 		this.setSoundType(SoundType.SAND);
-		this.setCreativeTab(AetherCreativeTabs.blocks);
+		this.setCreativeTab(AetherCreativeTabs.aether);
 		this.setDefaultState(this.getDefaultState().withProperty(double_drop, Boolean.TRUE));
 	}
 

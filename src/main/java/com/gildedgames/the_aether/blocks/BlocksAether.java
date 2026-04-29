@@ -290,7 +290,7 @@ public class BlocksAether
 	public static Block registerSlab(String name, Block slab1, Block slab2)
 	{
 		slab1.setTranslationKey(name);
-		slab1.setCreativeTab(AetherCreativeTabs.blocks);
+		slab1.setCreativeTab(AetherCreativeTabs.aether);
 
 		blockList[availableId] = slab1.setRegistryName(Aether.locate(name));
 		itemList[availableId] = new ItemAetherSlab(slab1, (BlockSlab) slab1, (BlockSlab) slab2).setRegistryName(Aether.locate(name));
@@ -303,7 +303,7 @@ public class BlocksAether
 	public static Block register(String name, Block block)
 	{
 		block.setTranslationKey(name);
-		block.setCreativeTab(AetherCreativeTabs.blocks);
+		block.setCreativeTab(AetherCreativeTabs.aether);
 
 		blockList[availableId] = block.setRegistryName(Aether.locate(name));
 		itemList[availableId] = new ItemBlock(block).setRegistryName(Aether.locate(name));
@@ -316,7 +316,7 @@ public class BlocksAether
 	public static Block registerRarity(String name, Block block, EnumRarity rarity)
 	{
 		block.setTranslationKey(name);
-		block.setCreativeTab(AetherCreativeTabs.blocks);
+		block.setCreativeTab(AetherCreativeTabs.aether);
 
 		blockList[availableId] = block.setRegistryName(Aether.locate(name));
 		itemList[availableId] = new ItemRarity(block, rarity).setRegistryName(Aether.locate(name));
@@ -348,7 +348,7 @@ public class BlocksAether
 	public static Block registerEnchanter(String name, Block block)
 	{
 		block.setTranslationKey(name);
-		block.setCreativeTab(AetherCreativeTabs.blocks);
+		block.setCreativeTab(AetherCreativeTabs.aether);
 
 		blockList[availableId] = block.setRegistryName(Aether.locate(name));
 		itemList[availableId] = new ItemEnchanter(block).setRegistryName(Aether.locate(name));

@@ -37,7 +37,7 @@ public class ItemPhoenixBow extends ItemBow
 	@Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items)
     {
-    	if (tab == AetherCreativeTabs.weapons)
+    	if (tab == AetherCreativeTabs.aether || tab == CreativeTabs.SEARCH)
     	{
             items.add(new ItemStack(this));
     	}

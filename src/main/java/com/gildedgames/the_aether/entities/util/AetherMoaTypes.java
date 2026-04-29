@@ -25,7 +25,7 @@ public class AetherMoaTypes
 
 	public static AetherMoaType register(String name, int hexColor, MoaProperties properties)
 	{
-		AetherMoaType moaType = new AetherMoaType(hexColor, properties, AetherCreativeTabs.misc);
+		AetherMoaType moaType = new AetherMoaType(hexColor, properties, AetherCreativeTabs.aether);
 
 		moaRegistry.register(moaType.setRegistryName(Aether.locate(name)));
 

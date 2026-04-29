@@ -15,7 +15,7 @@ public class ItemVictoryMedal extends Item
 		super();
 
 		this.setMaxStackSize(10);
-		this.setCreativeTab(AetherCreativeTabs.misc);
+		this.setCreativeTab(AetherCreativeTabs.aether);
 	}
 
 	@Override

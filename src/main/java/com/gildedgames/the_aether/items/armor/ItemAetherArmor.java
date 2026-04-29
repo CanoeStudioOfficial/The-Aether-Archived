@@ -52,7 +52,7 @@ public class ItemAetherArmor extends ItemArmor
 	@Override
     public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items)
     {
-    	if (tab == AetherCreativeTabs.armor || tab == CreativeTabs.SEARCH)
+    	if (tab == AetherCreativeTabs.aether || tab == CreativeTabs.SEARCH)
     	{
             items.add(new ItemStack(this));
     	}

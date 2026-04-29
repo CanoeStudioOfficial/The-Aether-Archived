@@ -293,14 +293,7 @@ advancement.aether_legacy.gold_dungeon.desc=ssoq uoǝᵷunp uǝpꞁoᵷ ǝɥʇ �
 advancement.aether_legacy.loreception.desc=ǝɹoꞁ ɟo ʞooq ɐ pɐǝᴚ
 
 # Creative Tabs Names
-tab.aether_blocks=sʞɔoꞁᗺ ɹǝɥʇǝⱯ
-tab.aether_tools=sꞁoo⟘ ɹǝɥʇǝⱯ
-tab.aether_weapons=suodɐǝM ɹǝɥʇǝⱯ
-tab.aether_armor=ɹoɯɹⱯ ɹǝɥʇǝⱯ
-tab.aether_food=spooℲ ɹǝɥʇǝⱯ
-tab.aether_accessories=sǝᴉɹossǝɔɔⱯ ɹǝɥʇǝⱯ
-tab.aether_material=sꞁɐᴉɹǝʇɐW ɹǝɥʇǝⱯ
-tab.aether_misc=snoǝuɐꞁꞁǝɔsᴉW ɹǝɥʇǝⱯ
+tab.aether=sʞɔoꞁᗺ ɹǝɥʇǝⱯ
 
 # Tab Names
 tab.accessories.name=sǝᴉɹossǝɔɔⱯ

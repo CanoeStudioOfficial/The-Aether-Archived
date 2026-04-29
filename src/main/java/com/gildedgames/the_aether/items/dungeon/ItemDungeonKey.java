@@ -18,7 +18,7 @@ public class ItemDungeonKey extends Item
 		super();
 		this.setHasSubtypes(true);
 		this.setMaxStackSize(1);
-		this.setCreativeTab(AetherCreativeTabs.misc);
+		this.setCreativeTab(AetherCreativeTabs.aether);
 	}
 
 	@Override

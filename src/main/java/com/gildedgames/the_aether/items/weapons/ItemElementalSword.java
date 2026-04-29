@@ -20,7 +20,7 @@ public class ItemElementalSword extends ItemSword
 	{
 		super(ToolMaterial.DIAMOND);
 		this.setMaxDamage(502);
-		this.setCreativeTab(AetherCreativeTabs.weapons);
+		this.setCreativeTab(AetherCreativeTabs.aether);
 	}
 
 	@Override

@@ -29,7 +29,7 @@ public class BlockHolystone extends Block
 
 		this.setHardness(0.5F);
 		this.setSoundType(SoundType.STONE);
-		this.setCreativeTab(AetherCreativeTabs.blocks);
+		this.setCreativeTab(AetherCreativeTabs.aether);
 		this.setDefaultState(this.getDefaultState().withProperty(double_drop, Boolean.TRUE).withProperty(dungeon_block, Boolean.FALSE));
 	}
 

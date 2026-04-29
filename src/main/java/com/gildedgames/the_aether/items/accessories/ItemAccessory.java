@@ -60,7 +60,7 @@ public class ItemAccessory extends Item
 		this.texture = Aether.locate("textures/armor/accessory_base.png");
 		this.texture_slim = Aether.locate("textures/armor/accessory_base_slim.png");
 		this.setMaxStackSize(1);
-		this.setCreativeTab(AetherCreativeTabs.accessories);
+		this.setCreativeTab(AetherCreativeTabs.aether);
         BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(this, DISPENSER_BEHAVIOR);
 	}
 

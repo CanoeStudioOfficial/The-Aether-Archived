@@ -6,30 +6,15 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import com.gildedgames.the_aether.blocks.BlocksAether;
-import com.gildedgames.the_aether.items.ItemsAether;
 
 public class AetherCreativeTabs 
 {
 
-	public static AetherTab blocks = new AetherTab("aether_blocks"),
-	tools = new AetherTab("aether_tools"), 
-	weapons = new AetherTab("aether_weapons"), 
-	armor = new AetherTab("aether_armor"), 
-	food = new AetherTab("aether_food"), 
-	accessories = new AetherTab("aether_accessories"), 
-	material = new AetherTab("aether_material"),
-	misc = new AetherTab("aether_misc");
+	public static AetherTab aether = new AetherTab("aether");
 
 	public static void initialization()
 	{
-		blocks.setIcon(new ItemStack(BlocksAether.aether_grass));
-		tools.setIcon(new ItemStack(ItemsAether.gravitite_pickaxe));
-		weapons.setIcon(new ItemStack(ItemsAether.gravitite_sword));
-		armor.setIcon(new ItemStack(ItemsAether.gravitite_helmet));
-		food.setIcon(new ItemStack(ItemsAether.blue_berry));
-		accessories.setIcon(new ItemStack(ItemsAether.gravitite_gloves));
-		material.setIcon(new ItemStack(ItemsAether.ambrosium_shard));
-		misc.setIcon(new ItemStack(ItemsAether.dungeon_key));
+		aether.setIcon(new ItemStack(BlocksAether.aether_grass));
 	}
 	
 	public static class AetherTab extends CreativeTabs

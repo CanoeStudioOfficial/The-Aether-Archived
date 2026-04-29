@@ -294,14 +294,7 @@ advancement.aether_legacy.gold_dungeon.desc=Defeat the golden dungeon boss
 advancement.aether_legacy.loreception.desc=Read a book ov loor
 
 # Creative Tabs Names
-tab.aether_blocks=Ether Blocks
-tab.aether_tools=Ether Tools
-tab.aether_weapons=Ether Weapons
-tab.aether_armor=Ether Armor
-tab.aether_food=Ether Foods
-tab.aether_accessories=Ether Accessories
-tab.aether_material=Ether Materials
-tab.aether_misc=Ether Miscellaneous
+tab.aether=Ether Blocks
 
 # Tab Names
 tab.accessories.name=Accessories

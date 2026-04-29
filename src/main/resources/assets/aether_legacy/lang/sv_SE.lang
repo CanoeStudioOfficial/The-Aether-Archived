@@ -293,14 +293,7 @@ advancement.aether_legacy.gold_dungeon.desc=Besegra bossen i guldfängelsehålan
 advancement.aether_legacy.loreception.desc=Sätt Kunskapens bok inuti Kunskapens bok
 
 # Creative Tabs Names
-tab.aether_blocks=Aetherblock
-tab.aether_tools=Aetherverktyg
-tab.aether_weapons=Aethervapen
-tab.aether_armor=Aetherrustning
-tab.aether_food=Aethermatvaror
-tab.aether_accessories=Aethertillbehör
-tab.aether_material=Aethermaterial
-tab.aether_misc=Aether diverse
+tab.aether=Aetherblock
 
 # Tab Names
 tab.accessories.name=Tillbehör

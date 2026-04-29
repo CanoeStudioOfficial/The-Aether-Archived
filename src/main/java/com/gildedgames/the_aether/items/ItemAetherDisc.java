@@ -17,7 +17,7 @@ public class ItemAetherDisc extends ItemRecord
 		super(s, event);
 		this.artistName = artist;
 		this.songName = s;
-		this.setCreativeTab(AetherCreativeTabs.misc);
+		this.setCreativeTab(AetherCreativeTabs.aether);
 	}
 
 	@Override

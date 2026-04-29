@@ -23,7 +23,7 @@ public class ItemLifeShard extends Item
 	{
 		super();
 		this.setMaxStackSize(1);
-		this.setCreativeTab(AetherCreativeTabs.misc);
+		this.setCreativeTab(AetherCreativeTabs.aether);
 	}
 
 	@Override

@@ -125,11 +125,11 @@ public class ItemsAether
 
 	public static void initialization()
 	{
-		zanite_gemstone = register("zanite_gemstone", new ItemAether(AetherCreativeTabs.material));
+		zanite_gemstone = register("zanite_gemstone", new ItemAether(AetherCreativeTabs.aether));
 		ambrosium_shard = register("ambrosium_shard", new ItemAmbrosiumShard());
-		golden_amber = register("golden_amber", new ItemAether(AetherCreativeTabs.material));
-		aechor_petal = register("aechor_petal", new ItemAether(AetherCreativeTabs.material));
-		swetty_ball = register("swetty_ball", new ItemSwettyBall(AetherCreativeTabs.material));
+		golden_amber = register("golden_amber", new ItemAether(AetherCreativeTabs.aether));
+		aechor_petal = register("aechor_petal", new ItemAether(AetherCreativeTabs.aether));
+		swetty_ball = register("swetty_ball", new ItemSwettyBall(AetherCreativeTabs.aether));
 
 		skyroot_pickaxe = register("skyroot_pickaxe", new ItemSkyrootTool(EnumAetherToolType.PICKAXE));
 		skyroot_axe = register("skyroot_axe", new ItemSkyrootTool(EnumAetherToolType.AXE));
@@ -189,7 +189,7 @@ public class ItemsAether
 		candy_cane = register("candy_cane", new ItemAetherFood(2));
 		ginger_bread_man = register("ginger_bread_man", new ItemAetherFood(2));
 
-		skyroot_stick = register("skyroot_stick", new Item().setCreativeTab(AetherCreativeTabs.material));
+		skyroot_stick = register("skyroot_stick", new Item().setCreativeTab(AetherCreativeTabs.aether));
 		victory_medal = register("victory_medal", new ItemVictoryMedal());
 
 		dungeon_key = register("dungeon_key", new ItemDungeonKey());
