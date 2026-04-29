@@ -5,7 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
-import com.gildedgames.the_aether.containers.inventory.InventoryAccessories;
+import baubles.api.BaublesApi;
+import baubles.api.cap.IBaublesItemHandler;
+import com.gildedgames.the_aether.api.accessories.BaublesHelper;
 import com.gildedgames.the_aether.entities.passive.mountable.EntityParachute;
 import com.gildedgames.the_aether.networking.AetherNetworkingManager;
 import com.gildedgames.the_aether.networking.packets.*;
@@ -38,11 +40,11 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.api.player.IPlayerAether;
-import com.gildedgames.the_aether.api.player.util.IAccessoryInventory;
 import com.gildedgames.the_aether.api.player.util.IAetherAbility;
 import com.gildedgames.the_aether.api.player.util.IAetherBoss;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
+import com.gildedgames.the_aether.items.accessories.ItemAccessory;
 import com.gildedgames.the_aether.world.TeleporterAether;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
@@ -56,8 +58,6 @@ public class PlayerAether implements IPlayerAether
 	private UUID extendedReachUUID = UUID.fromString("df6eabe7-6947-4a56-9099-002f90370707");
 
 	private AttributeModifier healthModifier, reachModifier;
-
-	public IAccessoryInventory accessories;
 
 	public float wingSinage;
 
@@ -105,13 +105,11 @@ public class PlayerAether implements IPlayerAether
 		this.shouldRenderGlow = false;
 		this.shouldRenderCape = true;
 		this.shouldRenderGloves = true;
-		//false = skin, true = hat
 		this.gloveSize = false;
 
 		this.shouldGetPortal = true;
 
 		this.donatorMoaSkin = new DonatorMoaSkin();
-		this.accessories = new InventoryAccessories(player);
 		this.reachModifier = new AttributeModifier(this.extendedReachUUID, "Aether Reach Modifier", 3.0D, 0);
 
 		this.abilities.addAll(Arrays.<IAetherAbility>asList(new AbilityArmor(this), new AbilityAccessories(this), new AbilityFlight(this), new AbilityRepulsion(this)));
@@ -131,8 +129,6 @@ public class PlayerAether implements IPlayerAether
 			AetherNetworkingManager.sendToAll(new PacketGloveSizeChanged(this.getEntity().getEntityId(), this.gloveSize));
 			AetherNetworkingManager.sendToAll(new PacketShouldPortalTravelSound(this.getEntity(), this.shouldPlayPortalTravelSound));
 		}
-
-		this.updateAccessories();
 
 		if (this.isPoisoned)
 		{
@@ -348,7 +344,7 @@ public class PlayerAether implements IPlayerAether
 
 	public boolean onPlayerAttacked(DamageSource source)
 	{
-		if (this.getAccessoryInventory().isWearingPhoenixSet() && source.isFireDamage())
+		if (BaublesHelper.isWearingPhoenixSet(this.thePlayer) && source.isFireDamage())
 		{
 			return true;
 		}
@@ -368,7 +364,18 @@ public class PlayerAether implements IPlayerAether
 	{
 		if (!this.thePlayer.world.getGameRules().getBoolean("keepInventory"))
 		{
-			this.accessories.dropAccessories();
+			IBaublesItemHandler handler = BaublesApi.getBaublesHandler(this.thePlayer);
+
+			for (int i = 0; i < handler.getSlots(); i++)
+			{
+				ItemStack stack = handler.getStackInSlot(i);
+
+				if (!stack.isEmpty() && stack.getItem() instanceof ItemAccessory)
+				{
+					this.thePlayer.dropItem(stack, true, true);
+					handler.setStackInSlot(i, ItemStack.EMPTY);
+				}
+			}
 		}
 	}
 
@@ -377,13 +384,10 @@ public class PlayerAether implements IPlayerAether
 		this.updateShardCount(0);
 
 		this.thePlayer.setHealth(this.thePlayer.getMaxHealth());
-
-		this.updateAccessories();
 	}
 
 	public void onChangedDimension(int toDim, int fromDim)
 	{
-		this.updateAccessories();
 	}
 
 	public void saveNBTData(NBTTagCompound output) 
@@ -409,7 +413,6 @@ public class PlayerAether implements IPlayerAether
 		output.setString("notch_hammer_name", this.cooldownName);
 		output.setInteger("max_hammer_cooldown", this.cooldownMax);
 		output.setFloat("shard_count", this.lifeShardsUsed);
-		this.accessories.writeToNBT(output);
 	}
 
 	public void loadNBTData(NBTTagCompound input)
@@ -467,32 +470,29 @@ public class PlayerAether implements IPlayerAether
 		this.cooldown = input.getInteger("hammer_cooldown");
 		this.cooldownName = input.getString("notch_hammer_name");
 		this.cooldownMax = input.getInteger("max_hammer_cooldown");
-		this.accessories.readFromNBT(input);
 	}
 
-	/*
-	 * Gets the custom speed at the current point in time
-	 */
 	public float getCurrentPlayerStrVsBlock(float original) 
 	{ 
 		float f = original;
 
-		if(this.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.zanite_pendant)))
+		ItemStack zanitePendant = BaublesHelper.getWornStack(this.thePlayer, ItemsAether.zanite_pendant);
+
+		if (!zanitePendant.isEmpty())
 		{
-			f *= (1F + ((float)(((InventoryAccessories) this.accessories).getStackFromItem(ItemsAether.zanite_pendant).getItemDamage()) / ((float)(((InventoryAccessories) this.accessories).getStackFromItem(ItemsAether.zanite_pendant).getMaxDamage()) * 3F)));
+			f *= (1F + ((float)(zanitePendant.getItemDamage()) / ((float)(zanitePendant.getMaxDamage()) * 3F)));
 		}
 
-		if(this.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.zanite_ring)))
+		ItemStack zaniteRing = BaublesHelper.getWornStack(this.thePlayer, ItemsAether.zanite_ring);
+
+		if (!zaniteRing.isEmpty())
 		{
-			f *= (1F + ((float)(((InventoryAccessories) this.accessories).getStackFromItem(ItemsAether.zanite_ring).getItemDamage()) / ((float)(((InventoryAccessories) this.accessories).getStackFromItem(ItemsAether.zanite_ring).getMaxDamage()) * 3F)));
+			f *= (1F + ((float)(zaniteRing.getItemDamage()) / ((float)(zaniteRing.getMaxDamage()) * 3F)));
 		}
 
 		return f == original ? original : f + original; 
 	}
 
-	/*
-	 * Gets the player reach at the current point in time
-	 */
 	public void updatePlayerReach()
 	{
 		ItemStack stack = this.thePlayer.getHeldItemMainhand();
@@ -506,10 +506,6 @@ public class PlayerAether implements IPlayerAether
 			this.thePlayer.getEntityAttribute(EntityPlayer.REACH_DISTANCE).removeModifier(this.reachModifier);
 		}
 	}
-
-	/*
-	 * The teleporter which sends the player to the Aether/Overworld
-	 */
 
 	public void teleportPlayer(boolean shouldSpawnPortal)
 	{
@@ -540,9 +536,6 @@ public class PlayerAether implements IPlayerAether
 		}
 	}
 
-	/*
-	 * The teleporter which sends any extra entities to the Aether/Overworld
-	 */
 	private static void transferEntity(boolean shouldSpawnPortal, Entity entityIn, WorldServer previousWorldIn, WorldServer newWorldIn)
 	{
 		MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
@@ -604,9 +597,6 @@ public class PlayerAether implements IPlayerAether
 		}
 	}
 
-	/*
-	 * A checker to see if a player is inside a block or not
-	 */
 	public boolean isInBlock(Block blockID)
 	{
 		int x = MathHelper.floor(this.thePlayer.posX);
@@ -617,9 +607,6 @@ public class PlayerAether implements IPlayerAether
 		return this.thePlayer.world.getBlockState(pos).getBlock() == blockID || this.thePlayer.world.getBlockState(pos.up()).getBlock() == blockID || this.thePlayer.world.getBlockState(pos.down()).getBlock() == blockID;
 	}
 
-	/*
-	 * Increases the maximum amount of HP (Caps at 10)
-	 */
 	@Override
 	public void updateShardCount(int amount)
 	{
@@ -646,45 +633,30 @@ public class PlayerAether implements IPlayerAether
 		}
 	}
 
-	/*
-	 * Instance of the current shards the player has used
-	 */
 	@Override
 	public int getShardsUsed()
 	{
 		return this.lifeShardsUsed;
 	}
 
-	/*
-	 * Instance of the maximum shards the player can use
-	 */
 	@Override
 	public int getMaxShardCount()
 	{
 		return AetherConfig.gameplay_changes.max_life_shards;
 	}
 
-	/*
-	 * Sets the boss the player is fighting
-	 */
 	@Override
 	public void setFocusedBoss(IAetherBoss boss)
 	{
 		this.currentBoss = boss;
 	}
 
-	/*
-	 * Instance of the boss the player is fighting
-	 */
 	@Override
 	public IAetherBoss getFocusedBoss()
 	{
 		return this.currentBoss;
 	}
 
-	/*
-	 * Sets the cooldown and name of the players hammer
-	 */
 	@Override
 	public boolean setHammerCooldown(int cooldown, String hammerName)
 	{
@@ -724,54 +696,36 @@ public class PlayerAether implements IPlayerAether
 		return this.shouldPlayPortalTravelSound;
 	}
 
-	/*
-	 * The name of the players hammer
-	 */
 	@Override
 	public String getHammerName()
 	{
 		return this.cooldownName;
 	}
 
-	/*
-	 * Sets the cooldown of the players hammer
-	 */
 	@Override
 	public int getHammerCooldown()
 	{
 		return this.cooldown;
 	}
 
-	/*
-	 * The max cooldown of the players hammer
-	 */
 	@Override
 	public int getHammerMaxCooldown()
 	{
 		return this.cooldownMax;
 	}
 
-	/*
-	 * Checks if the player is jumping or not
-	 */
 	@Override
 	public boolean isJumping()
 	{
 		return this.isJumping;
 	}
 
-	/*
-	 * Sets if the player is jumping or not
-	 */
 	@Override
 	public void setJumping(boolean isJumping)
 	{
 		this.isJumping = isJumping;
 	}
 
-	/*
-	 * Checks if the player is a donator or not
-	 */
 	public boolean isDonator()
 	{
 		return true;
@@ -780,29 +734,6 @@ public class PlayerAether implements IPlayerAether
 	public void setInPortal()
 	{
 		this.inPortal = true;
-	}
-
-	/*
-	 * Updates Player accessories
-	 */
-	public void updateAccessories()
-	{
-		if (!this.thePlayer.world.isRemote)
-		{
-			AetherNetworkingManager.sendToAll(new PacketAccessory(this));
-		}
-	}
-
-	@Override
-	public void setAccessoryInventory(IAccessoryInventory inventory)
-	{
-		this.accessories = inventory;
-	}
-
-	@Override
-	public IAccessoryInventory getAccessoryInventory()
-	{
-		return this.accessories;
 	}
 
 	@Override

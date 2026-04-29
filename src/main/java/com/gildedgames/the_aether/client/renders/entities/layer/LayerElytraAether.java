@@ -1,8 +1,9 @@
 package com.gildedgames.the_aether.client.renders.entities.layer;
 
 import com.gildedgames.the_aether.api.AetherAPI;
+import com.gildedgames.the_aether.api.accessories.AccessoryType;
+import com.gildedgames.the_aether.api.accessories.BaublesHelper;
 import com.gildedgames.the_aether.api.player.IPlayerAether;
-import com.gildedgames.the_aether.api.player.util.IAccessoryInventory;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.items.accessories.ItemAccessory;
 import com.gildedgames.the_aether.player.PlayerAether;
@@ -25,11 +26,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class LayerElytraAether implements LayerRenderer<EntityLivingBase>
 {
-    /** The basic Elytra texture. */
     private static final ResourceLocation TEXTURE_ELYTRA = new ResourceLocation("textures/entity/elytra.png");
-    /** Instance of the player renderer. */
     protected final RenderLivingBase<?> renderPlayer;
-    /** The model used by the Elytra. */
     private final ModelElytra modelElytra = new ModelElytra();
 
     public LayerElytraAether(RenderLivingBase<?> p_i47185_1_)
@@ -54,15 +52,15 @@ public class LayerElytraAether implements LayerRenderer<EntityLivingBase>
                     AbstractClientPlayer abstractclientplayer = (AbstractClientPlayer)entitylivingbaseIn;
 
                     IPlayerAether playerAether = AetherAPI.getInstance().get(abstractclientplayer);
-                    IAccessoryInventory accessories = playerAether.getAccessoryInventory();
+                    ItemStack capeStack = BaublesHelper.getWornStackByType(abstractclientplayer, AccessoryType.CAPE);
 
-                    if (accessories.getStackInSlot(1).getItem() instanceof ItemAccessory && accessories.getStackInSlot(1).getItem() != ItemsAether.invisibility_cape && ((PlayerAether) playerAether).shouldRenderCape)
+                    if (!capeStack.isEmpty() && capeStack.getItem() instanceof ItemAccessory && capeStack.getItem() != ItemsAether.invisibility_cape && ((PlayerAether) playerAether).shouldRenderCape)
                     {
-                        ItemAccessory cape = ((ItemAccessory) (accessories.getStackInSlot(1).getItem()));
+                        ItemAccessory cape = ((ItemAccessory) (capeStack.getItem()));
 
                         if (cape.hasElytra())
                         {
-                            int colour = cape.getColorFromItemStack(accessories.getStackInSlot(1), 0);
+                            int colour = cape.getColorFromItemStack(capeStack, 0);
                             float red = ((colour >> 16) & 0xff) / 255F;
                             float green = ((colour >> 8) & 0xff) / 255F;
                             float blue = (colour & 0xff) / 255F;

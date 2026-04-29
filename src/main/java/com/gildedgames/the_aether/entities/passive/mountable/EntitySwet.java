@@ -1,6 +1,7 @@
 package com.gildedgames.the_aether.entities.passive.mountable;
 
 import com.gildedgames.the_aether.AetherConfig;
+import com.gildedgames.the_aether.api.accessories.BaublesHelper;
 import com.gildedgames.the_aether.api.AetherAPI;
 import com.gildedgames.the_aether.api.player.IPlayerAether;
 import com.gildedgames.the_aether.entities.ai.swet.*;
@@ -298,7 +299,7 @@ public class EntitySwet extends EntityMountable implements IEntityAdditionalSpaw
 	public boolean isPlayerFriendly(EntityPlayer player)
 	{
 		IPlayerAether iPlayerAether = AetherAPI.getInstance().get(player);
-		return iPlayerAether.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.swet_cape));
+		return BaublesHelper.wearingAccessory(player, ItemsAether.swet_cape);
 	}
 
 	public boolean isFriendly()

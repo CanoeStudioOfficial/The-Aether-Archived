@@ -24,7 +24,7 @@ public class AetherNetworkingManager
 
 		INSTANCE.registerMessage(PacketOpenContainer.class, PacketOpenContainer.class, discriminant++, Side.SERVER);
 
-		INSTANCE.registerMessage(PacketAccessory.class, PacketAccessory.class, discriminant++, Side.CLIENT);
+		INSTANCE.registerMessage(PacketOpenBaubles.class, PacketOpenBaubles.class, discriminant++, Side.SERVER);
 
 		INSTANCE.registerMessage(PacketSendJump.class, PacketSendJump.class, discriminant++, Side.SERVER);
 

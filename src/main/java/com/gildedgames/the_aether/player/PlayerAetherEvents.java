@@ -1,7 +1,10 @@
 package com.gildedgames.the_aether.player;
 
+import baubles.api.BaublesApi;
+import baubles.api.cap.IBaublesItemHandler;
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.advancements.AetherAdvancements;
+import com.gildedgames.the_aether.api.accessories.BaublesHelper;
 import com.gildedgames.the_aether.enchantment.AetherEnchantmentHelper;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandClearInventory;
@@ -59,9 +62,7 @@ public class PlayerAetherEvents
 	@SubscribeEvent
 	public void checkPlayerVisibility(Visibility event)
 	{
-		IPlayerAether playerAether = AetherAPI.getInstance().get(event.getEntityPlayer());
-
-		if (playerAether.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.invisibility_cape)))
+		if (BaublesHelper.wearingAccessory(event.getEntityPlayer(), ItemsAether.invisibility_cape))
 		{
 			event.modifyVisibility(0.0D);
 		}
@@ -90,7 +91,7 @@ public class PlayerAetherEvents
 	@SubscribeEvent
 	public void onPlayerPickupXp(PlayerPickupXpEvent event)
 	{
-		ItemStack itemstack = AetherEnchantmentHelper.getEnchantedAccessory(Enchantments.MENDING, AetherAPI.getInstance().get(event.getEntityPlayer()));
+		ItemStack itemstack = AetherEnchantmentHelper.getEnchantedAccessory(Enchantments.MENDING, event.getEntityPlayer());
 
         if (!itemstack.isEmpty() && itemstack.isItemDamaged())
         {
@@ -187,7 +188,6 @@ public class PlayerAetherEvents
 		if (playerAether != null)
 		{
 			playerAether.updateShardCount(0);
-			playerAether.getAccessoryInventory().markDirty();
 			((PlayerAether) playerAether).onChangedDimension(event.toDim, event.fromDim);
 		}
 	}
@@ -201,8 +201,6 @@ public class PlayerAetherEvents
 		if (playerAether != null)
 		{
 			playerAether.updateShardCount(0);
-			playerAether.getAccessoryInventory().markDirty();
-			((PlayerAether) playerAether).updateAccessories();
 
 			if (!AetherConfig.gameplay_changes.aether_start)
 			{
@@ -220,9 +218,9 @@ public class PlayerAetherEvents
 	{
 		if (event.getEntityLiving() instanceof EntityPlayer)
 		{
-			IPlayerAether playerAether = AetherAPI.getInstance().get((EntityPlayer) event.getEntityLiving());
+			EntityPlayer player = (EntityPlayer) event.getEntityLiving();
 
-			if (playerAether.getAccessoryInventory().isWearingObsidianSet())
+			if (BaublesHelper.isWearingObsidianSet(player))
 			{
 				float original = event.getAmount();
 
@@ -260,16 +258,11 @@ public class PlayerAetherEvents
 		            return;
 		        }
 
-				IPlayerAether playerAether = AetherAPI.getInstance().get(entityplayermp);
+				IBaublesItemHandler handler = BaublesApi.getBaublesHandler(entityplayermp);
 
-				if (playerAether != null)
+				for (int i = 0; i < handler.getSlots(); i++)
 				{
-					if (playerAether.getAccessoryInventory().getFieldCount() != 0)
-					{
-						playerAether.getAccessoryInventory().clear();
-
-						CommandBase.notifyCommandListener(entityplayermp, event.getCommand(), "Cleared the accessories of " + entityplayermp.getName(), new Object[] {});
-					}
+					handler.setStackInSlot(i, ItemStack.EMPTY);
 				}
 			}
 		}

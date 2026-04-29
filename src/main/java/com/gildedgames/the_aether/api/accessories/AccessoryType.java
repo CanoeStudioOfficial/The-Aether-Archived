@@ -1,23 +1,28 @@
 package com.gildedgames.the_aether.api.accessories;
 
+import baubles.api.BaubleType;
+
 public enum AccessoryType
 {
-	RING("Ring", 11, 3),
-	PENDANT("Pendant", 16, 7),
-	CAPE("Cape", 15, 5),
-	SHIELD("Shield", 13, 0),
-	GLOVE("Gloves", 10, 0),
-	MISC("Miscellaneous", 10, 0);
+	RING("Ring", 11, 3, BaubleType.RING),
+	PENDANT("Pendant", 16, 7, BaubleType.AMULET),
+	CAPE("Cape", 15, 5, BaubleType.BODY),
+	SHIELD("Shield", 13, 0, BaubleType.TRINKET),
+	GLOVE("Gloves", 10, 0, BaubleType.TRINKET),
+	MISC("Miscellaneous", 10, 0, BaubleType.CHARM);
 
 	private int maxDamage, damagedReduced;
 
 	private String displayName;
 
-	AccessoryType(String displayName, int maxDamage, int damageReduced)
+	private BaubleType baubleType;
+
+	AccessoryType(String displayName, int maxDamage, int damageReduced, BaubleType baubleType)
 	{
 		this.displayName = displayName;
 		this.maxDamage = maxDamage;
 		this.damagedReduced = damageReduced;
+		this.baubleType = baubleType;
 	}
 
 	public int getMaxDamage()
@@ -33,6 +38,11 @@ public enum AccessoryType
 	public String getDisplayName()
 	{
 		return this.displayName;
+	}
+
+	public BaubleType getBaubleType()
+	{
+		return this.baubleType;
 	}
 
 }

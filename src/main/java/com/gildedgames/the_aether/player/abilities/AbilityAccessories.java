@@ -1,5 +1,8 @@
 package com.gildedgames.the_aether.player.abilities;
 
+import baubles.api.BaublesApi;
+import baubles.api.cap.IBaublesItemHandler;
+import com.gildedgames.the_aether.api.accessories.BaublesHelper;
 import com.gildedgames.the_aether.api.player.util.IAetherAbility;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.player.PlayerAether;
@@ -39,11 +42,11 @@ public class AbilityAccessories implements IAetherAbility
 	{
 		if (this.playerAether.getEntity().ticksExisted % 400 == 0)
 		{
-			this.playerAether.accessories.damageWornStack(1, new ItemStack(ItemsAether.zanite_ring));
-			this.playerAether.accessories.damageWornStack(1, new ItemStack(ItemsAether.zanite_pendant));
+			BaublesHelper.damageWornStack(this.playerAether.getEntity(), 1, ItemsAether.zanite_ring);
+			BaublesHelper.damageWornStack(this.playerAether.getEntity(), 1, ItemsAether.zanite_pendant);
 		}
 
-		if (!this.playerAether.getEntity().world.isRemote && this.playerAether.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.ice_ring)) || this.playerAether.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.ice_pendant)))
+		if (!this.playerAether.getEntity().world.isRemote && BaublesHelper.wearingAccessory(this.playerAether.getEntity(), ItemsAether.ice_ring) || BaublesHelper.wearingAccessory(this.playerAether.getEntity(), ItemsAether.ice_pendant))
 		{
 			int i = MathHelper.floor(this.playerAether.getEntity().posX);
 			int j = MathHelper.floor(this.playerAether.getEntity().getEntityBoundingBox().minY);
@@ -76,19 +79,19 @@ public class AbilityAccessories implements IAetherAbility
 							continue;
 						}
 
-						this.playerAether.accessories.damageWornStack(1, new ItemStack(ItemsAether.ice_ring));
-						this.playerAether.accessories.damageWornStack(1, new ItemStack(ItemsAether.ice_pendant));
+						BaublesHelper.damageWornStack(this.playerAether.getEntity(), 1, ItemsAether.ice_ring);
+						BaublesHelper.damageWornStack(this.playerAether.getEntity(), 1, ItemsAether.ice_pendant);
 					}
 				}
 			}
 		}
 
-		if (this.playerAether.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.iron_bubble)))
+		if (BaublesHelper.wearingAccessory(this.playerAether.getEntity(), ItemsAether.iron_bubble))
 		{
 			this.playerAether.getEntity().setAir(0);
 		}
 
-		if (this.playerAether.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.agility_cape)))
+		if (BaublesHelper.wearingAccessory(this.playerAether.getEntity(), ItemsAether.agility_cape))
 		{
 			if (!this.playerAether.getEntity().isSneaking())
 			{
@@ -113,12 +116,12 @@ public class AbilityAccessories implements IAetherAbility
 			}
 		}
 
-		if (this.playerAether.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.invisibility_cape)))
+		if (BaublesHelper.wearingAccessory(this.playerAether.getEntity(), ItemsAether.invisibility_cape))
 		{
 			this.invisibilityUpdate = true;
 			this.playerAether.getEntity().setInvisible(true);
 		}
-		else if (!this.playerAether.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.invisibility_cape)) && !this.playerAether.getEntity().isPotionActive(Potion.getPotionById(14)))
+		else if (!BaublesHelper.wearingAccessory(this.playerAether.getEntity(), ItemsAether.invisibility_cape) && !this.playerAether.getEntity().isPotionActive(Potion.getPotionById(14)))
 		{
 			if (this.invisibilityUpdate)
 			{
@@ -127,7 +130,7 @@ public class AbilityAccessories implements IAetherAbility
 			}
 		}
 
-		if (this.playerAether.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.regeneration_stone)))
+		if (BaublesHelper.wearingAccessory(this.playerAether.getEntity(), ItemsAether.regeneration_stone))
 		{
 			if(this.playerAether.getEntity().getHealth() < this.playerAether.getEntity().getMaxHealth() && this.playerAether.getEntity().getActivePotionEffect(MobEffects.REGENERATION) == null)
             {
@@ -135,25 +138,33 @@ public class AbilityAccessories implements IAetherAbility
             }
 		}
 
-		if (this.playerAether.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.phoenix_gloves)) && this.playerAether.getEntity().isWet())
+		if (BaublesHelper.wearingAccessory(this.playerAether.getEntity(), ItemsAether.phoenix_gloves) && this.playerAether.getEntity().isWet())
 		{
 			if (this.playerAether.getEntity().world.getTotalWorldTime() % 5 == 0)
 			{
-				ItemStack currentPiece = this.playerAether.accessories.getStackInSlot(6);
+				int slot = BaublesApi.isBaubleEquipped(this.playerAether.getEntity(), ItemsAether.phoenix_gloves);
 
-				this.playerAether.accessories.damageWornStack(1, currentPiece);
-
-				if (this.playerAether.accessories.getStackInSlot(6) == ItemStack.EMPTY)
+				if (slot >= 0)
 				{
-					ItemStack outcomeStack = new ItemStack(ItemsAether.obsidian_gloves, 1, 0);
-					EnchantmentHelper.setEnchantments(EnchantmentHelper.getEnchantments(currentPiece), outcomeStack);
+					IBaublesItemHandler handler = BaublesApi.getBaublesHandler(this.playerAether.getEntity());
+					ItemStack currentPiece = handler.getStackInSlot(slot);
 
-					this.playerAether.accessories.setInventorySlotContents(6, outcomeStack);
+					if (!currentPiece.isEmpty())
+					{
+						currentPiece.damageItem(1, this.playerAether.getEntity());
+
+						if (currentPiece.getItemDamage() >= currentPiece.getMaxDamage())
+						{
+							ItemStack outcomeStack = new ItemStack(ItemsAether.obsidian_gloves, 1, 0);
+							EnchantmentHelper.setEnchantments(EnchantmentHelper.getEnchantments(currentPiece), outcomeStack);
+							handler.setStackInSlot(slot, outcomeStack);
+						}
+					}
 				}
 			}
 		}
 
-		if ((this.playerAether.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.golden_feather)) || this.playerAether.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.valkyrie_cape))) && !this.playerAether.getEntity().isElytraFlying())
+		if ((BaublesHelper.wearingAccessory(this.playerAether.getEntity(), ItemsAether.golden_feather) || BaublesHelper.wearingAccessory(this.playerAether.getEntity(), ItemsAether.valkyrie_cape)) && !this.playerAether.getEntity().isElytraFlying())
 		{
 			if (!this.playerAether.getEntity().onGround && this.playerAether.getEntity().motionY < 0.0D && !this.playerAether.getEntity().isInWater() && !this.playerAether.getEntity().isSneaking())
 			{

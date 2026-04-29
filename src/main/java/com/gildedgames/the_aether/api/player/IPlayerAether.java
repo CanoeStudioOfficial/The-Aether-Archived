@@ -2,7 +2,6 @@ package com.gildedgames.the_aether.api.player;
 
 import java.util.ArrayList;
 
-import com.gildedgames.the_aether.api.player.util.IAccessoryInventory;
 import com.gildedgames.the_aether.api.player.util.IAetherAbility;
 import com.gildedgames.the_aether.api.player.util.IAetherBoss;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,10 +21,6 @@ public interface IPlayerAether
 	public void setFocusedBoss(IAetherBoss boss);
 
 	public IAetherBoss getFocusedBoss();
-
-	public void setAccessoryInventory(IAccessoryInventory inventory);
-
-	public IAccessoryInventory getAccessoryInventory();
 
 	public ArrayList<IAetherAbility> getAbilities();
 

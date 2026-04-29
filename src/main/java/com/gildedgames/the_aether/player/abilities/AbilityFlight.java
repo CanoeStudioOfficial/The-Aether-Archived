@@ -1,5 +1,6 @@
 package com.gildedgames.the_aether.player.abilities;
 
+import com.gildedgames.the_aether.api.accessories.BaublesHelper;
 import com.gildedgames.the_aether.api.player.util.IAetherAbility;
 import com.gildedgames.the_aether.player.PlayerAether;
 
@@ -24,7 +25,7 @@ public class AbilityFlight implements IAetherAbility
 	@Override
 	public boolean shouldExecute()
 	{
-		return this.playerAether.getAccessoryInventory().isWearingValkyrieSet();
+		return BaublesHelper.isWearingValkyrieSet(this.playerAether.getEntity());
 	}
 
 	@Override

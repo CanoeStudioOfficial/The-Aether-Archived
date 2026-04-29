@@ -17,14 +17,11 @@ import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import com.gildedgames.the_aether.api.AetherAPI;
 import com.gildedgames.the_aether.client.gui.GuiEnchanter;
 import com.gildedgames.the_aether.client.gui.GuiFreezer;
 import com.gildedgames.the_aether.client.gui.GuiIncubator;
 import com.gildedgames.the_aether.client.gui.GuiLore;
 import com.gildedgames.the_aether.client.gui.GuiTreasureChest;
-import com.gildedgames.the_aether.client.gui.inventory.GuiAccessories;
-import com.gildedgames.the_aether.containers.ContainerAccessories;
 import com.gildedgames.the_aether.containers.ContainerEnchanter;
 import com.gildedgames.the_aether.containers.ContainerFreezer;
 import com.gildedgames.the_aether.containers.ContainerIncubator;
@@ -33,16 +30,12 @@ import com.gildedgames.the_aether.containers.ContainerLore;
 public class AetherGuiHandler implements IGuiHandler
 {
 
-	public static final int accessories = 1, enchanter = 2, freezer = 3, incubator = 4, treasure_chest = 5, lore = 6, skyroot_crafting = 7, aetherion_chest = 8;
+	public static final int enchanter = 2, freezer = 3, incubator = 4, treasure_chest = 5, lore = 6, skyroot_crafting = 7, aetherion_chest = 8;
 
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
 	{
-		if (ID == accessories)
-		{
-			return new ContainerAccessories(AetherAPI.getInstance().get(player).getAccessoryInventory(), player);
-		}
-		else if (ID == enchanter)
+		if (ID == enchanter)
 		{
 			return new ContainerEnchanter(player.inventory, (TileEntityEnchanter) world.getTileEntity(new BlockPos(x, y, z)));
 		}
@@ -78,11 +71,7 @@ public class AetherGuiHandler implements IGuiHandler
 	@SideOnly(Side.CLIENT)
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
 	{
-		if (ID == accessories)
-		{
-			return new GuiAccessories(AetherAPI.getInstance().get(player));
-		}
-		else if (ID == enchanter)
+		if (ID == enchanter)
 		{
 			return new GuiEnchanter(player.inventory, (TileEntityEnchanter) world.getTileEntity(new BlockPos(x, y, z)));
 		}

@@ -2,6 +2,7 @@ package com.gildedgames.the_aether.player.abilities;
 
 import java.util.Random;
 
+import com.gildedgames.the_aether.api.accessories.BaublesHelper;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -40,12 +41,12 @@ public class AbilityArmor implements IAetherAbility
 	@Override
 	public void onUpdate()
 	{
-		if (this.playerAether.getAccessoryInventory().isWearingNeptuneSet())
+		if (BaublesHelper.isWearingNeptuneSet(this.playerAether.getEntity()))
 		{
 			this.playerMovement.onUpdate();
 		}
 
-		if (this.playerAether.getAccessoryInventory().isWearingGravititeSet())
+		if (BaublesHelper.isWearingGravititeSet(this.playerAether.getEntity()))
 		{
 			if (this.playerAether.isJumping() && !this.jumpBoosted)
 			{
@@ -56,28 +57,28 @@ public class AbilityArmor implements IAetherAbility
 
 		if (this.playerAether.getEntity().isWet())
 		{
-			if (this.playerAether.getAccessoryInventory().wearingArmor(new ItemStack(ItemsAether.phoenix_boots)))
+			if (BaublesHelper.wearingArmor(this.playerAether.getEntity(), new ItemStack(ItemsAether.phoenix_boots)))
 			{
 				this.damagePhoenixArmor(this.playerAether.getEntity(), ItemsAether.obsidian_boots, 0);
 			}
 
-			if (this.playerAether.getAccessoryInventory().wearingArmor(new ItemStack(ItemsAether.phoenix_leggings)))
+			if (BaublesHelper.wearingArmor(this.playerAether.getEntity(), new ItemStack(ItemsAether.phoenix_leggings)))
 			{
 				this.damagePhoenixArmor(this.playerAether.getEntity(), ItemsAether.obsidian_leggings, 1);
 			}
 
-			if (this.playerAether.getAccessoryInventory().wearingArmor(new ItemStack(ItemsAether.phoenix_chestplate)))
+			if (BaublesHelper.wearingArmor(this.playerAether.getEntity(), new ItemStack(ItemsAether.phoenix_chestplate)))
 			{
 				this.damagePhoenixArmor(this.playerAether.getEntity(), ItemsAether.obsidian_chestplate, 2);
 			}
 
-			if (this.playerAether.getAccessoryInventory().wearingArmor(new ItemStack(ItemsAether.phoenix_helmet)))
+			if (BaublesHelper.wearingArmor(this.playerAether.getEntity(), new ItemStack(ItemsAether.phoenix_helmet)))
 			{
 				this.damagePhoenixArmor(this.playerAether.getEntity(), ItemsAether.obsidian_helmet, 3);
 			}
 		}
 
-		if (this.playerAether.getAccessoryInventory().isWearingPhoenixSet())
+		if (BaublesHelper.isWearingPhoenixSet(this.playerAether.getEntity()))
 		{
 			this.playerAether.getEntity().extinguish();
 			this.playerMovement.onUpdate();

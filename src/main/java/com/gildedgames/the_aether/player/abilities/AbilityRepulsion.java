@@ -3,6 +3,7 @@ package com.gildedgames.the_aether.player.abilities;
 import java.util.List;
 import java.util.Random;
 
+import com.gildedgames.the_aether.api.accessories.BaublesHelper;
 import com.gildedgames.the_aether.entities.projectile.EntityZephyrSnowball;
 import com.gildedgames.the_aether.entities.projectile.darts.EntityDartBase;
 import net.minecraft.entity.Entity;
@@ -37,7 +38,7 @@ public class AbilityRepulsion implements IAetherAbility
 	@Override
 	public boolean shouldExecute() 
 	{
-		return this.playerAether.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.repulsion_shield)) && this.playerAether.getEntity().moveForward == 0.0F && this.playerAether.getEntity().moveStrafing == 0.0F;
+		return BaublesHelper.wearingAccessory(this.playerAether.getEntity(), ItemsAether.repulsion_shield) && this.playerAether.getEntity().moveForward == 0.0F && this.playerAether.getEntity().moveStrafing == 0.0F;
 	}
 
 	@Override
@@ -91,7 +92,7 @@ public class AbilityRepulsion implements IAetherAbility
 						playerAether.getEntity().world.spawnParticle(EnumParticleTypes.FLAME, projectile.posX, projectile.posY, projectile.posZ, packX, packY, packZ);
 					}
 
-					this.playerAether.accessories.damageWornStack(1, new ItemStack(ItemsAether.repulsion_shield));
+					BaublesHelper.damageWornStack(this.playerAether.getEntity(), 1, ItemsAether.repulsion_shield);
 				}
 			}
 		}

@@ -1,5 +1,9 @@
 package com.gildedgames.the_aether.client;
 
+import baubles.api.BaublesApi;
+import baubles.api.cap.IBaublesItemHandler;
+import com.gildedgames.the_aether.api.accessories.AccessoryType;
+import com.gildedgames.the_aether.api.accessories.BaublesHelper;
 import com.gildedgames.the_aether.items.accessories.ItemAccessoryDyable;
 import com.gildedgames.the_aether.player.PlayerAether;
 import net.minecraft.client.Minecraft;
@@ -66,21 +70,21 @@ public class PlayerGloveRenderer
 	private static void renderGloves(AbstractClientPlayer player)
 	{
 		IPlayerAether playerAether = AetherAPI.getInstance().get(player);
-		ItemStack accessoryStack = playerAether.getAccessoryInventory().getStackInSlot(6);
+		ItemStack accessoryStack = BaublesHelper.getWornStackByType(player, AccessoryType.GLOVE);
 
 		if (!accessoryStack.isEmpty() && accessoryStack.getItem() instanceof ItemAccessory && !player.isInvisible())
 		{
             GlStateManager.disableCull();
             GlStateManager.pushMatrix();
             GlStateManager.rotate(90.0F, 0.0F, 1.0F, 0.0F);
-            renderArm(playerAether, EnumHandSide.RIGHT, (ItemAccessory) accessoryStack.getItem());
-            renderArm(playerAether, EnumHandSide.LEFT, (ItemAccessory) accessoryStack.getItem());
+            renderArm(playerAether, EnumHandSide.RIGHT, (ItemAccessory) accessoryStack.getItem(), accessoryStack);
+            renderArm(playerAether, EnumHandSide.LEFT, (ItemAccessory) accessoryStack.getItem(), accessoryStack);
             GlStateManager.popMatrix();
             GlStateManager.enableCull();
         }
 	}
 
-    private static void renderArm(IPlayerAether playerAether, EnumHandSide hand, ItemAccessory gloves)
+    private static void renderArm(IPlayerAether playerAether, EnumHandSide hand, ItemAccessory gloves, ItemStack gloveStack)
     {
         if (gloves.getClass() == ItemAccessory.class)
         {
@@ -91,10 +95,10 @@ public class PlayerGloveRenderer
             Minecraft.getMinecraft().getRenderManager().renderEngine.bindTexture(!isSlim ? ((ItemAccessoryDyable) gloves).texture : ((ItemAccessoryDyable) gloves).texture_slim);
         }
 
-		int colour = gloves.getColorFromItemStack(playerAether.getAccessoryInventory().getStackInSlot(6), 0);
+		int colour = gloves.getColorFromItemStack(gloveStack, 0);
 		if (gloves.getClass() == ItemAccessoryDyable.class)
         {
-            colour = ((ItemAccessoryDyable) gloves).getColor(playerAether.getAccessoryInventory().getStackInSlot(6));
+            colour = ((ItemAccessoryDyable) gloves).getColor(gloveStack);
         }
 
 		float red = ((colour >> 16) & 0xff) / 255F;
@@ -116,11 +120,11 @@ public class PlayerGloveRenderer
 
         if (hand == EnumHandSide.RIGHT)
         {
-        	renderRightGlove(playerAether, gloves);
+        	renderRightGlove(playerAether, gloves, gloveStack);
         }
         else
         {
-        	renderLeftArmGlove(playerAether, gloves);
+        	renderLeftArmGlove(playerAether, gloves, gloveStack);
         }
 
         GlStateManager.color(1.0F, 1.0F, 1.0F);
@@ -158,7 +162,7 @@ public class PlayerGloveRenderer
 	private static void renderGloveFirstPerson(AbstractClientPlayer player, float equipProgress, float swingProgress, EnumHandSide enumhandside) 
 	{
 		IPlayerAether playerAether = AetherAPI.getInstance().get(player);
-		ItemStack accessoryStack = playerAether.getAccessoryInventory().getStackInSlot(6);
+		ItemStack accessoryStack = BaublesHelper.getWornStackByType(player, AccessoryType.GLOVE);
 
 		if (!accessoryStack.isEmpty() && accessoryStack.getItem() instanceof ItemAccessory)
 		{
@@ -185,18 +189,18 @@ public class PlayerGloveRenderer
 
 	        if (flag)
 	        {
-	        	renderRightGlove(playerAether, (ItemAccessory) accessoryStack.getItem());
+	        	renderRightGlove(playerAether, (ItemAccessory) accessoryStack.getItem(), accessoryStack);
 	        }
 	        else
 	        {
-	        	renderLeftArmGlove(playerAether, (ItemAccessory) accessoryStack.getItem());
+	        	renderLeftArmGlove(playerAether, (ItemAccessory) accessoryStack.getItem(), accessoryStack);
 	        }
 
 	        GlStateManager.enableCull();
 		}
 	}
 
-	private static void renderRightGlove(IPlayerAether playerAether, ItemAccessory gloves)
+	private static void renderRightGlove(IPlayerAether playerAether, ItemAccessory gloves, ItemStack gloveStack)
     {
         if (gloves.getClass() == ItemAccessory.class)
         {
@@ -207,10 +211,10 @@ public class PlayerGloveRenderer
             Minecraft.getMinecraft().getRenderManager().renderEngine.bindTexture(!isSlim ? ((ItemAccessoryDyable) gloves).texture : ((ItemAccessoryDyable) gloves).texture_slim);
         }
 
-		int colour = gloves.getColorFromItemStack(playerAether.getAccessoryInventory().getStackInSlot(6), 0);
+		int colour = gloves.getColorFromItemStack(gloveStack, 0);
         if (gloves.getClass() == ItemAccessoryDyable.class)
         {
-            colour = ((ItemAccessoryDyable) gloves).getColor(playerAether.getAccessoryInventory().getStackInSlot(6));
+            colour = ((ItemAccessoryDyable) gloves).getColor(gloveStack);
         }
 
 		float red = ((colour >> 16) & 0xff) / 255F;
@@ -244,7 +248,7 @@ public class PlayerGloveRenderer
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
     }
 
-	private static void renderLeftArmGlove(IPlayerAether playerAether, ItemAccessory gloves)
+	private static void renderLeftArmGlove(IPlayerAether playerAether, ItemAccessory gloves, ItemStack gloveStack)
     {
         if (gloves.getClass() == ItemAccessory.class)
         {
@@ -255,10 +259,10 @@ public class PlayerGloveRenderer
             Minecraft.getMinecraft().getRenderManager().renderEngine.bindTexture(!isSlim ? ((ItemAccessoryDyable) gloves).texture : ((ItemAccessoryDyable) gloves).texture_slim);
         }
 
-		int colour = gloves.getColorFromItemStack(playerAether.getAccessoryInventory().getStackInSlot(6), 0);
+		int colour = gloves.getColorFromItemStack(gloveStack, 0);
         if (gloves.getClass() == ItemAccessoryDyable.class)
         {
-            colour = ((ItemAccessoryDyable) gloves).getColor(playerAether.getAccessoryInventory().getStackInSlot(6));
+            colour = ((ItemAccessoryDyable) gloves).getColor(gloveStack);
         }
 
 		float red = ((colour >> 16) & 0xff) / 255F;

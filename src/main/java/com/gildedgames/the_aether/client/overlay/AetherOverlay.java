@@ -22,6 +22,7 @@ import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import com.gildedgames.the_aether.api.accessories.BaublesHelper;
 import com.gildedgames.the_aether.api.AetherAPI;
 import com.gildedgames.the_aether.api.player.IPlayerAether;
 import com.gildedgames.the_aether.api.player.util.IAetherBoss;
@@ -134,7 +135,7 @@ public class AetherOverlay
 
 		mc.renderEngine.bindTexture(Gui.ICONS);
 
-		int bubbleAmount = AetherAPI.getInstance().get(mc.player).getAccessoryInventory().getAccessoryCount(new ItemStack(ItemsAether.iron_bubble));
+		int bubbleAmount = BaublesHelper.wearingAccessory(mc.player, ItemsAether.iron_bubble) ? 1 : 0;
 		int thirstOffset = Loader.isModLoaded("toughasnails") ? -10 : 0;
 
 		if (mc.playerController.shouldDrawHUD() && mc.player.isInWater() && mc.player.isInsideOfMaterial(Material.WATER))

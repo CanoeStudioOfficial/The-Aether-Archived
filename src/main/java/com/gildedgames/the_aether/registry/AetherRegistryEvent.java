@@ -21,7 +21,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.registries.IForgeRegistryModifiable;
 
 import com.gildedgames.the_aether.Aether;
-import com.gildedgames.the_aether.api.accessories.AetherAccessory;
 import com.gildedgames.the_aether.api.enchantments.AetherEnchantment;
 import com.gildedgames.the_aether.api.enchantments.AetherEnchantmentFuel;
 import com.gildedgames.the_aether.api.freezables.AetherFreezable;
@@ -98,13 +97,6 @@ public class AetherRegistryEvent
 
 		AetherMoaTypes.initialization();
 	}
-
-	@SubscribeEvent
-	public void onRegisterAccessoryEvent(RegistryEvent.Register<AetherAccessory> event)
-	{
-		AetherRegistries.initializeAccessories(event.getRegistry());
-	}
-
 
 	@SubscribeEvent
 	public void onRegisterEnchantmentEvent(RegistryEvent.Register<AetherEnchantment> event)

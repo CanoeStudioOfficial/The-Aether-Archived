@@ -1,13 +1,10 @@
 package com.gildedgames.the_aether.api.events;
 
-import com.gildedgames.the_aether.api.accessories.AetherAccessory;
 import com.gildedgames.the_aether.api.enchantments.AetherEnchantment;
-import com.gildedgames.the_aether.api.events.accessories.ValidAccessoryEvent;
 import com.gildedgames.the_aether.api.events.enchantments.AetherEnchantmentEvent;
 import com.gildedgames.the_aether.api.events.freezables.AetherFreezableEvent;
 import com.gildedgames.the_aether.api.events.moas.MoaHatchEvent;
 import com.gildedgames.the_aether.api.freezables.AetherFreezable;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -15,15 +12,6 @@ import com.gildedgames.the_aether.api.moa.AetherMoaType;
 
 public class AetherHooks
 {
-
-	public static boolean isValidAccessory(EntityPlayer player, AetherAccessory accessory)
-	{
-		ValidAccessoryEvent event = new ValidAccessoryEvent(player, accessory);
-
-        if (MinecraftForge.EVENT_BUS.post(event)) return false;
-
-		return !event.isCanceled();
-	}
 
 	public static void onMoaHatched(AetherMoaType type, TileEntity incubator)
 	{

@@ -1,11 +1,14 @@
 package com.gildedgames.the_aether.client.renders.entities.layer;
 
+import baubles.api.BaublesApi;
+import baubles.api.cap.IBaublesItemHandler;
 import c4.colytra.util.ColytraUtil;
+import com.gildedgames.the_aether.api.accessories.AccessoryType;
+import com.gildedgames.the_aether.api.accessories.BaublesHelper;
 import com.gildedgames.the_aether.player.PlayerAether;
 import com.gildedgames.the_aether.player.perks.AetherRankings;
 import com.gildedgames.the_aether.api.AetherAPI;
 import com.gildedgames.the_aether.api.player.IPlayerAether;
-import com.gildedgames.the_aether.api.player.util.IAccessoryInventory;
 import com.gildedgames.the_aether.client.models.attachments.ModelAetherWings;
 import com.gildedgames.the_aether.client.models.attachments.ModelPlayerHalo;
 import com.gildedgames.the_aether.items.ItemsAether;
@@ -61,9 +64,8 @@ public class AccessoriesLayer implements LayerRenderer<AbstractClientPlayer>
 	public void doRenderLayer(AbstractClientPlayer player, float limbSwing, float prevLimbSwing, float partialTicks, float rotation, float interpolateRotation, float prevRotationPitch, float scale)
 	{
 		IPlayerAether playerAether = AetherAPI.getInstance().get(player);
-		IAccessoryInventory accessories = playerAether.getAccessoryInventory();
 
-		if (accessories == null)
+		if (playerAether == null)
 		{
 			return;
 		}
@@ -99,9 +101,10 @@ public class AccessoriesLayer implements LayerRenderer<AbstractClientPlayer>
 
 		this.modelPlayer.setRotationAngles(limbSwing, prevLimbSwing, rotation, interpolateRotation, prevRotationPitch, scale, player);
 
-		if (accessories.getStackInSlot(0).getItem() instanceof ItemAccessory)
+		ItemStack pendantStack = BaublesHelper.getWornStackByType(player, AccessoryType.PENDANT);
+		if (!pendantStack.isEmpty() && pendantStack.getItem() instanceof ItemAccessory)
 		{
-			ItemAccessory pendant = ((ItemAccessory) (accessories.getStackInSlot(0).getItem()));
+			ItemAccessory pendant = ((ItemAccessory) (pendantStack.getItem()));
 
 			this.manager.renderEngine.bindTexture(pendant.texture);
 
@@ -124,9 +127,10 @@ public class AccessoriesLayer implements LayerRenderer<AbstractClientPlayer>
 			GlStateManager.color(1.0F, 1.0F, 1.0F);
 		}
 
-		if (accessories.getStackInSlot(1).getItem() instanceof ItemAccessory && accessories.getStackInSlot(1).getItem() != ItemsAether.invisibility_cape)
+		ItemStack capeStack = BaublesHelper.getWornStackByType(player, AccessoryType.CAPE);
+		if (!capeStack.isEmpty() && capeStack.getItem() instanceof ItemAccessory && capeStack.getItem() != ItemsAether.invisibility_cape)
 		{
-			ItemAccessory cape = ((ItemAccessory) (accessories.getStackInSlot(1).getItem()));
+			ItemAccessory cape = ((ItemAccessory) (capeStack.getItem()));
 	        if (player.hasPlayerInfo() && !player.isInvisible())
 	        {
 				ItemStack itemstack = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
@@ -147,7 +151,7 @@ public class AccessoriesLayer implements LayerRenderer<AbstractClientPlayer>
 							GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 							this.manager.renderEngine.bindTexture(cape.texture);
 							GlStateManager.pushMatrix();
-							int colour = cape.getColorFromItemStack(accessories.getStackInSlot(1), 0);
+							int colour = cape.getColorFromItemStack(capeStack, 0);
 							float red = ((colour >> 16) & 0xff) / 255F;
 							float green = ((colour >> 8) & 0xff) / 255F;
 							float blue = (colour & 0xff) / 255F;
@@ -197,64 +201,69 @@ public class AccessoriesLayer implements LayerRenderer<AbstractClientPlayer>
 
 		GlStateManager.pushMatrix();
 		GlStateManager.translate(0, 0.0075D, 0);
-		if (accessories.getStackInSlot(6).getItem().getClass() == ItemAccessory.class && ((PlayerAether) playerAether).shouldRenderGloves)
+		ItemStack gloveStack = BaublesHelper.getWornStackByType(player, AccessoryType.GLOVE);
+		if (!gloveStack.isEmpty() && ((PlayerAether) playerAether).shouldRenderGloves)
 		{
-			ItemAccessory gloves = (ItemAccessory) accessories.getStackInSlot(6).getItem();
-			this.manager.renderEngine.bindTexture(gloves.texture);
-
-			int colour = gloves.getColorFromItemStack(accessories.getStackInSlot(6), 0);
-
-			float red = ((colour >> 16) & 0xff) / 255F;
-			float green = ((colour >> 8) & 0xff) / 255F;
-			float blue = (colour & 0xff) / 255F;
-
-			if (player.hurtTime > 0)
+			if (gloveStack.getItem().getClass() == ItemAccessory.class)
 			{
-				GlStateManager.color(1.0F, 0.5F, 0.5F);
+				ItemAccessory gloves = (ItemAccessory) gloveStack.getItem();
+				this.manager.renderEngine.bindTexture(gloves.texture);
+
+				int colour = gloves.getColorFromItemStack(gloveStack, 0);
+
+				float red = ((colour >> 16) & 0xff) / 255F;
+				float green = ((colour >> 8) & 0xff) / 255F;
+				float blue = (colour & 0xff) / 255F;
+
+				if (player.hurtTime > 0)
+				{
+					GlStateManager.color(1.0F, 0.5F, 0.5F);
+				}
+				else
+				{
+					if (gloves != ItemsAether.phoenix_gloves)
+					{
+						GlStateManager.color(red, green, blue);
+					}
+				}
+
+				this.modelMisc.bipedLeftArm.render(scale);
+				this.modelMisc.bipedRightArm.render(scale);
+
+				GlStateManager.color(1.0F, 1.0F, 1.0F);
 			}
-			else
+			else if (gloveStack.getItem().getClass() == ItemAccessoryDyable.class)
 			{
-				if (gloves != ItemsAether.phoenix_gloves)
+				ItemAccessoryDyable gloves = (ItemAccessoryDyable) gloveStack.getItem();
+				this.manager.renderEngine.bindTexture(gloves.texture);
+
+				int colour = gloves.getColor(gloveStack);
+
+				float red = ((colour >> 16) & 0xff) / 255F;
+				float green = ((colour >> 8) & 0xff) / 255F;
+				float blue = (colour & 0xff) / 255F;
+
+				if (player.hurtTime > 0)
+				{
+					GlStateManager.color(1.0F, 0.5F, 0.5F);
+				}
+				else
 				{
 					GlStateManager.color(red, green, blue);
 				}
+
+				this.modelMisc.bipedLeftArm.render(scale);
+				this.modelMisc.bipedRightArm.render(scale);
+
+				GlStateManager.color(1.0F, 1.0F, 1.0F);
 			}
-
-			this.modelMisc.bipedLeftArm.render(scale);
-			this.modelMisc.bipedRightArm.render(scale);
-
-			GlStateManager.color(1.0F, 1.0F, 1.0F);
-		}
-		else if (accessories.getStackInSlot(6).getItem().getClass() == ItemAccessoryDyable.class && ((PlayerAether) playerAether).shouldRenderGloves)
-		{
-			ItemAccessoryDyable gloves = (ItemAccessoryDyable) accessories.getStackInSlot(6).getItem();
-			this.manager.renderEngine.bindTexture(gloves.texture);
-
-			int colour = gloves.getColor(accessories.getStackInSlot(6));
-
-			float red = ((colour >> 16) & 0xff) / 255F;
-			float green = ((colour >> 8) & 0xff) / 255F;
-			float blue = (colour & 0xff) / 255F;
-
-			if (player.hurtTime > 0)
-			{
-				GlStateManager.color(1.0F, 0.5F, 0.5F);
-			}
-			else
-			{
-				GlStateManager.color(red, green, blue);
-			}
-
-			this.modelMisc.bipedLeftArm.render(scale);
-			this.modelMisc.bipedRightArm.render(scale);
-
-			GlStateManager.color(1.0F, 1.0F, 1.0F);
 		}
 		GlStateManager.popMatrix();
 
-		if (accessories.getStackInSlot(2).getItem() instanceof ItemAccessory)
+		ItemStack shieldStack = BaublesHelper.getWornStackByType(player, AccessoryType.SHIELD);
+		if (!shieldStack.isEmpty() && shieldStack.getItem() instanceof ItemAccessory)
 		{
-			ItemAccessory shield = (ItemAccessory) accessories.getStackInSlot(2).getItem();
+			ItemAccessory shield = (ItemAccessory) shieldStack.getItem();
 
 			if (player.motionX == 0.0 && (player.motionY == -0.0784000015258789 || player.motionY == 0.0) && player.motionZ == 0.0 && shield.hasInactiveTexture())
 			{
@@ -286,7 +295,7 @@ public class AccessoriesLayer implements LayerRenderer<AbstractClientPlayer>
 			GlStateManager.popMatrix();
 		}
 
-		if (playerAether.getAccessoryInventory().isWearingValkyrieSet())
+		if (BaublesHelper.isWearingValkyrieSet(player))
 		{
 			GlStateManager.enableBlend();
             GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
@@ -306,7 +315,7 @@ public class AccessoriesLayer implements LayerRenderer<AbstractClientPlayer>
 			}
 		}
 
-		if (AetherRankings.isRankedPlayer(player.getUniqueID()) && ((PlayerAether)playerAether).shouldRenderHalo && !player.isInvisible()) //TODO
+		if (AetherRankings.isRankedPlayer(player.getUniqueID()) && ((PlayerAether)playerAether).shouldRenderHalo && !player.isInvisible())
 		{
 			GlStateManager.pushMatrix();
 			GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
@@ -363,7 +372,6 @@ public class AccessoriesLayer implements LayerRenderer<AbstractClientPlayer>
 	        GlStateManager.disableNormalize();
 			GlStateManager.disableBlend();
 			GlStateManager.popMatrix();
-			//glow
 		}
 		
 		

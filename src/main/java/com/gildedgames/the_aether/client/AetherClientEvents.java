@@ -2,14 +2,13 @@ package com.gildedgames.the_aether.client;
 
 import java.util.List;
 
+import baubles.api.BaublesApi;
+import com.gildedgames.the_aether.api.accessories.BaublesHelper;
 import com.gildedgames.the_aether.client.gui.AetherLoadingScreen;
 import com.gildedgames.the_aether.client.gui.GuiEnterAether;
 import com.gildedgames.the_aether.client.gui.button.*;
-import com.gildedgames.the_aether.client.gui.inventory.GuiAccessories;
 import com.gildedgames.the_aether.client.gui.menu.AetherMainMenu;
 import com.gildedgames.the_aether.client.gui.menu.GuiMenuToggleButton;
-import com.gildedgames.the_aether.containers.inventory.InventoryAccessories;
-import com.gildedgames.the_aether.networking.AetherGuiHandler;
 import com.gildedgames.the_aether.networking.AetherNetworkingManager;
 import com.gildedgames.the_aether.networking.packets.*;
 import com.gildedgames.the_aether.player.PlayerAether;
@@ -21,9 +20,7 @@ import com.gildedgames.the_aether.universal.pixelmon.PixelmonUtil;
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.api.AetherAPI;
 import com.gildedgames.the_aether.api.player.IPlayerAether;
-import com.gildedgames.the_aether.client.gui.button.*;
 import com.gildedgames.the_aether.items.ItemsAether;
-import com.gildedgames.the_aether.networking.packets.*;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
@@ -31,12 +28,9 @@ import net.minecraft.client.gui.*;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.gui.inventory.GuiContainerCreative;
 import net.minecraft.client.gui.inventory.GuiInventory;
-import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.client.event.GuiOpenEvent;
@@ -47,10 +41,12 @@ import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.client.event.RenderSpecificHandEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import org.lwjgl.input.Keyboard;
 
 public class AetherClientEvents
@@ -59,6 +55,8 @@ public class AetherClientEvents
 	private final Minecraft mc = FMLClientHandler.instance().getClient();
 
 	private static boolean wasInAether = false;
+
+	private static final String[] EMPTY_SLOT_NAMES = new String[] {"pendant", "cape", "shield", "misc", "ring", "ring", "gloves", "misc"};
 
 	@SubscribeEvent
 	public void onClientTick(TickEvent.ClientTickEvent event)
@@ -189,18 +187,6 @@ public class AetherClientEvents
 			else if (clazz == GuiInventory.class || FastCraftingUtil.isOverridenGUI(clazz) || PixelmonUtil.isOverridenInventoryGUI(clazz))
 			{
 				event.getButtonList().add(ACCESSORY_BUTTON.setPosition(guiLeft + 26, guiTop + 65));
-			}
-
-			if (clazz == GuiAccessories.class)
-			{
-				if (!shouldRemoveButton)
-				{
-					event.getButtonList().add(ACCESSORY_BUTTON.setPosition(guiLeft + 8, guiTop + 65));
-				}
-				else
-				{
-					shouldRemoveButton = false;
-				}
 			}
 		}
 
@@ -342,9 +328,9 @@ public class AetherClientEvents
 			}
 		}
 
-		if (clazz != GuiAccessories.class && event.getButton().id == 18067 && canOpenAccessories)
+		if (event.getButton().id == 18067 && canOpenAccessories)
 		{
-			AetherNetworkingManager.sendToServer(new PacketOpenContainer(AetherGuiHandler.accessories));
+			AetherNetworkingManager.sendToServer(new PacketOpenBaubles());
 		}
 
 		if (event.getButton().getClass() == GuiHaloButton.class)
@@ -411,23 +397,19 @@ public class AetherClientEvents
 	public void onInvisibilityPlayerUpdate(RenderPlayerEvent.Pre event)
 	{
 		EntityPlayer player = event.getEntityPlayer();
-		IPlayerAether playerAether = AetherAPI.getInstance().get(player);
 
-		if (playerAether != null)
+		if (BaublesHelper.wearingAccessory(player, ItemsAether.invisibility_cape))
 		{
-			if (playerAether.getAccessoryInventory().wearingAccessory(new ItemStack(ItemsAether.invisibility_cape)))
-			{
-				event.setCanceled(true);
-			}
+			event.setCanceled(true);
 		}
 	}
 
 	@SubscribeEvent
 	public void onTextureStichedEvent(TextureStitchEvent.Pre event)
 	{
-		for (int i = 0; i < InventoryAccessories.EMPTY_SLOT_NAMES.length; ++i)
+		for (int i = 0; i < EMPTY_SLOT_NAMES.length; ++i)
 		{
-			event.getMap().registerSprite(new ResourceLocation("aether_legacy", "items/slots/" + InventoryAccessories.EMPTY_SLOT_NAMES[i]));
+			event.getMap().registerSprite(new ResourceLocation("aether_legacy", "items/slots/" + EMPTY_SLOT_NAMES[i]));
 		}
 	}
 
@@ -440,7 +422,7 @@ public class AetherClientEvents
 			{
 				if (Minecraft.getMinecraft().currentScreen == null)
 				{
-					AetherNetworkingManager.sendToServer(new PacketOpenContainer(AetherGuiHandler.accessories));
+					AetherNetworkingManager.sendToServer(new PacketOpenBaubles());
 					shouldRemoveButton = true;
 				}
 			}
@@ -456,7 +438,7 @@ public class AetherClientEvents
 
 			if (keyPressed == AetherKeybinds.keyBindingAccessories.getKeyCode() && Keyboard.getEventKeyState())
 			{
-				if (event.getGui() instanceof GuiAccessories)
+				if (event.getGui() instanceof GuiInventory)
 				{
 					Minecraft.getMinecraft().player.closeScreen();
 				}

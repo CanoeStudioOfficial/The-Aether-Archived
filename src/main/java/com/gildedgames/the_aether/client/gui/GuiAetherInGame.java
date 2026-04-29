@@ -11,6 +11,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+import com.gildedgames.the_aether.api.accessories.BaublesHelper;
 import com.gildedgames.the_aether.api.AetherAPI;
 import com.gildedgames.the_aether.api.player.IPlayerAether;
 
@@ -32,7 +33,7 @@ public class GuiAetherInGame extends Gui
 		{
 			IPlayerAether player = AetherAPI.getInstance().get(this.mc.player);
 
-			if (player.getAccessoryInventory().isWearingPhoenixSet() && event.getOverlayType() == OverlayType.FIRE)
+			if (BaublesHelper.isWearingPhoenixSet(this.mc.player) && event.getOverlayType() == OverlayType.FIRE)
 			{
 				event.setCanceled(true);
 			}

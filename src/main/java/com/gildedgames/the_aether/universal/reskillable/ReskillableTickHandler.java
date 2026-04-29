@@ -1,10 +1,11 @@
 package com.gildedgames.the_aether.universal.reskillable;
 
+import baubles.api.BaublesApi;
+import baubles.api.cap.IBaublesItemHandler;
 import codersafterdark.reskillable.base.ConfigHandler;
 import codersafterdark.reskillable.base.LevelLockHandler;
 import codersafterdark.reskillable.network.MessageLockedItem;
 import com.gildedgames.the_aether.api.AetherAPI;
-import com.gildedgames.the_aether.api.player.util.IAccessoryInventory;
 import com.gildedgames.the_aether.player.PlayerAether;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -22,21 +23,20 @@ public class ReskillableTickHandler
             return;
         }
 
-        PlayerAether playerAether = (PlayerAether) AetherAPI.getInstance().get(player);
-        IAccessoryInventory accessoryInventory = playerAether.getAccessoryInventory();
+        IBaublesItemHandler handler = BaublesApi.getBaublesHandler(player);
 
-        for (int i = 0; i < accessoryInventory.getSizeInventory(); i++)
+        for (int i = 0; i < handler.getSlots(); i++)
         {
-            ItemStack stack = accessoryInventory.getStackInSlot(i);
+            ItemStack stack = handler.getStackInSlot(i);
 
-            if (!LevelLockHandler.canPlayerUseItem(player, stack))
+            if (!stack.isEmpty() && !LevelLockHandler.canPlayerUseItem(player, stack))
             {
                 if (!player.inventory.addItemStackToInventory(stack))
                 {
                     player.dropItem(stack, false);
                 }
 
-                accessoryInventory.setInventorySlotContents(i, ItemStack.EMPTY);
+                handler.setStackInSlot(i, ItemStack.EMPTY);
                 LevelLockHandler.tellPlayer(player, stack, MessageLockedItem.MSG_ARMOR_EQUIP_LOCKED);
             }
         }

@@ -2,6 +2,10 @@ package com.gildedgames.the_aether.items.accessories;
 
 import java.util.List;
 
+import baubles.api.BaubleType;
+import baubles.api.BaublesApi;
+import baubles.api.IBauble;
+import baubles.api.cap.IBaublesItemHandler;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.dispenser.BehaviorDefaultDispenseItem;
@@ -23,12 +27,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import com.google.common.base.Predicates;
 import com.gildedgames.the_aether.Aether;
-import com.gildedgames.the_aether.api.AetherAPI;
 import com.gildedgames.the_aether.api.accessories.AccessoryType;
-import com.gildedgames.the_aether.api.player.IPlayerAether;
 import com.gildedgames.the_aether.items.ItemsAether;
 
-public class ItemAccessory extends Item
+public class ItemAccessory extends Item implements IBauble
 {
 
 	public static final String ROOT = Aether.modAddress() + "textures/slots/slot_";
@@ -79,19 +81,22 @@ public class ItemAccessory extends Item
             
             if (entitylivingbase instanceof EntityPlayer)
             {
-            	ItemStack itemstack = stack.copy();
-            	itemstack.setCount(1);
-            	
-            	IPlayerAether playerAether = AetherAPI.getInstance().get((EntityPlayer) entitylivingbase);
+            	EntityPlayer player = (EntityPlayer) entitylivingbase;
+            	IBaublesItemHandler handler = BaublesApi.getBaublesHandler(player);
 
-            	if (!playerAether.getAccessoryInventory().setAccessorySlot(itemstack))
+            	for (int i = 0; i < handler.getSlots(); i++)
             	{
-            		BehaviorDefaultDispenseItem.doDispense(blockSource.getWorld(), itemstack, 6, (EnumFacing)blockSource.getBlockState().getValue(BlockDispenser.FACING), BlockDispenser.getDispensePosition(blockSource));
+            	    if (handler.isItemValidForSlot(i, stack, player))
+            	    {
+            	        ItemStack existing = handler.getStackInSlot(i);
+            	        if (existing.isEmpty())
+            	        {
+            	            handler.setStackInSlot(i, stack.copy());
+            	            stack.shrink(1);
+            	            return stack;
+            	        }
+            	    }
             	}
-
-            	stack.shrink(1);
-
-            	return stack;
             }
         }
 
@@ -105,20 +110,30 @@ public class ItemAccessory extends Item
 
         if (heldItem != ItemStack.EMPTY)
         {
-        	if (AetherAPI.getInstance().get(player).getAccessoryInventory().setAccessorySlot(heldItem.copy()))
+        	IBaublesItemHandler handler = BaublesApi.getBaublesHandler(player);
+
+        	for (int i = 0; i < handler.getSlots(); i++)
         	{
-            	heldItem.shrink(1);
+        	    if (handler.isItemValidForSlot(i, heldItem, player))
+        	    {
+        	        ItemStack existing = handler.getStackInSlot(i);
+        	        if (existing.isEmpty())
+        	        {
+        	            handler.setStackInSlot(i, heldItem.copy());
+        	            heldItem.shrink(1);
 
-                SoundEvent soundEvent = SoundEvents.ITEM_ARMOR_EQUIP_GENERIC;
+                        SoundEvent soundEvent = SoundEvents.ITEM_ARMOR_EQUIP_GENERIC;
 
-                if (this.getEquipSound() != null)
-                {
-                    soundEvent = this.getEquipSound();
-                }
+                        if (this.getEquipSound() != null)
+                        {
+                            soundEvent = this.getEquipSound();
+                        }
 
-                player.playSound(soundEvent, 1.0F, 1.0F);
+                        player.playSound(soundEvent, 1.0F, 1.0F);
 
-                return new ActionResult<>(EnumActionResult.SUCCESS, heldItem);
+                        return new ActionResult<>(EnumActionResult.SUCCESS, heldItem);
+        	        }
+        	    }
         	}
         }
 
@@ -206,4 +221,37 @@ public class ItemAccessory extends Item
     public SoundEvent getEquipSound() {
         return equipSound;
     }
+
+	@Override
+	public BaubleType getBaubleType(ItemStack itemstack)
+	{
+		return this.accessoryType.getBaubleType();
+	}
+
+	@Override
+	public void onWornTick(ItemStack itemstack, EntityLivingBase player)
+	{
+	}
+
+	@Override
+	public void onEquipped(ItemStack itemstack, EntityLivingBase player)
+	{
+	}
+
+	@Override
+	public void onUnequipped(ItemStack itemstack, EntityLivingBase player)
+	{
+	}
+
+	@Override
+	public boolean canEquip(ItemStack itemstack, EntityLivingBase player)
+	{
+		return true;
+	}
+
+	@Override
+	public boolean canUnequip(ItemStack itemstack, EntityLivingBase player)
+	{
+		return true;
+	}
 }

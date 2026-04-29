@@ -1,6 +1,7 @@
 package com.gildedgames.the_aether;
 
 import com.gildedgames.the_aether.advancements.AetherAdvancements;
+import com.gildedgames.the_aether.api.accessories.BaublesHelper;
 import com.gildedgames.the_aether.api.AetherAPI;
 import com.gildedgames.the_aether.api.player.IPlayerAether;
 import com.gildedgames.the_aether.blocks.BlocksAether;
@@ -463,7 +464,7 @@ public class AetherEventHandler
 		{
 			IPlayerAether playerAether = AetherAPI.getInstance().get((EntityPlayer) event.getEntityLiving());
 
-			if (playerAether.getAccessoryInventory().wearingArmor(new ItemStack(ItemsAether.sentry_boots)) || playerAether.getAccessoryInventory().isWearingGravititeSet() || playerAether.getAccessoryInventory().isWearingValkyrieSet())
+			if (BaublesHelper.wearingArmor(playerAether.getEntity(), new ItemStack(ItemsAether.sentry_boots)) || BaublesHelper.isWearingGravititeSet(playerAether.getEntity()) || BaublesHelper.isWearingValkyrieSet(playerAether.getEntity()))
 			{
 				event.setCanceled(true);
 			}

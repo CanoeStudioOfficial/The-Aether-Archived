@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
-import com.gildedgames.the_aether.api.accessories.AetherAccessory;
 import com.gildedgames.the_aether.api.enchantments.AetherEnchantment;
 import com.gildedgames.the_aether.api.enchantments.AetherEnchantmentFuel;
 import com.gildedgames.the_aether.api.freezables.AetherFreezable;
@@ -27,8 +26,6 @@ import net.minecraftforge.registries.RegistryBuilder;
 @Mod.EventBusSubscriber(modid = "aether_legacy")
 public class AetherAPI
 {
-
-	private static IForgeRegistry<AetherAccessory> iAccessoryRegistry;
 
 	private static IForgeRegistry<AetherEnchantment> iEnchantmentRegistry;
 
@@ -54,7 +51,6 @@ public class AetherAPI
 	@SubscribeEvent
 	public static void onMakeRegistries(RegistryEvent.NewRegistry event)
 	{
-		iAccessoryRegistry = makeRegistry(new ResourceLocation("aetherAPI:accessories"), AetherAccessory.class, 0, MAX_REGISTRY_ID).create();
 		iEnchantmentRegistry = makeRegistry(new ResourceLocation("aetherAPI:enchantments"), AetherEnchantment.class, 0, MAX_REGISTRY_ID).create();
 		iEnchantmentFuelRegistry = makeRegistry(new ResourceLocation("aetherAPI:enchantment_fuels"), AetherEnchantmentFuel.class, 0, MAX_REGISTRY_ID).create();
 		iFreezableRegistry = makeRegistry(new ResourceLocation("aetherAPI:freezables"), AetherFreezable.class, 0, MAX_REGISTRY_ID).create();
@@ -70,16 +66,6 @@ public class AetherAPI
 	private static <T extends IForgeRegistryEntry<T>> RegistryBuilder<T> makeRegistry(ResourceLocation name, Class<T> type, int min, int max)
 	{
 		return new RegistryBuilder<T>().setName(name).setType(type).setIDRange(min, max);
-	}
-
-	public boolean isAccessory(ItemStack stack)
-	{
-		return iAccessoryRegistry.containsKey(new ResourceLocation(stack.getItem().getRegistryName().toString() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getMetadata())));
-	}
-
-	public AetherAccessory getAccessory(ItemStack stack)
-	{
-		return iAccessoryRegistry.getValue(new ResourceLocation(stack.getItem().getRegistryName().toString() + "_meta_" + (stack.isItemStackDamageable() ? 0 : stack.getMetadata())));
 	}
 
 	public boolean hasEnchantment(ItemStack stack)
