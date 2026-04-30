@@ -58,7 +58,7 @@ public class TinkersIntegration {
     public static void postInit() {
         if (!initialized) return;
         ModuleBase.base.postInit();
-        com.gildedgames.the_aether.tinkers.compat.GauntletCompatPatch.register();
+        com.gildedgames.the_aether.tinkers.compat.GauntletBaublesCompat.register();
     }
 
     @SubscribeEvent
