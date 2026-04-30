@@ -15,7 +15,7 @@ public class TABlock extends Block {
         super(material);
         this.setTranslationKey(name);
         this.setRegistryName(TinkersIntegration.MODID, name);
-        this.setCreativeTab(AetherCreativeTabs.blocks);
+        this.setCreativeTab(AetherCreativeTabs.aether);
     }
 
     @Override

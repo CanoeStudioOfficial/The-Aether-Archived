@@ -50,4 +50,9 @@ public class EntityDart extends EntityProjectileBase {
     public void setNoGravity(boolean flight) {
 
     }
+
+    @Override
+    protected ItemStack getArrowStack() {
+        return ItemStack.EMPTY;
+    }
 }

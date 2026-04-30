@@ -208,7 +208,7 @@ public class ItemRendering
 
 		if (Loader.isModLoaded("tconstruct"))
 		{
-			Aether.proxy.registerTinkersModels();
+			com.gildedgames.the_aether.tinkers.TinkersClientHelper.registerModels();
 		}
 
 	}

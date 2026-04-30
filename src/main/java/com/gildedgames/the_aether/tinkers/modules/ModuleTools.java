@@ -46,21 +46,21 @@ public class ModuleTools {
             mouthpiece.setTranslationKey("mouthpiece").setRegistryName("mouthpiece");
             event.getRegistry().register(mouthpiece);
             TinkerRegistry.registerToolPart(mouthpiece);
-            com.gildedgames.the_aether.Aether.proxy.registerTinkersToolPartModel(mouthpiece);
+            com.gildedgames.the_aether.tinkers.TinkersClientHelper.registerToolPartModel(mouthpiece);
             parts.add(mouthpiece);
 
             tube = new ToolPart(Material.VALUE_Ingot * 3);
             tube.setTranslationKey("tube").setRegistryName("tube");
             event.getRegistry().register(tube);
             TinkerRegistry.registerToolPart(tube);
-            com.gildedgames.the_aether.Aether.proxy.registerTinkersToolPartModel(tube);
+            com.gildedgames.the_aether.tinkers.TinkersClientHelper.registerToolPartModel(tube);
             parts.add(tube);
 
             dartTip = new ToolPart(Material.VALUE_Ingot);
             dartTip.setTranslationKey("dart_tip").setRegistryName("dart_tip");
             event.getRegistry().register(dartTip);
             TinkerRegistry.registerToolPart(dartTip);
-            com.gildedgames.the_aether.Aether.proxy.registerTinkersToolPartModel(dartTip);
+            com.gildedgames.the_aether.tinkers.TinkersClientHelper.registerToolPartModel(dartTip);
             parts.add(dartTip);
         }
 
@@ -70,13 +70,13 @@ public class ModuleTools {
             dartShooter = new ToolDartShooter();
             event.getRegistry().register(dartShooter);
             TinkerRegistry.registerToolForgeCrafting(dartShooter);
-            com.gildedgames.the_aether.Aether.proxy.registerTinkersToolModel(dartShooter);
+            com.gildedgames.the_aether.tinkers.TinkersClientHelper.registerToolModel(dartShooter);
             tools.add(dartShooter);
 
             dart = new ToolDart();
             event.getRegistry().register(dart);
             TinkerRegistry.registerToolForgeCrafting(dart);
-            com.gildedgames.the_aether.Aether.proxy.registerTinkersToolModel(dart);
+            com.gildedgames.the_aether.tinkers.TinkersClientHelper.registerToolModel(dart);
             tools.add(dart);
         }
 
@@ -115,7 +115,7 @@ public class ModuleTools {
                 TinkerModifiers.modSoulbound,
                 TinkerModifiers.modWebbed,
         }) {
-            com.gildedgames.the_aether.Aether.proxy.registerTinkersModifierModel(modifier,
+            com.gildedgames.the_aether.tinkers.TinkersClientHelper.registerModifierModel(modifier,
                     new ResourceLocation(TinkersIntegration.MODID, "models/item/modifiers/" + modifier.getIdentifier()));
         }
 

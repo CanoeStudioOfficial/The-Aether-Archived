@@ -1,4 +1,4 @@
-﻿package com.gildedgames.the_aether.tinkers.tools;
+package com.gildedgames.the_aether.tinkers.tools;
 
 import com.gildedgames.the_aether.entities.projectile.darts.EntityDartEnchanted;
 import com.gildedgames.the_aether.entities.projectile.darts.EntityDartGolden;
@@ -30,7 +30,6 @@ public class ToolDartShooter extends BowCore {
     public ToolDartShooter() {
         super(PartMaterialType.bow(ModuleTools.tube),
                 PartMaterialType.extra(ModuleTools.mouthpiece));
-
         this.setTranslationKey("dart_shooter").setRegistryName("dart_shooter");
     }
 
@@ -80,14 +79,11 @@ public class ToolDartShooter extends BowCore {
         HeadMaterialStats head = materials.get(0).getStatsOrUnknown(MaterialTypes.HEAD);
         ExtraMaterialStats mouthpiece = materials.get(1).getStatsOrUnknown(MaterialTypes.EXTRA);
         HandleMaterialStats handle = materials.get(1).getStatsOrUnknown(MaterialTypes.HANDLE);
-
         data.limb(tube);
         data.head(head);
         data.extra(mouthpiece);
         data.handle(handle);
-
         data.bonusDamage *= 0.5f;
-
         return data;
     }
 

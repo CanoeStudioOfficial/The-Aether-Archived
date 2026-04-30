@@ -13,7 +13,7 @@ public class TAItem extends Item {
         super();
         this.setTranslationKey(name);
         this.setRegistryName(TinkersIntegration.MODID, name);
-        this.setCreativeTab(AetherCreativeTabs.material);
+        this.setCreativeTab(AetherCreativeTabs.aether);
     }
 
     @Override

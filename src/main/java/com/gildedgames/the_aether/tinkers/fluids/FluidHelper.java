@@ -1,6 +1,5 @@
 package com.gildedgames.the_aether.tinkers.fluids;
 
-import com.gildedgames.the_aether.tinkers.TinkersIntegration;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import slimeknights.tconstruct.library.fluid.FluidMolten;
@@ -17,7 +16,7 @@ public class FluidHelper {
         blockFluid.setRegistryName("molten_" + fluid.getName());
         ForgeRegistries.BLOCKS.register(blockFluid);
         FluidRegistry.addBucketForFluid(fluid);
-        com.gildedgames.the_aether.Aether.proxy.registerTinkersFluidModels(fluid);
+        com.gildedgames.the_aether.tinkers.TinkersClientHelper.registerFluidModels(fluid);
         return fluid;
     }
 }

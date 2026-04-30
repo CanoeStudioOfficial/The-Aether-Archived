@@ -340,16 +340,16 @@ public class ModuleBase {
             registry.register(valkyrieNugget);
             Item valkBlock = new ItemBlock(valkyrieBlock).setRegistryName(valkyrieBlock.getRegistryName()).setTranslationKey(valkyrieBlock.getTranslationKey());
             registry.register(valkBlock);
-            com.gildedgames.the_aether.Aether.proxy.registerTinkersItemRenderer(valkyrieIngot, 0, "valkyrie_ingot");
-            com.gildedgames.the_aether.Aether.proxy.registerTinkersItemRenderer(valkyrieNugget, 0, "valkyrie_nugget");
-            com.gildedgames.the_aether.Aether.proxy.registerTinkersItemRenderer(valkBlock, 0, "valkyrie_block");
+            com.gildedgames.the_aether.tinkers.TinkersClientHelper.registerItemRenderer(valkyrieIngot, 0, "valkyrie_ingot");
+            com.gildedgames.the_aether.tinkers.TinkersClientHelper.registerItemRenderer(valkyrieNugget, 0, "valkyrie_nugget");
+            com.gildedgames.the_aether.tinkers.TinkersClientHelper.registerItemRenderer(valkBlock, 0, "valkyrie_block");
             OreDictionary.registerOre("ingotValkyrie", valkyrieIngot);
             OreDictionary.registerOre("nuggetValkyrie", valkyrieNugget);
             OreDictionary.registerOre("blockValkyrie", valkyrieBlock);
         }
         if (AetherConfig.tinkers_options.swet) {
             registry.register(swetCrystal);
-            com.gildedgames.the_aether.Aether.proxy.registerTinkersItemRenderer(swetCrystal, 0, "swet_crystal");
+            com.gildedgames.the_aether.tinkers.TinkersClientHelper.registerItemRenderer(swetCrystal, 0, "swet_crystal");
             OreDictionary.registerOre("slimecrystal", swetCrystal);
             OreDictionary.registerOre("slimecrystalSwet", swetCrystal);
         }
