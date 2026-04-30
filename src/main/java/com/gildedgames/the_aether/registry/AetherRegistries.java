@@ -151,40 +151,48 @@ public class AetherRegistries
 
 	public static void initializeAccessories(IForgeRegistry<AetherAccessory> registry)
 	{
-		registry.register(new AetherAccessory(ItemsAether.iron_ring, AccessoryType.RING));
-		registry.register(new AetherAccessory(ItemsAether.golden_ring, AccessoryType.RING));
-		registry.register(new AetherAccessory(ItemsAether.zanite_ring, AccessoryType.RING));
-		registry.register(new AetherAccessory(ItemsAether.ice_ring, AccessoryType.RING));
+		com.gildedgames.the_aether.api.accessories.AetherAccessoryBaublesHandler.register();
 
-		registry.register(new AetherAccessory(ItemsAether.iron_pendant, AccessoryType.PENDANT));
-		registry.register(new AetherAccessory(ItemsAether.golden_pendant, AccessoryType.PENDANT));
-		registry.register(new AetherAccessory(ItemsAether.zanite_pendant, AccessoryType.PENDANT));
-		registry.register(new AetherAccessory(ItemsAether.ice_pendant, AccessoryType.PENDANT));
+		registerAccessory(registry, ItemsAether.iron_ring, AccessoryType.RING);
+		registerAccessory(registry, ItemsAether.golden_ring, AccessoryType.RING);
+		registerAccessory(registry, ItemsAether.zanite_ring, AccessoryType.RING);
+		registerAccessory(registry, ItemsAether.ice_ring, AccessoryType.RING);
 
-		registry.register(new AetherAccessory(ItemsAether.leather_gloves, AccessoryType.GLOVE));
-		registry.register(new AetherAccessory(ItemsAether.iron_gloves, AccessoryType.GLOVE));
-		registry.register(new AetherAccessory(ItemsAether.golden_gloves, AccessoryType.GLOVE));
-		registry.register(new AetherAccessory(ItemsAether.chain_gloves, AccessoryType.GLOVE));
-		registry.register(new AetherAccessory(ItemsAether.diamond_gloves, AccessoryType.GLOVE));
-		registry.register(new AetherAccessory(ItemsAether.zanite_gloves, AccessoryType.GLOVE));
-		registry.register(new AetherAccessory(ItemsAether.gravitite_gloves, AccessoryType.GLOVE));
-		registry.register(new AetherAccessory(ItemsAether.neptune_gloves, AccessoryType.GLOVE));
-		registry.register(new AetherAccessory(ItemsAether.phoenix_gloves, AccessoryType.GLOVE));
-		registry.register(new AetherAccessory(ItemsAether.obsidian_gloves, AccessoryType.GLOVE));
-		registry.register(new AetherAccessory(ItemsAether.valkyrie_gloves, AccessoryType.GLOVE));
+		registerAccessory(registry, ItemsAether.iron_pendant, AccessoryType.PENDANT);
+		registerAccessory(registry, ItemsAether.golden_pendant, AccessoryType.PENDANT);
+		registerAccessory(registry, ItemsAether.zanite_pendant, AccessoryType.PENDANT);
+		registerAccessory(registry, ItemsAether.ice_pendant, AccessoryType.PENDANT);
 
-		registry.register(new AetherAccessory(ItemsAether.red_cape, AccessoryType.CAPE));
-		registry.register(new AetherAccessory(ItemsAether.blue_cape, AccessoryType.CAPE));
-		registry.register(new AetherAccessory(ItemsAether.yellow_cape, AccessoryType.CAPE));
-		registry.register(new AetherAccessory(ItemsAether.white_cape, AccessoryType.CAPE));
-		registry.register(new AetherAccessory(ItemsAether.swet_cape, AccessoryType.CAPE));
-		registry.register(new AetherAccessory(ItemsAether.agility_cape, AccessoryType.CAPE));
-		registry.register(new AetherAccessory(ItemsAether.valkyrie_cape, AccessoryType.CAPE));
-		registry.register(new AetherAccessory(ItemsAether.invisibility_cape, AccessoryType.CAPE));
+		registerAccessory(registry, ItemsAether.leather_gloves, AccessoryType.GLOVE);
+		registerAccessory(registry, ItemsAether.iron_gloves, AccessoryType.GLOVE);
+		registerAccessory(registry, ItemsAether.golden_gloves, AccessoryType.GLOVE);
+		registerAccessory(registry, ItemsAether.chain_gloves, AccessoryType.GLOVE);
+		registerAccessory(registry, ItemsAether.diamond_gloves, AccessoryType.GLOVE);
+		registerAccessory(registry, ItemsAether.zanite_gloves, AccessoryType.GLOVE);
+		registerAccessory(registry, ItemsAether.gravitite_gloves, AccessoryType.GLOVE);
+		registerAccessory(registry, ItemsAether.neptune_gloves, AccessoryType.GLOVE);
+		registerAccessory(registry, ItemsAether.phoenix_gloves, AccessoryType.GLOVE);
+		registerAccessory(registry, ItemsAether.obsidian_gloves, AccessoryType.GLOVE);
+		registerAccessory(registry, ItemsAether.valkyrie_gloves, AccessoryType.GLOVE);
 
-		registry.register(new AetherAccessory(ItemsAether.iron_bubble, AccessoryType.MISC));
-		registry.register(new AetherAccessory(ItemsAether.regeneration_stone, AccessoryType.MISC));
-		registry.register(new AetherAccessory(ItemsAether.repulsion_shield, AccessoryType.SHIELD));
+		registerAccessory(registry, ItemsAether.red_cape, AccessoryType.CAPE);
+		registerAccessory(registry, ItemsAether.blue_cape, AccessoryType.CAPE);
+		registerAccessory(registry, ItemsAether.yellow_cape, AccessoryType.CAPE);
+		registerAccessory(registry, ItemsAether.white_cape, AccessoryType.CAPE);
+		registerAccessory(registry, ItemsAether.swet_cape, AccessoryType.CAPE);
+		registerAccessory(registry, ItemsAether.agility_cape, AccessoryType.CAPE);
+		registerAccessory(registry, ItemsAether.valkyrie_cape, AccessoryType.CAPE);
+		registerAccessory(registry, ItemsAether.invisibility_cape, AccessoryType.CAPE);
+
+		registerAccessory(registry, ItemsAether.iron_bubble, AccessoryType.MISC);
+		registerAccessory(registry, ItemsAether.regeneration_stone, AccessoryType.MISC);
+		registerAccessory(registry, ItemsAether.repulsion_shield, AccessoryType.SHIELD);
+	}
+
+	private static void registerAccessory(IForgeRegistry<AetherAccessory> registry, net.minecraft.item.Item item, AccessoryType type)
+	{
+		registry.register(new AetherAccessory(item, type));
+		com.gildedgames.the_aether.api.accessories.AetherAccessoryBaublesHandler.registerAccessory(new net.minecraft.item.ItemStack(item), type);
 	}
 
 }
