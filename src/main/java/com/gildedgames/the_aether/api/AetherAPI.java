@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
-import com.gildedgames.the_aether.api.accessories.AetherAccessory;
 import com.gildedgames.the_aether.api.enchantments.AetherEnchantment;
 import com.gildedgames.the_aether.api.enchantments.AetherEnchantmentFuel;
 import com.gildedgames.the_aether.api.freezables.AetherFreezable;
@@ -38,8 +37,6 @@ public class AetherAPI
 
 	private static IForgeRegistry<AetherMoaType> iMoaTypeRegistry;
 
-	private static IForgeRegistry<AetherAccessory> iAccessoryRegistry;
-
 	private static final int MAX_REGISTRY_ID = Short.MAX_VALUE - 1;
 
 	@CapabilityInject(IPlayerAether.class)
@@ -59,7 +56,6 @@ public class AetherAPI
 		iFreezableRegistry = makeRegistry(new ResourceLocation("aetherAPI:freezables"), AetherFreezable.class, 0, MAX_REGISTRY_ID).create();
 		iFreezableFuelRegistry = makeRegistry(new ResourceLocation("aetherAPI:freezable_fuels"), AetherFreezableFuel.class, 0, MAX_REGISTRY_ID).create();
 		iMoaTypeRegistry = makeRegistry(new ResourceLocation("aetherAPI:moa_types"), AetherMoaType.class, 0, MAX_REGISTRY_ID).create();
-		iAccessoryRegistry = makeRegistry(new ResourceLocation("aetherAPI:accessories"), AetherAccessory.class, 0, MAX_REGISTRY_ID).create();
 	}
 
 	public IPlayerAether get(EntityPlayer player)

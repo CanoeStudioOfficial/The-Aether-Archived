@@ -7,7 +7,6 @@ import com.gildedgames.the_aether.addon.registry.AetherAddonRegistries;
 import com.gildedgames.the_aether.dictionary.AetherDictionary;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 import com.gildedgames.the_aether.registry.sounds.SoundsAether;
-import com.gildedgames.the_aether.api.accessories.AetherAccessory;
 import com.gildedgames.the_aether.api.accessories.RecipeAccessoryDyes;
 import com.gildedgames.the_aether.entities.effects.PotionsAether;
 import com.gildedgames.the_aether.world.biome.BiomesAether;
@@ -122,12 +121,6 @@ public class AetherRegistryEvent
 	public void onRegisterFreezableFuelEvent(RegistryEvent.Register<AetherFreezableFuel> event)
 	{
 		AetherRegistries.initializeFreezableFuel(event.getRegistry());
-	}
-
-	@SubscribeEvent
-	public void onRegisterAccessoryEvent(RegistryEvent.Register<AetherAccessory> event)
-	{
-		AetherRegistries.initializeAccessories(event.getRegistry());
 	}
 
 }
