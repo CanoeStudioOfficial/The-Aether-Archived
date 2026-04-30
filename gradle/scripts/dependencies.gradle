@@ -49,6 +49,8 @@ dependencies {
     implementation "codersafterdark.reskillable:Reskillable:1.12.2-1.13.0-SNAPSHOT.128"
     implementation "curse.maven:colytra-280200:2828877"
 	implementation "curse.maven:baubles-227083:2518667"
+	compileOnly "slimeknights.mantle:Mantle:1.12-1.3.3.55"
+    compileOnly "slimeknights:TConstruct:1.12.2-2.13.0.188"
     // Example - Deobfuscating dependencies:
     // rfg.deobf('curse.maven:had-enough-items-557549:4543375')
     // By wrapping a dependency descriptor in rfg.deobf() method call, the dependency is queued for deobfuscation
