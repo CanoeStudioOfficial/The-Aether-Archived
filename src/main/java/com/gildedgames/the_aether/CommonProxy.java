@@ -30,7 +30,6 @@ public class CommonProxy
 
 	public void openSunAltar() { }
 
-	public void registerTinkersItemRenderer(Item item, int meta, String id) { }
 	@SuppressWarnings("deprecation")
 	public static void registerEvent(Object event)
 	{
