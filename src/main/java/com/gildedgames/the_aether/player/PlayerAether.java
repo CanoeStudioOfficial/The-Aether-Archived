@@ -95,6 +95,8 @@ public class PlayerAether implements IPlayerAether
 	
 	public List<Item> extendedReachItems = Arrays.asList(new Item[] {ItemsAether.valkyrie_shovel, ItemsAether.valkyrie_pickaxe, ItemsAether.valkyrie_axe});
 
+	private final AccessoryInventory accessoryInventory = new AccessoryInventory();
+
 	public PlayerAether() { }
 
 	public PlayerAether(EntityPlayer player)
@@ -752,6 +754,14 @@ public class PlayerAether implements IPlayerAether
 	public boolean inPortalBlock()
 	{
 		return this.inPortal;
+	}
+
+	@Override
+	public com.gildedgames.the_aether.api.player.util.IAccessoryInventory getAccessoryInventory()
+	{
+		this.accessoryInventory.setPlayer(this.thePlayer);
+		this.accessoryInventory.syncFromBaubles();
+		return this.accessoryInventory;
 	}
 
 	public boolean isPoisoned()
