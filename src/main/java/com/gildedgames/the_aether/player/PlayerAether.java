@@ -42,6 +42,7 @@ import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.api.player.IPlayerAether;
 import com.gildedgames.the_aether.api.player.util.IAetherAbility;
 import com.gildedgames.the_aether.api.player.util.IAetherBoss;
+import com.gildedgames.the_aether.api.player.util.IAccessoryInventory;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.items.accessories.ItemAccessory;
@@ -94,6 +95,8 @@ public class PlayerAether implements IPlayerAether
 	public DonatorMoaSkin donatorMoaSkin;
 	
 	public List<Item> extendedReachItems = Arrays.asList(new Item[] {ItemsAether.valkyrie_shovel, ItemsAether.valkyrie_pickaxe, ItemsAether.valkyrie_axe});
+
+	private final AccessoryInventory accessoryInventory = new AccessoryInventory();
 
 	public PlayerAether() { }
 
@@ -752,6 +755,14 @@ public class PlayerAether implements IPlayerAether
 	public boolean inPortalBlock()
 	{
 		return this.inPortal;
+	}
+
+	@Override
+	public IAccessoryInventory getAccessoryInventory()
+	{
+		this.accessoryInventory.setPlayer(this.thePlayer);
+		this.accessoryInventory.syncFromBaubles();
+		return this.accessoryInventory;
 	}
 
 	public boolean isPoisoned()

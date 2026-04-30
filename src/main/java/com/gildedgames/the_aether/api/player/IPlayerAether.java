@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.gildedgames.the_aether.api.player.util.IAetherAbility;
 import com.gildedgames.the_aether.api.player.util.IAetherBoss;
+import com.gildedgames.the_aether.api.player.util.IAccessoryInventory;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -55,5 +56,7 @@ public interface IPlayerAether
 	public boolean shouldPortalTravelSound();
 	
 	public boolean inPortalBlock();
+	
+	public IAccessoryInventory getAccessoryInventory();
 	
 }
