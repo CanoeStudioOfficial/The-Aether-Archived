@@ -48,7 +48,7 @@ public class ItemDart extends Item
     public ItemDart()
     {
         super();
-        this.setHasSubtypes(true);
+        this.hasSubtypes = true;
         this.setCreativeTab(AetherCreativeTabs.aether);
         BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(this, DISPENSER_BEHAVIOR);
     }
