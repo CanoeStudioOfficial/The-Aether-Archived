@@ -3,8 +3,6 @@ package com.gildedgames.the_aether.client;
 import java.io.*;
 import java.util.Random;
 
-import com.gildedgames.the_aether.AetherConfig;
-import com.gildedgames.the_aether.CommonProxy;
 import com.gildedgames.the_aether.client.audio.AetherMusicHandler;
 import com.gildedgames.the_aether.client.gui.GuiAetherInGame;
 import com.gildedgames.the_aether.client.gui.GuiSunAltar;
@@ -12,6 +10,8 @@ import com.gildedgames.the_aether.client.gui.toast.GuiAetherToast;
 import com.gildedgames.the_aether.client.renders.AetherEntityRenderingRegistry;
 import com.gildedgames.the_aether.client.renders.blocks.BlockRendering;
 import com.gildedgames.the_aether.client.renders.items.ItemRendering;
+import com.gildedgames.the_aether.AetherConfig;
+import com.gildedgames.the_aether.CommonProxy;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -22,7 +22,6 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.FMLClientHandler;
-import net.minecraftforge.fml.common.Loader;
 
 public class ClientProxy extends CommonProxy
 {
@@ -56,11 +55,6 @@ public class ClientProxy extends CommonProxy
 		MinecraftForge.EVENT_BUS.register(new GuiAetherInGame(Minecraft.getMinecraft()));
 
 		registerEvent(new AetherMusicHandler());
-
-		if (Loader.isModLoaded("tconstruct"))
-		{
-			com.gildedgames.the_aether.tinkers.TinkersClientHelper.initToolGuis();
-		}
 	}
 
 	public void generateTexturePack()

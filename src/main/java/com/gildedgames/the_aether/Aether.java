@@ -34,7 +34,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(name = "Aether", modid = Aether.modid, version = Aether.version, acceptedMinecraftVersions = "1.12.2", dependencies = "required-after:baubles;after:mantle;after:tconstruct", updateJSON = "https://raw.githubusercontent.com/Modding-Legacy/Aether-Legacy/master/aether-legacy-changelog.json")
+@Mod(name = "Aether", modid = Aether.modid, version = Aether.version, acceptedMinecraftVersions = "1.12.2", dependencies = "required-after:baubles", updateJSON = "https://raw.githubusercontent.com/Modding-Legacy/Aether-Legacy/master/aether-legacy-changelog.json")
 public class Aether 
 {
 
@@ -47,12 +47,6 @@ public class Aether
 
 	@SidedProxy(modId = Aether.modid, clientSide = "com.gildedgames.the_aether.client.ClientProxy", serverSide = "com.gildedgames.the_aether.CommonProxy")
 	public static CommonProxy proxy;
-
-	public Aether() {
-		if (Loader.isModLoaded("tconstruct")) {
-			com.gildedgames.the_aether.tinkers.TinkersIntegration.construct();
-		}
-	}
 
 	@EventHandler
 	public void preInitialization(FMLPreInitializationEvent event)
@@ -71,11 +65,6 @@ public class Aether
 		if(Loader.isModLoaded("crafttweaker"))
 		{
 			AetherCraftTweakerPlugin.preInitialization();
-		}
-
-		if(Loader.isModLoaded("tconstruct"))
-		{
-			com.gildedgames.the_aether.tinkers.TinkersIntegration.preInit();
 		}
 
 		CommonProxy.registerEvent(new AetherRegistryEvent());
@@ -102,22 +91,12 @@ public class Aether
 			CommonProxy.registerEvent(new ReskillableTickHandler());
 		}
 
-		if(Loader.isModLoaded("tconstruct"))
-		{
-			com.gildedgames.the_aether.tinkers.TinkersIntegration.init();
-		}
-
 		proxy.initialization();
 	}
 
 	@EventHandler
 	public void postInitialization(FMLPostInitializationEvent event)
 	{
-		if(Loader.isModLoaded("tconstruct"))
-		{
-			com.gildedgames.the_aether.tinkers.TinkersIntegration.postInit();
-		}
-
 		proxy.postInitialization();
 
 		FurnaceRecipes.instance().addSmeltingRecipeForBlock(BlocksAether.aether_log, new ItemStack(Items.COAL, 1, 1), 0.15F);

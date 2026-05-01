@@ -21,7 +21,6 @@ import com.gildedgames.the_aether.items.util.EnumDartType;
 import com.gildedgames.the_aether.items.util.EnumDungeonKeyType;
 import com.gildedgames.the_aether.items.util.EnumGummySwetType;
 import com.gildedgames.the_aether.items.util.EnumSkyrootBucketType;
-import net.minecraftforge.fml.common.Loader;
 
 public class ItemRendering
 {
@@ -205,11 +204,6 @@ public class ItemRendering
 		registerMeta(ItemsAether.phoenix_bow, Aether.locate("phoenix_bow"), Aether.locate("phoenix_bow_pulling_0"), Aether.locate("phoenix_bow_pulling_1"), Aether.locate("phoenix_bow_pulling_2"));
 		registerMeta(ItemsAether.notch_hammer, Aether.locate("notch_hammer"), Aether.locate("hammer_projectile"), Aether.locate("jeb_hammer"));
 		registerMeta(ItemsAether.candy_cane_sword, Aether.locate("candy_cane_sword"), Aether.locate("green_candy_cane_sword"));
-
-		if (Loader.isModLoaded("tconstruct"))
-		{
-			com.gildedgames.the_aether.tinkers.TinkersClientHelper.registerModels();
-		}
 
 	}
 
