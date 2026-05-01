@@ -11,11 +11,11 @@ public class FluidHelper {
         FluidMolten fluid = new FluidMolten(material.identifier, material.materialTextColor);
         fluid.setTemperature(temperature);
         FluidRegistry.registerFluid(fluid);
-        FluidRegistry.addBucketForFluid(fluid);
         BlockMolten blockFluid = new BlockMolten(fluid);
         blockFluid.setTranslationKey("molten_" + fluid.getName());
         blockFluid.setRegistryName("molten_" + fluid.getName());
         ForgeRegistries.BLOCKS.register(blockFluid);
+        FluidRegistry.addBucketForFluid(fluid);
         com.gildedgames.the_aether.tinkers.TinkersClientHelper.registerFluidModels(fluid);
         return fluid;
     }
