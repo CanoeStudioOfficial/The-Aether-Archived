@@ -25,6 +25,7 @@ import net.minecraft.world.storage.loot.conditions.LootCondition;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -300,7 +301,9 @@ public class ModuleBase {
 
     public void init() {
         TinkersIntegration.LOGGER.info("Base Module - Begin Init");
-        FluidHelper.registerFluidBlocks();
+        if (Loader.isModLoaded("tconstruct")) {
+            FluidHelper.registerFluidBlocks();
+        }
         OreDict.register();
         TinkersIntegration.LOGGER.info("Base Module - OreDict Registered");
         TinkersIntegration.LOGGER.info("Base Module - End Init");
