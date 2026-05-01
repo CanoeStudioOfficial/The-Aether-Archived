@@ -34,7 +34,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(name = "Aether", modid = Aether.modid, version = Aether.version, acceptedMinecraftVersions = "1.12.2", dependencies = "required-after:baubles;after:mantle;after:tconstruct", updateJSON = "https://raw.githubusercontent.com/Modding-Legacy/Aether-Legacy/master/aether-legacy-changelog.json")
+@Mod(name = "Aether", modid = Aether.modid, version = Aether.version, acceptedMinecraftVersions = "1.12.2", dependencies = "required-after:baubles;required-after:tconstruct;after:mantle", updateJSON = "https://raw.githubusercontent.com/Modding-Legacy/Aether-Legacy/master/aether-legacy-changelog.json")
 public class Aether 
 {
 

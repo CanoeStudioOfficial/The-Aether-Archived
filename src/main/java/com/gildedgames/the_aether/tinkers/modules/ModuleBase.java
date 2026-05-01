@@ -300,6 +300,7 @@ public class ModuleBase {
 
     public void init() {
         TinkersIntegration.LOGGER.info("Base Module - Begin Init");
+        FluidHelper.registerFluidBlocks();
         OreDict.register();
         TinkersIntegration.LOGGER.info("Base Module - OreDict Registered");
         TinkersIntegration.LOGGER.info("Base Module - End Init");

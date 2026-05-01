@@ -78,6 +78,11 @@ public class TinkersClientHelper {
         if (AetherConfig.tinkers_options.darts) {
             RenderingRegistry.registerEntityRenderingHandler(com.gildedgames.the_aether.tinkers.entities.EntityDart.class, com.gildedgames.the_aether.tinkers.render.RenderDart::new);
         }
+        for (net.minecraftforge.fluids.Fluid fluid : net.minecraftforge.fluids.FluidRegistry.getRegisteredFluids().values()) {
+            if (fluid instanceof slimeknights.tconstruct.library.fluid.FluidMolten && fluid.getName().startsWith("molten_")) {
+                registerFluidModels(fluid);
+            }
+        }
         TinkersIntegration.LOGGER.info("Tinkers Aether - Models Registered");
     }
 
