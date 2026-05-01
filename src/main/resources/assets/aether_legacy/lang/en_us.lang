@@ -786,3 +786,6 @@ modifier.cushy.desc=Like a cushion.\nSilky, but doesn't hurt much.
 modifier.refrigeration.name=Refrigeration
 modifier.refrigeration.desc=A freezer in tool form!\nHarvested blocks get frozen.
 tinkersaether.config.title=Tinker's Aether Configuration
+
+# Lost Content Config
+lost_aether.config.title=Lost Aether Content Config

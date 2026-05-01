@@ -78,6 +78,8 @@ public class Aether
 			com.gildedgames.the_aether.tinkers.TinkersIntegration.preInit();
 		}
 
+		com.gildedgames.the_aether.lost.LostAetherContent.preInit();
+
 		CommonProxy.registerEvent(new AetherRegistryEvent());
 		CommonProxy.registerEvent(new com.gildedgames.the_aether.addon.registry.AetherAddonRegistryEvent());
 
@@ -106,6 +108,8 @@ public class Aether
 		{
 			com.gildedgames.the_aether.tinkers.TinkersIntegration.init();
 		}
+
+		com.gildedgames.the_aether.lost.LostAetherContent.init();
 
 		proxy.initialization();
 	}
