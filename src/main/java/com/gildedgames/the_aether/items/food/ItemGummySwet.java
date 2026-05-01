@@ -13,8 +13,13 @@ public class ItemGummySwet extends ItemAetherFood
 	{
 		super(20);
 
-		this.hasSubtypes = true;
 		this.setCreativeTab(AetherCreativeTabs.aether);
+	}
+
+	@Override
+	public boolean getHasSubtypes()
+	{
+		return true;
 	}
 
 	@Override

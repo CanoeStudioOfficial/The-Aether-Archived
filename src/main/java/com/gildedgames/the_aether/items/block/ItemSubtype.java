@@ -11,7 +11,12 @@ public class ItemSubtype extends ItemBlock
 	public ItemSubtype(Block block)
 	{
 		super(block);
-		this.hasSubtypes = true;
+	}
+
+	@Override
+	public boolean getHasSubtypes()
+	{
+		return true;
 	}
 
 	@Override

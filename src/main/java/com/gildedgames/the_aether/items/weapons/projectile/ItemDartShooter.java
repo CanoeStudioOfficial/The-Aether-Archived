@@ -29,8 +29,13 @@ public class ItemDartShooter extends Item
 	public ItemDartShooter()
 	{
 		this.maxStackSize = 1;
-		this.hasSubtypes = true;
 		this.setCreativeTab(AetherCreativeTabs.aether);
+	}
+
+	@Override
+	public boolean getHasSubtypes()
+	{
+		return true;
 	}
 
 	@Override

@@ -31,8 +31,13 @@ public class ItemAetherSlab extends ItemBlock
         this.singleSlab = singleSlab;
         this.doubleSlab = doubleSlab;
         this.setMaxDamage(0);
-        this.hasSubtypes = true;
-    }
+	}
+
+	@Override
+	public boolean getHasSubtypes()
+	{
+		return true;
+	}
 
     public int getMetadata(int damage)
     {
