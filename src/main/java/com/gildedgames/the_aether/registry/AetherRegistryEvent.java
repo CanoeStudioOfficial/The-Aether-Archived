@@ -15,6 +15,7 @@ import com.gildedgames.the_aether.lost.blocks.BlocksLostAether;
 import com.gildedgames.the_aether.lost.client.sounds.LostSounds;
 import com.gildedgames.the_aether.lost.items.ItemsLostAether;
 import com.gildedgames.the_aether.lost.registry.LostMoaTypes;
+import com.gildedgames.the_aether.aeble.AebleRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipe;
@@ -62,6 +63,17 @@ public class AetherRegistryEvent
 		BlocksLostAether.registerItems(event.getRegistry());
 		ItemsLostAether.itemRegistry = event.getRegistry();
 		ItemsLostAether.initialization();
+
+		AebleRegistry.initialization();
+		event.getRegistry().register(AebleRegistry.ice_ring);
+		event.getRegistry().register(AebleRegistry.air_ring);
+		event.getRegistry().register(AebleRegistry.regeneration_ring);
+		event.getRegistry().register(AebleRegistry.bubble_ring);
+		event.getRegistry().register(AebleRegistry.obsidian_ring);
+		event.getRegistry().register(AebleRegistry.zanite_ring);
+		event.getRegistry().register(AebleRegistry.luck_belt);
+		event.getRegistry().register(AebleRegistry.valkyrie_belt);
+		event.getRegistry().register(AebleRegistry.repulsion_belt);
 
 		AetherCreativeTabs.initialization();
 	}

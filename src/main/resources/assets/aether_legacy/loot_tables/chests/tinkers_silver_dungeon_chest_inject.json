@@ -1,0 +1,33 @@
+{
+	"pools": [
+		{
+			"name": "tinkers_inject",
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "item",
+					"name": "aether_legacy:valkyrie_nugget",
+					"weight": 30,
+					"functions": [
+						{
+							"function": "set_count",
+							"count": {
+								"min": 1,
+								"max": 3
+							}
+						}
+					]
+				},
+				{
+					"type": "item",
+					"name": "aether_legacy:valkyrie_ingot",
+					"weight": 5
+				},
+				{
+					"type": "empty",
+					"weight": 65
+				}
+			]
+		}
+	]
+}

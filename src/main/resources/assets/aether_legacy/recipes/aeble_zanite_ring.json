@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "OXO",
+    "XOX",
+    "OXO"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:iron_ingot"
+    },
+    "O": {
+      "item": "aether_legacy:zanite_gemstone",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "aether_legacy:aeble_zanite_ring"
+  }
+}

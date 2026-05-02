@@ -14,6 +14,7 @@ import com.gildedgames.the_aether.lost.events.LostEvents;
 import com.gildedgames.the_aether.lost.events.PlayerLostAetherEvents;
 import com.gildedgames.the_aether.lost.registry.LostAetherEntities;
 import com.gildedgames.the_aether.lost.world.AetherStructureGenerator;
+import com.gildedgames.the_aether.aeble.AebleEventHandler;
 import com.gildedgames.the_aether.networking.AetherNetworkingManager;
 import com.gildedgames.the_aether.player.capability.PlayerAetherManager;
 import com.gildedgames.the_aether.registry.AetherRegistryEvent;
@@ -127,6 +128,7 @@ public class Aether
 		}
 
 		CommonProxy.registerEvent(new PlayerLostAetherEvents());
+		CommonProxy.registerEvent(new AebleEventHandler());
 		GameRegistry.registerWorldGenerator(new AetherStructureGenerator(), 0);
 		com.gildedgames.the_aether.lost.CommonProxy.commonInit();
 		com.gildedgames.the_aether.lost.client.ClientProxy.clientInit();

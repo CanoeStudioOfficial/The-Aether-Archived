@@ -384,10 +384,10 @@ public class ModuleBase {
     public void onLootTableLoad(LootTableLoadEvent event) {
         if (AetherConfig.tinkers_options.valkyrie && AetherConfig.tinkers_options.valkyrieDungeonChest) {
             if (event.getName().toString().equals("aether_legacy:chests/silver_dungeon_chest")) {
-                LootEntry entry = new LootEntryTable(new ResourceLocation(TinkersIntegration.MODID, "inject/silver_dungeon_chest"), 100, 10, new LootCondition[0], "ta_inject_entry");
+                LootEntry entry = new LootEntryTable(new ResourceLocation("aether_legacy", "chests/tinkers_silver_dungeon_chest_inject"), 100, 10, new LootCondition[0], "ta_inject_entry");
                 event.getTable().addPool(new LootPool(new LootEntry[]{entry}, new LootCondition[0], new RandomValueRange(1), new RandomValueRange(0, 1), "ta_inject_pool"));
             } else if (event.getName().toString().equals("aether_legacy:chests/silver_dungeon_reward")) {
-                LootEntry entry = new LootEntryTable(new ResourceLocation(TinkersIntegration.MODID, "inject/silver_dungeon_reward"), 100, 0, new LootCondition[0], "ta_inject_entry");
+                LootEntry entry = new LootEntryTable(new ResourceLocation("aether_legacy", "chests/tinkers_silver_dungeon_reward_inject"), 100, 0, new LootCondition[0], "ta_inject_entry");
                 event.getTable().addPool(new LootPool(new LootEntry[]{entry}, new LootCondition[0], new RandomValueRange(1), new RandomValueRange(0, 1), "ta_inject_pool"));
             }
         }

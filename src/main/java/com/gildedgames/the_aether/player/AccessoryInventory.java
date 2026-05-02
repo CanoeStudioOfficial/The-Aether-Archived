@@ -4,9 +4,13 @@ import baubles.api.BaublesApi;
 import baubles.api.IBauble;
 import baubles.api.cap.IBaublesItemHandler;
 import com.gildedgames.the_aether.api.player.util.IAccessoryInventory;
+import com.gildedgames.the_aether.api.accessories.BaublesHelper;
+import com.gildedgames.the_aether.items.ItemsAether;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
@@ -36,12 +40,147 @@ public class AccessoryInventory implements IAccessoryInventory
     public void syncFromBaubles()
     {
         if (this.player == null) return;
-        
+
         IBaublesItemHandler baubles = BaublesApi.getBaublesHandler(this.player);
         for (int i = 0; i < 8 && i < baubles.getSlots(); i++)
         {
             this.slots.set(i, baubles.getStackInSlot(i).copy());
         }
+    }
+
+    @Override
+    public void dropAccessories()
+    {
+        if (this.player == null) return;
+
+        IBaublesItemHandler baubles = BaublesApi.getBaublesHandler(this.player);
+        for (int i = 0; i < baubles.getSlots(); i++)
+        {
+            ItemStack stack = baubles.getStackInSlot(i);
+            if (!stack.isEmpty())
+            {
+                baubles.setStackInSlot(i, ItemStack.EMPTY);
+                this.player.dropItem(stack, true);
+            }
+        }
+
+        syncFromBaubles();
+    }
+
+    @Override
+    public void damageWornStack(int damage, ItemStack stack)
+    {
+        BaublesHelper.damageWornStack(this.player, damage, stack);
+    }
+
+    @Override
+    public boolean setAccessorySlot(ItemStack stack)
+    {
+        if (this.player == null) return false;
+
+        IBaublesItemHandler baubles = BaublesApi.getBaublesHandler(this.player);
+        for (int i = 0; i < baubles.getSlots(); i++)
+        {
+            if (baubles.isItemValidForSlot(i, stack, this.player) && baubles.getStackInSlot(i).isEmpty())
+            {
+                baubles.setStackInSlot(i, stack.copy());
+                syncFromBaubles();
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean wearingAccessory(ItemStack stack)
+    {
+        return BaublesHelper.wearingAccessory(this.player, stack);
+    }
+
+    @Override
+    public boolean wearingArmor(ItemStack stack)
+    {
+        return BaublesHelper.wearingArmor(this.player, stack);
+    }
+
+    @Override
+    public void writeToNBT(NBTTagCompound compound)
+    {
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound list)
+    {
+    }
+
+    @Override
+    public void writeData(ByteBuf buf)
+    {
+    }
+
+    @Override
+    public void readData(ByteBuf buf)
+    {
+    }
+
+    @Override
+    public boolean isWearingZaniteSet()
+    {
+        return BaublesHelper.isWearingZaniteSet(this.player);
+    }
+
+    @Override
+    public boolean isWearingGravititeSet()
+    {
+        return BaublesHelper.isWearingGravititeSet(this.player);
+    }
+
+    @Override
+    public boolean isWearingNeptuneSet()
+    {
+        return BaublesHelper.isWearingNeptuneSet(this.player);
+    }
+
+    @Override
+    public boolean isWearingPhoenixSet()
+    {
+        return BaublesHelper.isWearingPhoenixSet(this.player);
+    }
+
+    @Override
+    public boolean isWearingObsidianSet()
+    {
+        return BaublesHelper.isWearingObsidianSet(this.player);
+    }
+
+    @Override
+    public boolean isWearingValkyrieSet()
+    {
+        return BaublesHelper.isWearingValkyrieSet(this.player);
+    }
+
+    @Override
+    public NonNullList<ItemStack> getAccessories()
+    {
+        syncFromBaubles();
+        return this.slots;
+    }
+
+    @Override
+    public int getAccessoryCount(ItemStack stack)
+    {
+        int count = 0;
+        IBaublesItemHandler baubles = BaublesApi.getBaublesHandler(this.player);
+        for (int i = 0; i < baubles.getSlots(); i++)
+        {
+            ItemStack slotStack = baubles.getStackInSlot(i);
+            if (!slotStack.isEmpty() && slotStack.getItem() == stack.getItem())
+            {
+                count += slotStack.getCount();
+            }
+        }
+        return count;
     }
 
     @Override
