@@ -15,6 +15,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import com.gildedgames.the_aether.Aether;
+import com.gildedgames.the_aether.aeble.AebleRegistry;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.items.util.EnumDartShooterType;
 import com.gildedgames.the_aether.items.util.EnumDartType;
@@ -205,6 +206,16 @@ public class ItemRendering
 		registerMeta(ItemsAether.phoenix_bow, Aether.locate("phoenix_bow"), Aether.locate("phoenix_bow_pulling_0"), Aether.locate("phoenix_bow_pulling_1"), Aether.locate("phoenix_bow_pulling_2"));
 		registerMeta(ItemsAether.notch_hammer, Aether.locate("notch_hammer"), Aether.locate("hammer_projectile"), Aether.locate("jeb_hammer"));
 		registerMeta(ItemsAether.candy_cane_sword, Aether.locate("candy_cane_sword"), Aether.locate("green_candy_cane_sword"));
+
+		register(AebleRegistry.ice_ring, "aeble_ice_ring");
+		register(AebleRegistry.air_ring, "aeble_air_ring");
+		register(AebleRegistry.regeneration_ring, "aeble_regeneration_ring");
+		register(AebleRegistry.bubble_ring, "aeble_bubble_ring");
+		register(AebleRegistry.obsidian_ring, "aeble_obsidian_ring");
+		register(AebleRegistry.zanite_ring, "aeble_zanite_ring");
+		register(AebleRegistry.luck_belt, "aeble_luck_belt");
+		register(AebleRegistry.valkyrie_belt, "aeble_valkyrie_belt");
+		register(AebleRegistry.repulsion_belt, "aeble_repulsion_belt");
 
 		if (Loader.isModLoaded("tconstruct"))
 		{
