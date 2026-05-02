@@ -440,17 +440,6 @@ public class AetherConfig
 		public boolean valkyrieMedalEnchant = true;
 	}
 
-	public static final LostContentOptions lost_content = new LostContentOptions();
-
-	public static class LostContentOptions
-	{
-		@Config.Comment("Replaces the normal Aether menu with the original panorama and proper button placement.")
-		public boolean aether_menu = false;
-
-		@Config.Comment("Enable a button on the Aether menu to join the Modding Legacy server. Only works if lost content menu is enabled.")
-		public boolean server_button = false;
-	}
-
 	public static final Spawnrates spawnrates = new Spawnrates();
 
 	public static class Spawnrates

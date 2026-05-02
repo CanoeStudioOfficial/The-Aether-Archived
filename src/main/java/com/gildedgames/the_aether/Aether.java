@@ -41,7 +41,6 @@ public class Aether
 
 	public static final String modid = Tags.MOD_ID;
 
-
 	@Instance(Aether.modid)
 	public static Aether instance;
 
@@ -78,8 +77,6 @@ public class Aether
 			com.gildedgames.the_aether.tinkers.TinkersIntegration.preInit();
 		}
 
-		com.gildedgames.the_aether.lost.LostAetherContent.preInit();
-
 		CommonProxy.registerEvent(new AetherRegistryEvent());
 		CommonProxy.registerEvent(new com.gildedgames.the_aether.addon.registry.AetherAddonRegistryEvent());
 
@@ -108,8 +105,6 @@ public class Aether
 		{
 			com.gildedgames.the_aether.tinkers.TinkersIntegration.init();
 		}
-
-		com.gildedgames.the_aether.lost.LostAetherContent.init();
 
 		proxy.initialization();
 	}

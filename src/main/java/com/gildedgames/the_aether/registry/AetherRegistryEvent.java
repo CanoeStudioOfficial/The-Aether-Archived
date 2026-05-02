@@ -5,11 +5,6 @@ import com.gildedgames.the_aether.addon.dictionary.AetherAddonDictionary;
 import com.gildedgames.the_aether.addon.items.ItemsAetherAddon;
 import com.gildedgames.the_aether.addon.registry.AetherAddonRegistries;
 import com.gildedgames.the_aether.dictionary.AetherDictionary;
-import com.gildedgames.the_aether.lost.blocks.BlocksLostAether;
-import com.gildedgames.the_aether.lost.client.sounds.LostSounds;
-import com.gildedgames.the_aether.lost.items.ItemsLostAether;
-import com.gildedgames.the_aether.lost.registry.LostAetherRegistries;
-import com.gildedgames.the_aether.lost.registry.LostMoaTypes;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
 import com.gildedgames.the_aether.registry.sounds.SoundsAether;
 import com.gildedgames.the_aether.api.accessories.AetherAccessory;
@@ -45,7 +40,6 @@ public class AetherRegistryEvent
 	{
 		BlocksAether.registerBlocks(event.getRegistry());
 		BlocksAetherAddon.registerBlocks(event.getRegistry());
-		BlocksLostAether.registerBlocks(event.getRegistry());
 	}
 
 	@SubscribeEvent
@@ -60,10 +54,6 @@ public class AetherRegistryEvent
 		ItemsAetherAddon.itemRegistry = event.getRegistry();
 		ItemsAetherAddon.initialization();
 		AetherCreativeTabs.initialization();
-
-		BlocksLostAether.registerItems(event.getRegistry());
-		ItemsLostAether.itemRegistry = event.getRegistry();
-		ItemsLostAether.initialization();
 	}
 
 	@SubscribeEvent
@@ -80,9 +70,6 @@ public class AetherRegistryEvent
 		SoundsAether.soundRegistry = event.getRegistry();
 
 		SoundsAether.initialization();
-
-		LostSounds.soundRegistry = event.getRegistry();
-		LostSounds.initialization();
 	}
 
 	@SubscribeEvent
@@ -110,9 +97,6 @@ public class AetherRegistryEvent
 		AetherMoaTypes.moaRegistry = event.getRegistry();
 
 		AetherMoaTypes.initialization();
-
-		LostMoaTypes.moaRegistry = event.getRegistry();
-		LostMoaTypes.initialization();
 	}
 
 	@SubscribeEvent
@@ -120,7 +104,6 @@ public class AetherRegistryEvent
 	{
 		AetherRegistries.initializeEnchantments(event.getRegistry());
 		AetherAddonRegistries.initializeEnchantments(event.getRegistry());
-		LostAetherRegistries.initializeEnchantments(event.getRegistry());
 	}
 
 	@SubscribeEvent
@@ -145,7 +128,6 @@ public class AetherRegistryEvent
 	public void onRegisterAccessoryEvent(RegistryEvent.Register<AetherAccessory> event)
 	{
 		AetherRegistries.initializeAccessories(event.getRegistry());
-		LostAetherRegistries.initializeAccessories(event.getRegistry());
 	}
 
 }
