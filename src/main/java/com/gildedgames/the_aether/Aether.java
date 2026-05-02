@@ -1,5 +1,6 @@
 package com.gildedgames.the_aether;
 
+import com.gildedgames.aether_legacy.Tags;
 import com.gildedgames.the_aether.addon.blocks.BlocksAetherAddon;
 import com.gildedgames.the_aether.addon.tile_entities.AetherAddonTileEntities;
 import com.gildedgames.the_aether.advancements.AetherAdvancements;
@@ -34,13 +35,12 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(name = "Aether", modid = Aether.modid, version = Aether.version, acceptedMinecraftVersions = "1.12.2", dependencies = "required-after:baubles;after:mantle;after:tconstruct", updateJSON = "https://raw.githubusercontent.com/Modding-Legacy/Aether-Legacy/master/aether-legacy-changelog.json")
+@Mod(name = Tags.MOD_NAME, modid = Tags.MOD_ID, version = Tags.VERSION, acceptedMinecraftVersions = "1.12.2", dependencies = "required-after:baubles;after:mantle;after:tconstruct", updateJSON = "https://raw.githubusercontent.com/Modding-Legacy/Aether-Legacy/master/aether-legacy-changelog.json")
 public class Aether 
 {
 
-	public static final String modid = "aether_legacy";
+	public static final String modid = Tags.MOD_ID;
 
-	public static final String version = "1.5.4.1";
 
 	@Instance(Aether.modid)
 	public static Aether instance;
