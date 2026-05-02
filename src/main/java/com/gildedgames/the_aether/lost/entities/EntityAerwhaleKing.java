@@ -26,7 +26,6 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemShield;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -45,8 +44,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
-import net.minecraft.world.BossInfo;
-import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -62,7 +59,6 @@ public class EntityAerwhaleKing extends EntityFlying implements IAetherBoss
 	public int chatTime, attackDelay, stunTime, randomAttackChance;
 	public float velocity;
 	public boolean isTargetted, courseFlipped;
-	private final BossInfoServer bossInfo = (BossInfoServer)(new BossInfoServer(this.getDisplayName(), BossInfo.Color.BLUE, BossInfo.Overlay.PROGRESS));
 
 	public EntityAerwhaleKing(World world)
 	{
@@ -149,8 +145,6 @@ public class EntityAerwhaleKing extends EntityFlying implements IAetherBoss
 		{
 			AetherAPI.getInstance().get(nearbyPlayers).setFocusedBoss(this);
 		}
-
-		this.bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
 
 		if (this.getAttackTarget() != null)
 		{
@@ -515,20 +509,6 @@ public class EntityAerwhaleKing extends EntityFlying implements IAetherBoss
 	public boolean isNonBoss()
 	{
 		return false;
-	}
-
-	@Override
-	public void addTrackingPlayer(EntityPlayerMP player)
-	{
-		super.addTrackingPlayer(player);
-		this.bossInfo.addPlayer(player);
-	}
-
-	@Override
-	public void removeTrackingPlayer(EntityPlayerMP player)
-	{
-		super.removeTrackingPlayer(player);
-		this.bossInfo.removePlayer(player);
 	}
 
 	@Override
