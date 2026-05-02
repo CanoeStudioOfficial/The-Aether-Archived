@@ -11,6 +11,10 @@ import com.gildedgames.the_aether.api.accessories.AetherAccessory;
 import com.gildedgames.the_aether.api.accessories.RecipeAccessoryDyes;
 import com.gildedgames.the_aether.entities.effects.PotionsAether;
 import com.gildedgames.the_aether.world.biome.BiomesAether;
+import com.gildedgames.the_aether.lost.blocks.BlocksLostAether;
+import com.gildedgames.the_aether.lost.client.sounds.LostSounds;
+import com.gildedgames.the_aether.lost.items.ItemsLostAether;
+import com.gildedgames.the_aether.lost.registry.LostMoaTypes;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.crafting.IRecipe;
@@ -40,6 +44,7 @@ public class AetherRegistryEvent
 	{
 		BlocksAether.registerBlocks(event.getRegistry());
 		BlocksAetherAddon.registerBlocks(event.getRegistry());
+		BlocksLostAether.registerBlocks(event.getRegistry());
 	}
 
 	@SubscribeEvent
@@ -53,6 +58,11 @@ public class AetherRegistryEvent
 		ItemsAether.initialization();
 		ItemsAetherAddon.itemRegistry = event.getRegistry();
 		ItemsAetherAddon.initialization();
+
+		BlocksLostAether.registerItems(event.getRegistry());
+		ItemsLostAether.itemRegistry = event.getRegistry();
+		ItemsLostAether.initialization();
+
 		AetherCreativeTabs.initialization();
 	}
 
@@ -70,6 +80,9 @@ public class AetherRegistryEvent
 		SoundsAether.soundRegistry = event.getRegistry();
 
 		SoundsAether.initialization();
+
+		LostSounds.soundRegistry = event.getRegistry();
+		LostSounds.initialization();
 	}
 
 	@SubscribeEvent
@@ -97,6 +110,9 @@ public class AetherRegistryEvent
 		AetherMoaTypes.moaRegistry = event.getRegistry();
 
 		AetherMoaTypes.initialization();
+
+		LostMoaTypes.moaRegistry = event.getRegistry();
+		LostMoaTypes.initialization();
 	}
 
 	@SubscribeEvent
