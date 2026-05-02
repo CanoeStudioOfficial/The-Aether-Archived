@@ -9,6 +9,13 @@ import com.gildedgames.the_aether.api.player.IPlayerAetherStorage;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.AetherEntities;
 import com.gildedgames.the_aether.events.AetherEntityEvents;
+import com.gildedgames.the_aether.lost.CommonProxy;
+import com.gildedgames.the_aether.lost.LostSplashes;
+import com.gildedgames.the_aether.lost.client.ClientProxy;
+import com.gildedgames.the_aether.lost.events.LostEvents;
+import com.gildedgames.the_aether.lost.events.PlayerLostAetherEvents;
+import com.gildedgames.the_aether.lost.registry.LostAetherEntities;
+import com.gildedgames.the_aether.lost.world.AetherStructureGenerator;
 import com.gildedgames.the_aether.networking.AetherNetworkingManager;
 import com.gildedgames.the_aether.player.capability.PlayerAetherManager;
 import com.gildedgames.the_aether.registry.AetherRegistryEvent;
@@ -34,12 +41,17 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod(name = Tags.MOD_NAME, modid = Tags.MOD_ID, version = Tags.VERSION, acceptedMinecraftVersions = "1.12.2", dependencies = "required-after:baubles;after:mantle;after:tconstruct", updateJSON = "https://raw.githubusercontent.com/Modding-Legacy/Aether-Legacy/master/aether-legacy-changelog.json")
 public class Aether 
 {
 
 	public static final String modid = Tags.MOD_ID;
+
+	public static final String LOST_MODID = "lost_aether";
+
+	public static final LostSplashes.Splashes LOST_SPLASHES = new LostSplashes.Splashes();
 
 	@Instance(Aether.modid)
 	public static Aether instance;
@@ -80,6 +92,11 @@ public class Aether
 		CommonProxy.registerEvent(new AetherRegistryEvent());
 		CommonProxy.registerEvent(new com.gildedgames.the_aether.addon.registry.AetherAddonRegistryEvent());
 
+		CommonProxy.registerEvent(new LostEvents());
+		LostAetherEntities.initialization();
+		ClientProxy.clientPreInit();
+		CommonProxy.commonPreInit();
+
 		proxy.preInitialization();
 	}
 
@@ -106,6 +123,11 @@ public class Aether
 			com.gildedgames.the_aether.tinkers.TinkersIntegration.init();
 		}
 
+		CommonProxy.registerEvent(new PlayerLostAetherEvents());
+		GameRegistry.registerWorldGenerator(new AetherStructureGenerator(), 0);
+		CommonProxy.commonInit();
+		ClientProxy.clientInit();
+
 		proxy.initialization();
 	}
 
@@ -127,9 +149,19 @@ public class Aether
 		return new ResourceLocation(modid, location);
 	}
 
+	public static ResourceLocation locateLost(String location)
+	{
+		return new ResourceLocation(LOST_MODID, location);
+	}
+
 	public static String modAddress()
 	{
 		return modid + ":";
+	}
+
+	public static String lostModAddress()
+	{
+		return LOST_MODID + ":";
 	}
 
 	public static String doubleDropNotifier()
