@@ -18,7 +18,6 @@ import org.lwjgl.util.glu.Project;
 import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.client.gui.button.GuiAetherButton;
 import com.gildedgames.the_aether.client.gui.menu.GuiMenuToggleButton;
-import com.gildedgames.the_aether.lost.LostAetherContent;
 import com.gildedgames.the_aether.lost.LostContentConfig;
 
 import net.minecraft.client.Minecraft;
@@ -66,7 +65,7 @@ public class GuiLostAetherMenu extends GuiScreen implements GuiYesNoCallback
 	private static final ResourceLocation[] titlePanoramaPaths = new ResourceLocation[] { Aether.locate("textures/gui/title/panorama/panorama_0.png"), Aether.locate("textures/gui/title/panorama/panorama_1.png"), Aether.locate("textures/gui/title/panorama/panorama_2.png"), Aether.locate("textures/gui/title/panorama/panorama_3.png"), Aether.locate("textures/gui/title/panorama/panorama_4.png"), Aether.locate("textures/gui/title/panorama/panorama_5.png") };
 	public static final String field_96138_a = "Please click " + TextFormatting.UNDERLINE + "here" + TextFormatting.RESET + " for more information.";
 	// private static final ResourceLocation SPLASH_TEXTS =
-	// LostAetherContent.locate("texts/splashes.txt");
+	// Aether.locateLost("texts/splashes.txt");
 	private int panoramaTimer, field_92024_r, field_92023_s, field_92022_t, field_92021_u, field_92020_v, field_92019_w;
 	private ResourceLocation backgroundTexture;
 
@@ -85,7 +84,7 @@ public class GuiLostAetherMenu extends GuiScreen implements GuiYesNoCallback
 
 		try
 		{
-			List<String> list = LostAetherContent.SPLASHES.getSplashes();
+			List<String> list = Aether.LOST_SPLASHES.getSplashes();
 			if (!list.isEmpty())
 			{
 				while (true)

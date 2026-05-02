@@ -3,7 +3,7 @@ package com.gildedgames.the_aether.lost.registry;
 import com.gildedgames.the_aether.api.moa.AetherMoaType;
 import com.gildedgames.the_aether.api.moa.MoaProperties;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
-import com.gildedgames.the_aether.lost.LostAetherContent;
+import com.gildedgames.the_aether.Aether;
 
 import net.minecraftforge.registries.IForgeRegistry;
 
@@ -22,7 +22,7 @@ public class LostMoaTypes
 	{
 		AetherMoaType moaType = new AetherMoaType(hexColor, properties, AetherCreativeTabs.aether);
 
-		moaRegistry.register(moaType.setRegistryName(LostAetherContent.locate(name)));
+		moaRegistry.register(moaType.setRegistryName(Aether.locateLost(name)));
 
 		return moaType;
 	}

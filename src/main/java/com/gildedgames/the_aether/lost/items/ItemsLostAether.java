@@ -5,7 +5,7 @@ import com.gildedgames.the_aether.items.accessories.ItemAccessory;
 import com.gildedgames.the_aether.items.armor.ItemAetherArmor;
 import com.gildedgames.the_aether.items.util.EnumAetherToolType;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
-import com.gildedgames.the_aether.lost.LostAetherContent;
+import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.lost.items.armor.ItemLostArmor;
 import com.gildedgames.the_aether.lost.items.tools.ItemAetherShield;
 import com.gildedgames.the_aether.lost.items.tools.ItemPhoenixSword;
@@ -55,7 +55,7 @@ public class ItemsLostAether
 	public static Item register(String name, Item item)
 	{
 		item.setTranslationKey(name);
-		itemRegistry.register(item.setRegistryName(LostAetherContent.locate(name)));
+		itemRegistry.register(item.setRegistryName(Aether.locateLost(name)));
 
 		return item;
 	}

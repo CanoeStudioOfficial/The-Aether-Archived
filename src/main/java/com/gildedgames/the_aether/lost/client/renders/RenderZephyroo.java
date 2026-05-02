@@ -1,6 +1,6 @@
 package com.gildedgames.the_aether.lost.client.renders;
 
-import com.gildedgames.the_aether.lost.LostAetherContent;
+import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.lost.client.models.ModelZephyroo;
 import com.gildedgames.the_aether.lost.entities.EntityZephyroo;
 
@@ -10,7 +10,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class RenderZephyroo extends RenderLiving<EntityZephyroo>
 {
-	private static final ResourceLocation TEXTURE = LostAetherContent.locate("textures/entities/zephyroo.png");
+	private static final ResourceLocation TEXTURE = Aether.locateLost("textures/entities/zephyroo.png");
 
 	public RenderZephyroo(RenderManager rendermanagerIn)
 	{

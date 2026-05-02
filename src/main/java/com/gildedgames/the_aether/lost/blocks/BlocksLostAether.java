@@ -5,7 +5,7 @@ import com.gildedgames.the_aether.blocks.decorative.BlockAetherStairs;
 import com.gildedgames.the_aether.blocks.decorative.BlockAetherWall;
 import com.gildedgames.the_aether.items.block.ItemAetherSlab;
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
-import com.gildedgames.the_aether.lost.LostAetherContent;
+import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.lost.world.AetherGenCrystalTree;
 
 import net.minecraft.block.Block;
@@ -66,7 +66,7 @@ public class BlocksLostAether
 		registerItemBlock(registry, "locked_gale_stone", locked_gale_stone);
 		registerItemBlock(registry, "locked_light_gale_stone", locked_light_gale_stone);
 		registerItemBlock(registry, "gale_double_slab", gale_double_slab);
-		registry.register(new ItemAetherSlab(gale_slab, (BlockSlab) gale_slab, (BlockSlab) gale_double_slab).setRegistryName(LostAetherContent.locate("gale_slab")));
+		registry.register(new ItemAetherSlab(gale_slab, (BlockSlab) gale_slab, (BlockSlab) gale_double_slab).setRegistryName(Aether.locateLost("gale_slab")));
 		registerItemBlock(registry, "gale_stairs", gale_stairs);
 		registerItemBlock(registry, "gale_wall", gale_wall);
 	}
@@ -74,12 +74,12 @@ public class BlocksLostAether
 	private static void registerBlock(IForgeRegistry<Block> registry, String name, Block block)
 	{
 		block.setTranslationKey(name);
-		block.setRegistryName(LostAetherContent.locate(name));
+		block.setRegistryName(Aether.locateLost(name));
 		registry.register(block);
 	}
 
 	private static void registerItemBlock(IForgeRegistry<Item> registry, String name, Block block)
 	{
-		registry.register(new ItemBlock(block).setRegistryName(LostAetherContent.locate(name)));
+		registry.register(new ItemBlock(block).setRegistryName(Aether.locateLost(name)));
 	}
 }

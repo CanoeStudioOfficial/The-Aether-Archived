@@ -1,6 +1,6 @@
 package com.gildedgames.the_aether.lost.client.renders;
 
-import com.gildedgames.the_aether.lost.LostAetherContent;
+import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.lost.blocks.BlocksLostAether;
 import com.gildedgames.the_aether.lost.items.ItemsLostAether;
 
@@ -54,11 +54,11 @@ public class LostAetherRendering
 
 	public static void register(Item item, String model)
 	{
-		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(LostAetherContent.MODID + ":" + model, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(Aether.LOST_MODID + ":" + model, "inventory"));
 	}
 
 	public static void register(Block block, String model)
 	{
-		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation(LostAetherContent.MODID + ":" + model, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation(Aether.LOST_MODID + ":" + model, "inventory"));
 	}
 }

@@ -9,9 +9,7 @@ import com.gildedgames.the_aether.api.player.IPlayerAetherStorage;
 import com.gildedgames.the_aether.blocks.BlocksAether;
 import com.gildedgames.the_aether.entities.AetherEntities;
 import com.gildedgames.the_aether.events.AetherEntityEvents;
-import com.gildedgames.the_aether.lost.CommonProxy;
 import com.gildedgames.the_aether.lost.LostSplashes;
-import com.gildedgames.the_aether.lost.client.ClientProxy;
 import com.gildedgames.the_aether.lost.events.LostEvents;
 import com.gildedgames.the_aether.lost.events.PlayerLostAetherEvents;
 import com.gildedgames.the_aether.lost.registry.LostAetherEntities;
@@ -27,6 +25,9 @@ import com.gildedgames.the_aether.world.AetherWorld;
 import com.gildedgames.the_aether.world.biome.BiomeStorage;
 import com.gildedgames.the_aether.world.storage.loot.conditions.LootConditionsAether;
 import com.gildedgames.the_aether.world.storage.loot.functions.LootFunctionsAether;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -50,6 +51,8 @@ public class Aether
 	public static final String modid = Tags.MOD_ID;
 
 	public static final String LOST_MODID = "lost_aether";
+
+	public static final Logger LOST_LOGGER = LogManager.getLogger("LostAether");
 
 	public static final LostSplashes.Splashes LOST_SPLASHES = new LostSplashes.Splashes();
 
@@ -94,8 +97,8 @@ public class Aether
 
 		CommonProxy.registerEvent(new LostEvents());
 		LostAetherEntities.initialization();
-		ClientProxy.clientPreInit();
-		CommonProxy.commonPreInit();
+		com.gildedgames.the_aether.lost.client.ClientProxy.clientPreInit();
+		com.gildedgames.the_aether.lost.CommonProxy.commonPreInit();
 
 		proxy.preInitialization();
 	}
@@ -125,8 +128,8 @@ public class Aether
 
 		CommonProxy.registerEvent(new PlayerLostAetherEvents());
 		GameRegistry.registerWorldGenerator(new AetherStructureGenerator(), 0);
-		CommonProxy.commonInit();
-		ClientProxy.clientInit();
+		com.gildedgames.the_aether.lost.CommonProxy.commonInit();
+		com.gildedgames.the_aether.lost.client.ClientProxy.clientInit();
 
 		proxy.initialization();
 	}

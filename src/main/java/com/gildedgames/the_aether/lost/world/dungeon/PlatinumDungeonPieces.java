@@ -2,7 +2,7 @@ package com.gildedgames.the_aether.lost.world.dungeon;
 
 import java.util.Random;
 
-import com.gildedgames.the_aether.lost.LostAetherContent;
+import com.gildedgames.the_aether.Aether;
 
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
@@ -60,6 +60,6 @@ public class PlatinumDungeonPieces
 	
 	private Template register(String file)
 	{
-		return templateManager.getTemplate(minecraftServer, new ResourceLocation(LostAetherContent.MODID + ":platinum_dungeon/" + file));
+		return templateManager.getTemplate(minecraftServer, new ResourceLocation(Aether.LOST_MODID + ":platinum_dungeon/" + file));
 	}
 }

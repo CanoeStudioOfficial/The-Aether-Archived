@@ -1,6 +1,6 @@
 package com.gildedgames.the_aether.lost.client.sounds;
 
-import com.gildedgames.the_aether.lost.LostAetherContent;
+import com.gildedgames.the_aether.Aether;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -19,7 +19,7 @@ public class LostSounds
 
 	private static SoundEvent register(String name)
 	{
-		ResourceLocation location = LostAetherContent.locate(name);
+		ResourceLocation location = Aether.locateLost(name);
 
 		SoundEvent sound = new SoundEvent(location);
 

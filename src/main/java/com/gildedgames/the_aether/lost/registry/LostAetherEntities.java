@@ -1,7 +1,7 @@
 package com.gildedgames.the_aether.lost.registry;
 
 import com.gildedgames.the_aether.world.AetherWorld;
-import com.gildedgames.the_aether.lost.LostAetherContent;
+import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.lost.entities.EntityAerwhaleKing;
 import com.gildedgames.the_aether.lost.entities.EntityFallingRock;
 import com.gildedgames.the_aether.lost.entities.EntityZephyroo;
@@ -25,13 +25,13 @@ public class LostAetherEntities
 
 	private static void register(String entityName, Class<? extends Entity> clazz, int primaryEggColor, int secondaryEggColor)
 	{
-		EntityRegistry.registerModEntity(LostAetherContent.locate(entityName), clazz, entityName, modEntityId, com.gildedgames.the_aether.Aether.instance, 80, 3, false, primaryEggColor, secondaryEggColor);
+		EntityRegistry.registerModEntity(Aether.locateLost(entityName), clazz, entityName, modEntityId, com.gildedgames.the_aether.Aether.instance, 80, 3, false, primaryEggColor, secondaryEggColor);
 		modEntityId++;
 	}
 
 	private static void register(String entityName, Class<? extends Entity> clazz)
 	{
-		EntityRegistry.registerModEntity(LostAetherContent.locate(entityName), clazz, entityName, modEntityId, com.gildedgames.the_aether.Aether.instance, 64, 3, false);
+		EntityRegistry.registerModEntity(Aether.locateLost(entityName), clazz, entityName, modEntityId, com.gildedgames.the_aether.Aether.instance, 64, 3, false);
 		modEntityId++;
 	}
 }

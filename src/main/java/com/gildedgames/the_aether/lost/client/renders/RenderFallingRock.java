@@ -1,7 +1,7 @@
 package com.gildedgames.the_aether.lost.client.renders;
 
 import com.gildedgames.the_aether.client.models.entities.CrystalModel;
-import com.gildedgames.the_aether.lost.LostAetherContent;
+import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.lost.entities.EntityFallingRock;
 
 import net.minecraft.client.renderer.GlStateManager;
@@ -12,7 +12,7 @@ import net.minecraft.util.ResourceLocation;
 public class RenderFallingRock extends RenderLiving<EntityFallingRock>
 {
 	private CrystalModel model;
-	private static final ResourceLocation TEXTURE = LostAetherContent.locate("textures/entities/falling_rock.png");
+	private static final ResourceLocation TEXTURE = Aether.locateLost("textures/entities/falling_rock.png");
 
 	public RenderFallingRock(RenderManager renderManager)
 	{

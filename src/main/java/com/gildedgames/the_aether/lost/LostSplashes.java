@@ -8,6 +8,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.gildedgames.the_aether.Aether;
+
 public class LostSplashes
 {
 	public final String splash;
@@ -57,7 +59,7 @@ public class LostSplashes
 			try
 			{
 				String address = "https://moddinglegacy.com/supporters-changelogs/lost-splashes.txt";
-				LostAetherContent.LOGGER.debug("Attempting to load the Lost Content splash text list from " + address);
+				Aether.LOST_LOGGER.debug("Attempting to load the Lost Content splash text list from " + address);
 				List<String> splashes = new ArrayList<>();
 				URL url = new URL(address);
 				HttpURLConnection httpcon = (HttpURLConnection) url.openConnection();
@@ -72,24 +74,24 @@ public class LostSplashes
 
 				loadSplashes(splashes);
 
-				LostAetherContent.LOGGER.debug("Successfully loaded the Lost Content splashes list.");
+				Aether.LOST_LOGGER.debug("Successfully loaded the Lost Content splashes list.");
 			}
 			catch (IOException e)
 			{
-				LostAetherContent.LOGGER.debug("Couldn't load the Lost Content splashes list. You may be offline or our website could be having issues. Using a default for now.");
+				Aether.LOST_LOGGER.debug("Couldn't load the Lost Content splashes list. You may be offline or our website could be having issues. Using a default for now.");
 				e.printStackTrace();
 			}
 			catch (Exception e)
 			{
-				LostAetherContent.LOGGER.debug("Failed to load the Lost Content splashes list. Using a default for now.");
+				Aether.LOST_LOGGER.debug("Failed to load the Lost Content splashes list. Using a default for now.");
 				e.printStackTrace();
 			}
 		}
 
 		private void loadSplashes(List<String> supporters)
 		{
-			LostAetherContent.SPLASHES.getSplashes().clear();
-			LostAetherContent.SPLASHES.getSplashes().addAll(supporters);
+			Aether.LOST_SPLASHES.getSplashes().clear();
+			Aether.LOST_SPLASHES.getSplashes().addAll(supporters);
 		}
 	}
 }
