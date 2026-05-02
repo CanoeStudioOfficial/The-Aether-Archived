@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 public class LostAetherEntities
 {
-	private static int modEntityId;
+	private static int modEntityId = 34;
 
 	public static void initialization()
 	{

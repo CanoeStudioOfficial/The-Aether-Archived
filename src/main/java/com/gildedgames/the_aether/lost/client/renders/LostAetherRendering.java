@@ -15,7 +15,7 @@ public class LostAetherRendering
 {
 
 	@SubscribeEvent
-	public void initItems(ModelRegistryEvent event)
+	public void onModelRegisterEvent(ModelRegistryEvent event)
 	{
 		register(ItemsLostAether.sentry_shield, "sentry_shield");
 		register(ItemsLostAether.phoenix_cape, "phoenix_cape");
@@ -35,33 +35,28 @@ public class LostAetherRendering
 		register(ItemsLostAether.jeb_shield, "jeb_shield");
 
 		register(ItemsLostAether.platinum_key, "platinum_key");
-	}
-	
-	@SubscribeEvent
-	public void onModelRegisterEvent(ModelRegistryEvent event)
-	{
+
 		register(BlocksLostAether.gale_stone, "gale_stone");
 		register(BlocksLostAether.light_gale_stone, "light_gale_stone");
-		
+
 		register(BlocksLostAether.locked_gale_stone, "gale_stone");
 		register(BlocksLostAether.locked_light_gale_stone, "light_gale_stone");
-		
+
 		register(BlocksLostAether.gale_slab, "gale_slab");
 		register(BlocksLostAether.gale_double_slab, "gale_double_slab");
-		
+
 		register(BlocksLostAether.gale_wall, "gale_wall");
 		register(BlocksLostAether.gale_stairs, "gale_stairs");
 		register(BlocksLostAether.crystal_sapling, "crystal_sapling");
-		
-		register(BlocksLostAether.songstone, "songstone");
 
+		register(BlocksLostAether.songstone, "songstone");
 	}
 
 	public static void register(Item item, String model)
 	{
-		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(LostAetherContent.find() + model, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(LostAetherContent.MODID + ":" + model, "inventory"));
 	}
-	
+
 	public static void register(Block block, String model)
 	{
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation(LostAetherContent.MODID + ":" + model, "inventory"));

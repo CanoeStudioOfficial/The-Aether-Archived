@@ -10,7 +10,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class RenderAerwhaleKing extends RenderLiving<EntityAerwhaleKing>
 {
-	private static final ResourceLocation TEXTURE = new ResourceLocation("lost_Aether", "textures/entities/king_aerwhale.png");
+	private static final ResourceLocation TEXTURE = new ResourceLocation("lost_aether", "textures/entities/king_aerwhale.png");
 
 	public RenderAerwhaleKing(RenderManager rendermanagerIn)
 	{

@@ -24,6 +24,9 @@ public class LostAetherContent
 	{
 		CommonProxy.registerEvent(new LostEvents());
 		CommonProxy.registerEvent(new LostAetherRegistryEvent());
+
+		LostAetherEntities.initialization();
+
 		ClientProxy.clientPreInit();
 		CommonProxy.commonPreInit();
 	}
@@ -31,7 +34,6 @@ public class LostAetherContent
 	public static void init()
 	{
 		CommonProxy.registerEvent(new PlayerLostAetherEvents());
-		LostAetherEntities.initialization();
 		GameRegistry.registerWorldGenerator(new AetherStructureGenerator(), 0);
 		CommonProxy.commonInit();
 		ClientProxy.clientInit();

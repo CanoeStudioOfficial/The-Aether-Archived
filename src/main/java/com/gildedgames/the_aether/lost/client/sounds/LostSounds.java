@@ -9,8 +9,6 @@ import net.minecraftforge.registries.IForgeRegistry;
 public class LostSounds
 {
 	public static SoundEvent ENTITY_AERWHALE_KING_IDLE;
-	public static SoundEvent ENTITY_AERWHALE_KING_HURT;
-	public static SoundEvent ENTITY_AERWHALE_KING_DEATH;
 
 	public static IForgeRegistry<SoundEvent> soundRegistry;
 
