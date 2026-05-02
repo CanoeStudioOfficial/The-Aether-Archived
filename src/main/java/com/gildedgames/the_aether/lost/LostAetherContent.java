@@ -4,7 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.gildedgames.the_aether.lost.client.ClientProxy;
-import com.gildedgames.the_aether.lost.events.LostAetherRegistryEvent;
 import com.gildedgames.the_aether.lost.events.LostEvents;
 import com.gildedgames.the_aether.lost.events.PlayerLostAetherEvents;
 import com.gildedgames.the_aether.lost.registry.LostAetherEntities;
@@ -23,7 +22,6 @@ public class LostAetherContent
 	public static void preInit()
 	{
 		CommonProxy.registerEvent(new LostEvents());
-		CommonProxy.registerEvent(new LostAetherRegistryEvent());
 
 		LostAetherEntities.initialization();
 
