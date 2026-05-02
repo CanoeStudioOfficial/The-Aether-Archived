@@ -29,72 +29,62 @@ public class BlocksLostAether
 
 	public static Block gale_double_slab;
 
-	private static IForgeRegistry<Block> iBlockRegistry;
-
-	private static IForgeRegistry<Item> iItemRegistry;
-
-	public static void init()
+	public static void registerBlocks(IForgeRegistry<Block> registry)
 	{
-		if (iBlockRegistry == null || iItemRegistry == null)
-			return;
+		crystal_sapling = new BlockAetherSapling(new AetherGenCrystalTree());
+		songstone = new BlockSongstone(Material.IRON).setBlockUnbreakable();
+		gale_stone = new BlockLostDungeonBase(false);
+		light_gale_stone = new BlockLostDungeonBase(false);
+		locked_gale_stone = new BlockLostDungeonBase(true).setCreativeTab(null);
+		locked_light_gale_stone = new BlockLostDungeonBase(true).setCreativeTab(null);
+		gale_double_slab = new BlockLostSlab("gale_double_slab", true, Material.ROCK).setHardness(2.0F).setResistance(10.0F);
+		gale_double_slab.setCreativeTab(null);
+		gale_slab = new BlockLostSlab("gale_slab", false, Material.ROCK).setHardness(0.5F).setResistance(10.0F);
+		gale_stairs = new BlockAetherStairs(gale_stone.getDefaultState());
+		gale_wall = new BlockAetherWall(gale_stone.getDefaultState());
 
-		crystal_sapling = register("crystal_sapling", new BlockAetherSapling(new AetherGenCrystalTree()));
+		registerBlock(registry, "crystal_sapling", crystal_sapling);
+		registerBlock(registry, "songstone", songstone);
+		registerBlock(registry, "gale_stone", gale_stone);
+		registerBlock(registry, "light_gale_stone", light_gale_stone);
+		registerBlock(registry, "locked_gale_stone", locked_gale_stone);
+		registerBlock(registry, "locked_light_gale_stone", locked_light_gale_stone);
+		registerBlock(registry, "gale_double_slab", gale_double_slab);
+		registerBlock(registry, "gale_slab", gale_slab);
+		registerBlock(registry, "gale_stairs", gale_stairs);
+		registerBlock(registry, "gale_wall", gale_wall);
 
-		songstone = register("songstone", new BlockSongstone(Material.IRON).setBlockUnbreakable());
-
-		gale_stone = register("gale_stone", new BlockLostDungeonBase(false));
-		light_gale_stone = register("light_gale_stone", new BlockLostDungeonBase(false));
-		locked_gale_stone = register("locked_gale_stone", new BlockLostDungeonBase(true)).setCreativeTab(null);
-		locked_light_gale_stone = register("locked_light_gale_stone", new BlockLostDungeonBase(true)).setCreativeTab(null);
-
-		gale_double_slab = register("gale_double_slab", new BlockLostSlab("gale_double_slab", true, Material.ROCK).setHardness(2.0F).setResistance(10.0F)).setCreativeTab(null);
-		gale_slab = registerSlab("gale_slab", new BlockLostSlab("gale_slab", false, Material.ROCK).setHardness(0.5F).setResistance(10.0F), gale_double_slab);
-
-		gale_stairs = register("gale_stairs", new BlockAetherStairs(gale_stone.getDefaultState()));
-
-		gale_wall = register("gale_wall", new BlockAetherWall(gale_stone.getDefaultState()));
+		crystal_sapling.setCreativeTab(AetherCreativeTabs.aether);
+		gale_stone.setCreativeTab(AetherCreativeTabs.aether);
+		light_gale_stone.setCreativeTab(AetherCreativeTabs.aether);
+		gale_slab.setCreativeTab(AetherCreativeTabs.aether);
+		gale_stairs.setCreativeTab(AetherCreativeTabs.aether);
+		gale_wall.setCreativeTab(AetherCreativeTabs.aether);
 	}
 
-	public static void setItemRegistry(IForgeRegistry<Item> iItemRegistry)
+	public static void registerItems(IForgeRegistry<Item> registry)
 	{
-		BlocksLostAether.iItemRegistry = iItemRegistry;
+		registerItemBlock(registry, "crystal_sapling", crystal_sapling);
+		registerItemBlock(registry, "songstone", songstone);
+		registerItemBlock(registry, "gale_stone", gale_stone);
+		registerItemBlock(registry, "light_gale_stone", light_gale_stone);
+		registerItemBlock(registry, "locked_gale_stone", locked_gale_stone);
+		registerItemBlock(registry, "locked_light_gale_stone", locked_light_gale_stone);
+		registerItemBlock(registry, "gale_double_slab", gale_double_slab);
+		registry.register(new ItemAetherSlab(gale_slab, (BlockSlab) gale_slab, (BlockSlab) gale_double_slab).setRegistryName(LostAetherContent.locate("gale_slab")));
+		registerItemBlock(registry, "gale_stairs", gale_stairs);
+		registerItemBlock(registry, "gale_wall", gale_wall);
 	}
 
-	public static void setBlockRegistry(IForgeRegistry<Block> iBlockRegistry)
-	{
-		BlocksLostAether.iBlockRegistry = iBlockRegistry;
-	}
-
-	public static Block register(String name, Block block)
-	{
-		return register(name, block, new ItemBlock(block));
-	}
-
-	public static Block register(String name, Block block, ItemBlock item)
+	private static void registerBlock(IForgeRegistry<Block> registry, String name, Block block)
 	{
 		block.setTranslationKey(name);
-
 		block.setRegistryName(LostAetherContent.locate(name));
-		item.setRegistryName(LostAetherContent.locate(name));
-
-		iBlockRegistry.register(block);
-		iItemRegistry.register(item);
-
-		block.setCreativeTab(AetherCreativeTabs.aether);
-
-		return block;
+		registry.register(block);
 	}
 
-	public static Block registerSlab(String name, Block singleSlab, Block doubleSlab)
+	private static void registerItemBlock(IForgeRegistry<Item> registry, String name, Block block)
 	{
-		singleSlab.setTranslationKey(name);
-
-		singleSlab.setCreativeTab(AetherCreativeTabs.aether);
-		doubleSlab.setCreativeTab(null);
-
-		iBlockRegistry.register(singleSlab.setRegistryName(LostAetherContent.locate(name)));
-		iItemRegistry.register(new ItemAetherSlab(singleSlab, (BlockSlab) singleSlab, (BlockSlab) doubleSlab).setRegistryName(LostAetherContent.locate(name)));
-
-		return singleSlab;
+		registry.register(new ItemBlock(block).setRegistryName(LostAetherContent.locate(name)));
 	}
 }

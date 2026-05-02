@@ -45,7 +45,7 @@ public class AetherRegistryEvent
 	{
 		BlocksAether.registerBlocks(event.getRegistry());
 		BlocksAetherAddon.registerBlocks(event.getRegistry());
-		BlocksLostAether.setBlockRegistry(event.getRegistry());
+		BlocksLostAether.registerBlocks(event.getRegistry());
 	}
 
 	@SubscribeEvent
@@ -61,9 +61,8 @@ public class AetherRegistryEvent
 		ItemsAetherAddon.initialization();
 		AetherCreativeTabs.initialization();
 
-		BlocksLostAether.setItemRegistry(event.getRegistry());
+		BlocksLostAether.registerItems(event.getRegistry());
 		ItemsLostAether.itemRegistry = event.getRegistry();
-		BlocksLostAether.init();
 		ItemsLostAether.initialization();
 	}
 
