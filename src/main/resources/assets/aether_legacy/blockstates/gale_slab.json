@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "half=bottom": { "model": "aether_legacy:half_slab_gale" },
+        "half=top": { "model": "aether_legacy:upper_slab_gale" }
+    }
+}

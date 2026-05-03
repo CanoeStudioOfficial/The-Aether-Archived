@@ -22,7 +22,7 @@ import slimeknights.tconstruct.tools.TinkerMaterials;
 
 public class TinkersIntegration {
 
-    public static final String MODID = "tinkersaether";
+    public static final String MODID = "aether_legacy";
     public static final SimpleNetworkWrapper NETWORK = NetworkRegistry.INSTANCE.newSimpleChannel(MODID + "network");
     public static final Logger LOGGER = LogManager.getLogger(MODID);
     public static final BowMaterialStats PLZ_NO = new BowMaterialStats(0.2f, 0.4f, -1f);

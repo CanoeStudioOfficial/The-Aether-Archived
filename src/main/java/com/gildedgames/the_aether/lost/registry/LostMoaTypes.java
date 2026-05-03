@@ -22,7 +22,7 @@ public class LostMoaTypes
 	{
 		AetherMoaType moaType = new AetherMoaType(hexColor, properties, AetherCreativeTabs.aether);
 
-		moaRegistry.register(moaType.setRegistryName(Aether.locateLost(name)));
+		moaRegistry.register(moaType.setRegistryName(Aether.locate(name)));
 
 		return moaType;
 	}

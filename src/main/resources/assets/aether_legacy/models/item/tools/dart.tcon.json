@@ -1,0 +1,8 @@
+{
+  "textures": {
+    "layer0": "aether_legacy:items/dart/shaft",
+    "layer1": "aether_legacy:items/dart/tip",
+    "layer2": "aether_legacy:items/dart/fletching",
+    "broken0": "aether_legacy:items/dart/shaft_broken"
+  }
+}

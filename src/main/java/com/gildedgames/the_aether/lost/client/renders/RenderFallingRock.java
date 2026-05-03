@@ -12,7 +12,7 @@ import net.minecraft.util.ResourceLocation;
 public class RenderFallingRock extends RenderLiving<EntityFallingRock>
 {
 	private CrystalModel model;
-	private static final ResourceLocation TEXTURE = Aether.locateLost("textures/entities/falling_rock.png");
+	private static final ResourceLocation TEXTURE = Aether.locate("textures/entities/falling_rock.png");
 
 	public RenderFallingRock(RenderManager renderManager)
 	{

@@ -19,7 +19,7 @@ public class LostSounds
 
 	private static SoundEvent register(String name)
 	{
-		ResourceLocation location = Aether.locateLost(name);
+		ResourceLocation location = Aether.locate(name);
 
 		SoundEvent sound = new SoundEvent(location);
 

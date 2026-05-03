@@ -10,7 +10,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class RenderZephyroo extends RenderLiving<EntityZephyroo>
 {
-	private static final ResourceLocation TEXTURE = Aether.locateLost("textures/entities/zephyroo.png");
+	private static final ResourceLocation TEXTURE = Aether.locate("textures/entities/zephyroo.png");
 
 	public RenderZephyroo(RenderManager rendermanagerIn)
 	{

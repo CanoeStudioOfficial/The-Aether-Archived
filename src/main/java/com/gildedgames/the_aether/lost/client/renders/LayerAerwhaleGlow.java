@@ -13,7 +13,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class LayerAerwhaleGlow<T extends EntityAerwhaleKing> implements LayerRenderer<T>
 {
-	private static final ResourceLocation TEXTURE = new ResourceLocation("lost_aether", "textures/entities/king_aerwhale_glow.png");
+	private static final ResourceLocation TEXTURE = new ResourceLocation("aether_legacy", "textures/entities/king_aerwhale_glow.png");
 	private final RenderAerwhaleKing aerwhaleRenderer;
 
 	public LayerAerwhaleGlow(RenderAerwhaleKing aerwhaleRendererIn)

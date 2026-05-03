@@ -1,0 +1,14 @@
+{
+	"parent": "aether_legacy:item/aether_shield",
+	"textures": {
+		"layer0": "aether_legacy:items/tools/jeb_shield"
+	},
+    "overrides": [
+        {
+            "predicate": {
+                "blocking": 1
+            },
+            "model": "aether_legacy:item/jeb_shield_blocking"
+        }
+    ]
+}

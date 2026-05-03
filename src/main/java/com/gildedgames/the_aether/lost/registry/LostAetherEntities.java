@@ -25,13 +25,13 @@ public class LostAetherEntities
 
 	private static void register(String entityName, Class<? extends Entity> clazz, int primaryEggColor, int secondaryEggColor)
 	{
-		EntityRegistry.registerModEntity(Aether.locateLost(entityName), clazz, entityName, modEntityId, com.gildedgames.the_aether.Aether.instance, 80, 3, false, primaryEggColor, secondaryEggColor);
+		EntityRegistry.registerModEntity(Aether.locate(entityName), clazz, entityName, modEntityId, com.gildedgames.the_aether.Aether.instance, 80, 3, false, primaryEggColor, secondaryEggColor);
 		modEntityId++;
 	}
 
 	private static void register(String entityName, Class<? extends Entity> clazz)
 	{
-		EntityRegistry.registerModEntity(Aether.locateLost(entityName), clazz, entityName, modEntityId, com.gildedgames.the_aether.Aether.instance, 64, 3, false);
+		EntityRegistry.registerModEntity(Aether.locate(entityName), clazz, entityName, modEntityId, com.gildedgames.the_aether.Aether.instance, 64, 3, false);
 		modEntityId++;
 	}
 }

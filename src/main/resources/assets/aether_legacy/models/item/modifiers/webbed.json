@@ -1,0 +1,6 @@
+{
+  "textures": {
+    "dart": "aether_legacy:items/dart/mod_web",
+    "dart_shooter": "aether_legacy:items/dart_shooter/mod_web"
+  }
+}

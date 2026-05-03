@@ -74,12 +74,12 @@ public class BlocksLostAether
 	private static void registerBlock(IForgeRegistry<Block> registry, String name, Block block)
 	{
 		block.setTranslationKey(name);
-		block.setRegistryName(Aether.locateLost(name));
+		block.setRegistryName(Aether.locate(name));
 		registry.register(block);
 	}
 
 	private static void registerItemBlock(IForgeRegistry<Item> registry, String name, Block block)
 	{
-		registry.register(new ItemBlock(block).setRegistryName(Aether.locateLost(name)));
+		registry.register(new ItemBlock(block).setRegistryName(Aether.locate(name)));
 	}
 }

@@ -55,7 +55,7 @@ public class ItemsLostAether
 	public static Item register(String name, Item item)
 	{
 		item.setTranslationKey(name);
-		itemRegistry.register(item.setRegistryName(Aether.locateLost(name)));
+		itemRegistry.register(item.setRegistryName(Aether.locate(name)));
 
 		return item;
 	}

@@ -60,6 +60,6 @@ public class PlatinumDungeonPieces
 	
 	private Template register(String file)
 	{
-		return templateManager.getTemplate(minecraftServer, new ResourceLocation(Aether.LOST_MODID + ":platinum_dungeon/" + file));
+		return templateManager.getTemplate(minecraftServer, new ResourceLocation(Aether.modid + ":platinum_dungeon/" + file));
 	}
 }

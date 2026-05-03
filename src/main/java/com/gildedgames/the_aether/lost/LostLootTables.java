@@ -11,6 +11,6 @@ public class LostLootTables
 
 	private static ResourceLocation register(String location)
 	{
-		return LootTableList.register(Aether.locateLost(location));
+		return LootTableList.register(Aether.locate(location));
 	}
 }
