@@ -55,7 +55,7 @@ public class AetherEntities
 		register(EntityMimic.class, "mimic", 11, 0xb18132, 0x605a4e);
 
 		register(EntitySlider.class, "slider", 12);
-		register(EntityValkyrieQueen.class, "valkyrie_queen", 13);
+		register(EntityValkyrieQueen.class, "valkyrie_queen", 99);
 		register(EntitySunSpirit.class, "sun_spirit", 14);
 
 		register(EntityDartGolden.class, "golden_dart", 15);
@@ -85,7 +85,7 @@ public class AetherEntities
 
 	public static void register(Class<? extends Entity> entityClass, String entityName, int entityID)
 	{
-		registerModEntity(Aether.locate(entityName), entityClass, entityName, entityID, Aether.modid, 80, 3, true);
+		registerModEntity(Aether.locate(entityName), entityClass, entityName, entityID, Aether.instance, 80, 3, true);
 	}
 
 	public static void register(Class<? extends Entity> entityClass, String entityName, int entityID, int primaryEggColor, int secondaryEggColor)
