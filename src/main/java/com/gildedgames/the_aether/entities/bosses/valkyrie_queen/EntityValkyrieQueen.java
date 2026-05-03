@@ -128,8 +128,8 @@ public class EntityValkyrieQueen extends EntityBossMob implements IAetherBoss
 		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(500.0D);
 	}
 
-	public void entityInit()
-	{
+	@Override  
+    protected void entityInit(){
 		super.entityInit();
 
 		this.dataManager.register(VALKYRIE_READY, false);
