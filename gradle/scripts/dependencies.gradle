@@ -25,9 +25,6 @@ repositories {
             includeGroup 'maven.modrinth'
         }
     }
-	maven {
-        url 'https://dvs1.progwml6.com/files/maven'
-    }
     maven {
         name 'CraftTweaker/Reskillable'
         url "https://maven.blamejared.com"
