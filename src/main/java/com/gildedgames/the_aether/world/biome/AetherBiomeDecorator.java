@@ -130,7 +130,7 @@ public class AetherBiomeDecorator extends BiomeDecorator
 
 		if (TerrainGen.decorate(worldIn, random, pos, EventType.CUSTOM))
 		{
-			if (AetherConfig.world_gen.pink_aerclouds || Loader.isModLoaded("lost_aether"))
+			if (AetherConfig.world_gen.pink_aerclouds)
 			{
 				this.generateClouds(EnumCloudType.Pink, 1, AetherConfig.world_gen.pink_aercloud_spawn_chance, this.nextInt(64) + 110);
 			}

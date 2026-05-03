@@ -360,7 +360,7 @@ public class EntityAerwhaleKing extends EntityFlying implements IAetherBoss
 	{
 		if ((ds instanceof EntityDamageSourceIndirect || ds.isProjectile()) && ds.getTrueSource() instanceof EntityPlayer)
 		{
-			this.sendMessage((EntityPlayer) ds.getTrueSource(), new TextComponentTranslation("gui.lost_aether.projectile_miss"));
+			this.sendMessage((EntityPlayer) ds.getTrueSource(), new TextComponentTranslation("gui.aether_legacy.projectile_miss"));
 			this.spawnExplosionParticle();
 			return false;
 		}
@@ -660,7 +660,7 @@ public class EntityAerwhaleKing extends EntityFlying implements IAetherBoss
 	@Override
 	public String getBossTitle()
 	{
-		return this.getBossName() + ", " + new TextComponentTranslation("title.lost_aether.king_aerwhale.name", new Object[0]).getFormattedText();
+		return this.getBossName() + ", " + new TextComponentTranslation("title.aether_legacy.king_aerwhale.name", new Object[0]).getFormattedText();
 	}
 
 	@Override
