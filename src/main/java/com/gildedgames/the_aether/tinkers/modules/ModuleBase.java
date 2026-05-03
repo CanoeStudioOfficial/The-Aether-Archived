@@ -4,7 +4,7 @@ import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.api.enchantments.AetherEnchantment;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.tinkers.Materials;
-import com.gildedgames.the_aether.tinkers.TinkersIntegration;
+import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.tinkers.blocks.TABlock;
 import com.gildedgames.the_aether.tinkers.fluids.FluidHelper;
 import com.gildedgames.the_aether.tinkers.items.TAItem;

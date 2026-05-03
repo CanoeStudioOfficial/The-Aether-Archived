@@ -70,6 +70,12 @@ public class Aether
 
 	public static final LostSplashes.Splashes LOST_SPLASHES = new LostSplashes.Splashes();
 
+	public static final SimpleNetworkWrapper TINKERS_NETWORK = NetworkRegistry.INSTANCE.newSimpleChannel(modid + "network");
+	public static final Logger TINKERS_LOGGER = LogManager.getLogger("TinkersAether");
+	public static final BowMaterialStats PLZ_NO = new BowMaterialStats(0.2f, 0.4f, -1f);
+
+	private static boolean tinkersInitialized = false;
+
 	@Instance(Aether.modid)
 	public static Aether instance;
 
@@ -78,7 +84,7 @@ public class Aether
 
 	public Aether() {
 		if (Loader.isModLoaded("tconstruct")) {
-			com.gildedgames.the_aether.tinkers.TinkersIntegration.construct();
+			tinkersInitialized = true;
 		}
 	}
 
@@ -103,7 +109,9 @@ public class Aether
 
 		if(Loader.isModLoaded("tconstruct"))
 		{
-			com.gildedgames.the_aether.tinkers.TinkersIntegration.preInit();
+			MinecraftForge.EVENT_BUS.register(com.gildedgames.the_aether.tinkers.modules.ModuleBase.class);
+			FMLCommonHandler.instance().bus().register(com.gildedgames.the_aether.tinkers.modules.ModuleBase.class);
+			ModuleBase.base.preInit();
 		}
 
 		CommonProxy.registerEvent(new AetherRegistryEvent());
@@ -137,7 +145,17 @@ public class Aether
 
 		if(Loader.isModLoaded("tconstruct"))
 		{
-			com.gildedgames.the_aether.tinkers.TinkersIntegration.init();
+			TINKERS_NETWORK.registerMessage(HandlerExtendedAttack.class, MessageExtendedAttack.class, 0, Side.SERVER);
+			ModuleBase.base.init();
+			if (AetherConfig.tinkers_options.skyroot) {
+				MiscUtils.displace(TinkerMaterials.wood.getIdentifier());
+			}
+			if (AetherConfig.tinkers_options.skyrootLeaf || AetherConfig.tinkers_options.goldenOakLeaf || AetherConfig.tinkers_options.crystalLeaf || AetherConfig.tinkers_options.holidayLeaf) {
+				MiscUtils.displace(TinkerMaterials.leaf.getIdentifier());
+			}
+			if (AetherConfig.tinkers_options.goldenFeather) {
+				MiscUtils.displace(TinkerMaterials.feather.getIdentifier());
+			}
 		}
 
 		CommonProxy.registerEvent(new PlayerLostAetherEvents());
@@ -154,7 +172,8 @@ public class Aether
 	{
 		if(Loader.isModLoaded("tconstruct"))
 		{
-			com.gildedgames.the_aether.tinkers.TinkersIntegration.postInit();
+			ModuleBase.base.postInit();
+			com.gildedgames.the_aether.tinkers.compat.GauntletBaublesCompat.register();
 		}
 
 		proxy.postInitialization();
