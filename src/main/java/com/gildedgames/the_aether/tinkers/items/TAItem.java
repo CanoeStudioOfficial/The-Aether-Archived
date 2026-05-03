@@ -1,7 +1,7 @@
 package com.gildedgames.the_aether.tinkers.items;
 
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
-import com.gildedgames.the_aether.tinkers.TinkersIntegration;
+import com.gildedgames.the_aether.Aether;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -12,7 +12,7 @@ public class TAItem extends Item {
     public TAItem(String name) {
         super();
         this.setTranslationKey(name);
-        this.setRegistryName(TinkersIntegration.MODID, name);
+        this.setRegistryName(Aether.modid, name);
         this.setCreativeTab(AetherCreativeTabs.aether);
     }
 

@@ -66,7 +66,7 @@ public class BlocksLostAether
 		registerItemBlock(registry, "locked_gale_stone", locked_gale_stone);
 		registerItemBlock(registry, "locked_light_gale_stone", locked_light_gale_stone);
 		registerItemBlock(registry, "gale_double_slab", gale_double_slab);
-		registry.register(new ItemAetherSlab(gale_slab, (BlockSlab) gale_slab, (BlockSlab) gale_double_slab).setRegistryName(Aether.locateLost("gale_slab")));
+		registry.register(new ItemAetherSlab(gale_slab, (BlockSlab) gale_slab, (BlockSlab) gale_double_slab).setRegistryName(Aether.locate("gale_slab")));
 		registerItemBlock(registry, "gale_stairs", gale_stairs);
 		registerItemBlock(registry, "gale_wall", gale_wall);
 	}

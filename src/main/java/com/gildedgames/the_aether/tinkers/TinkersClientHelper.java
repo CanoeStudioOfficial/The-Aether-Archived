@@ -1,5 +1,6 @@
 package com.gildedgames.the_aether.tinkers;
 
+import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.tinkers.modules.ModuleTools;
 import net.minecraft.block.Block;
@@ -27,7 +28,7 @@ import javax.annotation.Nonnull;
 public class TinkersClientHelper {
 
     public static void registerItemRenderer(Item item, int meta, String id) {
-        ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(TinkersIntegration.MODID + ":" + id, "inventory"));
+        ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(Aether.modid + ":" + id, "inventory"));
     }
 
     public static void registerFluidModels(Fluid fluid) {
@@ -85,7 +86,7 @@ public class TinkersClientHelper {
                 }
             }
         }
-        TinkersIntegration.LOGGER.info("Tinkers Aether - Models Registered");
+        Aether.TINKERS_LOGGER.info("Tinkers Aether - Models Registered");
     }
 
     public static class TinkersFluidStateMapper extends StateMapperBase implements ItemMeshDefinition {
@@ -94,7 +95,7 @@ public class TinkersClientHelper {
 
         public TinkersFluidStateMapper(Fluid fluid) {
             this.fluid = fluid;
-            this.location = new ModelResourceLocation(new ResourceLocation(TinkersIntegration.MODID, "fluid_block"), fluid.getName());
+            this.location = new ModelResourceLocation(new ResourceLocation(Aether.modid, "fluid_block"), fluid.getName());
         }
 
         @Nonnull

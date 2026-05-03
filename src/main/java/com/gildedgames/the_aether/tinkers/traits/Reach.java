@@ -1,6 +1,6 @@
 package com.gildedgames.the_aether.tinkers.traits;
 
-import com.gildedgames.the_aether.tinkers.TinkersIntegration;
+import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.tinkers.network.MessageExtendedAttack;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -85,7 +85,7 @@ public class Reach extends TATrait {
                 }
             }
             if (found != null && player.getRidingEntity() != found) {
-                TinkersIntegration.NETWORK.sendToServer(new MessageExtendedAttack(found.getEntityId()));
+                Aether.TINKERS_NETWORK.sendToServer(new MessageExtendedAttack(found.getEntityId()));
             }
         }
     }

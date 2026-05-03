@@ -1,11 +1,12 @@
 package com.gildedgames.the_aether.tinkers.modules;
 
+import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.AetherConfig;
 import com.gildedgames.the_aether.api.enchantments.AetherEnchantment;
 import com.gildedgames.the_aether.items.ItemsAether;
 import com.gildedgames.the_aether.tinkers.Materials;
-import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.tinkers.blocks.TABlock;
+import com.gildedgames.the_aether.tinkers.entities.EntityDart;
 import com.gildedgames.the_aether.tinkers.fluids.FluidHelper;
 import com.gildedgames.the_aether.tinkers.items.TAItem;
 import com.gildedgames.the_aether.tinkers.misc.MiscUtils;
@@ -27,6 +28,8 @@ import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.EntityEntry;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
 import slimeknights.tconstruct.library.MaterialIntegration;
@@ -72,7 +75,7 @@ public class ModuleBase {
     public static final TAItem swetCrystal = new TAItem("swet_crystal");
 
     public void preInit() {
-        TinkersIntegration.LOGGER.info("Base Module - Begin PreInit");
+        Aether.TINKERS_LOGGER.info("Base Module - Begin PreInit");
 
         if (AetherConfig.tinkers_options.skyroot) {
             TinkerRegistry.addMaterialStats(skyroot,
@@ -97,7 +100,7 @@ public class ModuleBase {
                     new HeadMaterialStats(130, 4.10f, 3.00f, IRON),
                     new HandleMaterialStats(0.50f, -50),
                     new ExtraMaterialStats(25),
-                    TinkersIntegration.PLZ_NO);
+                    Aether.PLZ_NO);
             holystone.setCraftable(true).setCastable(false);
             holystone.addItem("holystone", 1, Material.VALUE_Ingot);
             holystone.addTrait(Enlightened.enlightened, MaterialTypes.HEAD);
@@ -112,7 +115,7 @@ public class ModuleBase {
                     new HeadMaterialStats(210, 2.00f, 4.00f, DIAMOND),
                     new HandleMaterialStats(0.9f, 65),
                     new ExtraMaterialStats(50),
-                    TinkersIntegration.PLZ_NO);
+                    Aether.PLZ_NO);
             zanite.setCraftable(true).setCastable(false);
             zanite.addItem("gemZanite", 1, Material.VALUE_Ingot);
             zanite.addItem("blockZanite", 1, Material.VALUE_Block);
@@ -129,7 +132,7 @@ public class ModuleBase {
                     new HeadMaterialStats(950, 7.50f, 5.00f, OBSIDIAN),
                     new HandleMaterialStats(0.9f, 90),
                     new ExtraMaterialStats(90),
-                    TinkersIntegration.PLZ_NO);
+                    Aether.PLZ_NO);
             gravitite.setCraftable(false).setCastable(true);
             gravitite.addItem("blockEnchantedGravitite", 1, Material.VALUE_Ingot);
             gravitite.addTrait(Antigrav.antigrav, MaterialTypes.HEAD);
@@ -145,7 +148,7 @@ public class ModuleBase {
                     new HeadMaterialStats(300, 1.50f, 7.20f, STONE),
                     new HandleMaterialStats(0.7f, 40),
                     new ExtraMaterialStats(30),
-                    TinkersIntegration.PLZ_NO);
+                    Aether.PLZ_NO);
             goldenAmber.setCraftable(true).setCastable(false);
             goldenAmber.addItem("gemGoldenAmber", 1, Material.VALUE_Ingot);
             goldenAmber.addTrait(Gilded.gilded);
@@ -158,7 +161,7 @@ public class ModuleBase {
                     new HeadMaterialStats(1000, 8.0f, 6.50f, COBALT),
                     new HandleMaterialStats(1.0f, 80),
                     new ExtraMaterialStats(70),
-                    TinkersIntegration.PLZ_NO);
+                    Aether.PLZ_NO);
             valkyrie.setCraftable(false).setCastable(true);
             valkyrie.addItem("blockValkyrie", 1, Material.VALUE_Block);
             valkyrie.addItem(valkyrieBlock, Material.VALUE_Block);
@@ -192,7 +195,7 @@ public class ModuleBase {
                     new HeadMaterialStats(250, 2.5f, 5.0f, STONE),
                     new HandleMaterialStats(1.2f, -120),
                     new ExtraMaterialStats(120),
-                    TinkersIntegration.PLZ_NO);
+                    Aether.PLZ_NO);
             candyCane.setCraftable(true).setCastable(false);
             candyCane.addItem("candyCane", 1, Material.VALUE_Ingot);
             candyCane.addTrait(Festive.festive);
@@ -206,7 +209,7 @@ public class ModuleBase {
                     new HeadMaterialStats(2000, 0.5f, 0.0f, STONE),
                     new HandleMaterialStats(0.2f, -500),
                     new ExtraMaterialStats(0),
-                    TinkersIntegration.PLZ_NO);
+                    Aether.PLZ_NO);
             aercloudCold.setCraftable(true).setCastable(false);
             aercloudCold.addItem("aercloudCold", 1, Material.VALUE_Ingot);
             aercloudCold.addTrait(Cushy.cushy);
@@ -219,7 +222,7 @@ public class ModuleBase {
                     new HeadMaterialStats(2000, 0.5f, 0.0f, STONE),
                     new HandleMaterialStats(0.2f, -500),
                     new ExtraMaterialStats(0),
-                    TinkersIntegration.PLZ_NO);
+                    Aether.PLZ_NO);
             aercloudBlue.setCraftable(true).setCastable(false);
             aercloudBlue.addItem("aercloudBlue", 1, Material.VALUE_Ingot);
             aercloudBlue.addTrait(Cushy.cushy);
@@ -234,7 +237,7 @@ public class ModuleBase {
                     new HeadMaterialStats(2500, 1.0f, 0.1f, STONE),
                     new HandleMaterialStats(0.25f, -400),
                     new ExtraMaterialStats(20),
-                    TinkersIntegration.PLZ_NO);
+                    Aether.PLZ_NO);
             aercloudGold.setCraftable(true).setCastable(false);
             aercloudGold.addItem("aercloudGold", 1, Material.VALUE_Ingot);
             aercloudGold.addTrait(Cushy.cushy);
@@ -247,7 +250,7 @@ public class ModuleBase {
                     new HeadMaterialStats(250, 4.20f, 3.50f, IRON),
                     new HandleMaterialStats(0.50f, -20),
                     new ExtraMaterialStats(40),
-                    TinkersIntegration.PLZ_NO);
+                    Aether.PLZ_NO);
             icestone.setCraftable(true).setCastable(false);
             icestone.addItem("icestone", 1, Material.VALUE_Ingot);
             icestone.addTrait(Refrigeration.refrigeration);
@@ -295,25 +298,25 @@ public class ModuleBase {
             TinkerRegistry.integrate(goldenFeatherMi).preInit();
         }
 
-        TinkersIntegration.LOGGER.info("Base Module - Materials Registered");
-        TinkersIntegration.LOGGER.info("Base Module - End PreInit");
+        Aether.TINKERS_LOGGER.info("Base Module - Materials Registered");
+        Aether.TINKERS_LOGGER.info("Base Module - End PreInit");
     }
 
     public void init() {
-        TinkersIntegration.LOGGER.info("Base Module - Begin Init");
+        Aether.TINKERS_LOGGER.info("Base Module - Begin Init");
         if (Loader.isModLoaded("tconstruct")) {
             FluidHelper.registerFluidBlocks();
         }
         OreDict.register();
-        TinkersIntegration.LOGGER.info("Base Module - OreDict Registered");
-        TinkersIntegration.LOGGER.info("Base Module - End Init");
+        Aether.TINKERS_LOGGER.info("Base Module - OreDict Registered");
+        Aether.TINKERS_LOGGER.info("Base Module - End Init");
     }
 
     public void postInit() {
         if (AetherConfig.tinkers_options.gravitite) {
             TinkerRegistry.registerMelting("blockEnchantedGravitite", gravitite.getFluid(), Material.VALUE_Ingot);
             TinkerRegistry.registerBasinCasting(new CastingRecipe(MiscUtils.stackFromOreDict("blockEnchantedGravitite"), gravitite.getFluid(), Material.VALUE_Ingot, 180));
-            TinkersIntegration.LOGGER.info("Base Module - Gravitite Stuffs Registered");
+            Aether.TINKERS_LOGGER.info("Base Module - Gravitite Stuffs Registered");
         }
     }
 
@@ -333,7 +336,7 @@ public class ModuleBase {
         if (AetherConfig.tinkers_options.valkyrie && AetherConfig.tinkers_options.valkyrieForge) {
             TinkerTools.registerToolForgeBlock(registry, "blockValkyrie");
         }
-        TinkersIntegration.LOGGER.info("Base Module - Recipes Registered");
+        Aether.TINKERS_LOGGER.info("Base Module - Recipes Registered");
     }
 
     @SubscribeEvent
@@ -357,7 +360,7 @@ public class ModuleBase {
             OreDictionary.registerOre("slimecrystal", swetCrystal);
             OreDictionary.registerOre("slimecrystalSwet", swetCrystal);
         }
-        TinkersIntegration.LOGGER.info("Base Module - Items Registered");
+        Aether.TINKERS_LOGGER.info("Base Module - Items Registered");
     }
 
     @SubscribeEvent
@@ -368,7 +371,7 @@ public class ModuleBase {
             valkyrieBlock.setHardness(4.0f);
             registry.register(valkyrieBlock);
         }
-        TinkersIntegration.LOGGER.info("Base Module - Blocks Registered");
+        Aether.TINKERS_LOGGER.info("Base Module - Blocks Registered");
     }
 
     @SubscribeEvent
@@ -377,7 +380,15 @@ public class ModuleBase {
         if (AetherConfig.tinkers_options.valkyrie && AetherConfig.tinkers_options.valkyrieMedalEnchant) {
             registry.register(new AetherEnchantment(new ItemStack(ItemsAether.victory_medal), new ItemStack(valkyrieNugget), 250));
         }
-        TinkersIntegration.LOGGER.info("Base Module - Enchantment Recipes Registered");
+        Aether.TINKERS_LOGGER.info("Base Module - Enchantment Recipes Registered");
+    }
+
+    @SubscribeEvent
+    public void onRegisterEntities(RegistryEvent.Register<EntityEntry> event) {
+        if (AetherConfig.tinkers_options.darts) {
+            EntityRegistry.registerModEntity(Aether.locate("dart"), EntityDart.class, "dart", 13, com.gildedgames.the_aether.Aether.instance, 64, 1, false);
+        }
+        Aether.TINKERS_LOGGER.info("Tinkers Aether - Entities Registered");
     }
 
     @SubscribeEvent

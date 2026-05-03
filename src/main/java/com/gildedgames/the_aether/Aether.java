@@ -29,7 +29,6 @@ import com.gildedgames.the_aether.world.storage.loot.functions.LootFunctionsAeth
 
 import com.gildedgames.the_aether.tinkers.misc.MiscUtils;
 import com.gildedgames.the_aether.tinkers.modules.ModuleBase;
-import com.gildedgames.the_aether.tinkers.modules.ModuleTools;
 import com.gildedgames.the_aether.tinkers.network.HandlerExtendedAttack;
 import com.gildedgames.the_aether.tinkers.network.MessageExtendedAttack;
 
@@ -64,8 +63,6 @@ public class Aether
 
 	public static final String modid = Tags.MOD_ID;
 
-	public static final String LOST_MODID = "lost_aether";
-
 	public static final Logger LOST_LOGGER = LogManager.getLogger("LostAether");
 
 	public static final LostSplashes.Splashes LOST_SPLASHES = new LostSplashes.Splashes();
@@ -74,19 +71,11 @@ public class Aether
 	public static final Logger TINKERS_LOGGER = LogManager.getLogger("TinkersAether");
 	public static final BowMaterialStats PLZ_NO = new BowMaterialStats(0.2f, 0.4f, -1f);
 
-	private static boolean tinkersInitialized = false;
-
 	@Instance(Aether.modid)
 	public static Aether instance;
 
 	@SidedProxy(modId = Aether.modid, clientSide = "com.gildedgames.the_aether.client.ClientProxy", serverSide = "com.gildedgames.the_aether.CommonProxy")
 	public static CommonProxy proxy;
-
-	public Aether() {
-		if (Loader.isModLoaded("tconstruct")) {
-			tinkersInitialized = true;
-		}
-	}
 
 	@EventHandler
 	public void preInitialization(FMLPreInitializationEvent event)
@@ -186,19 +175,9 @@ public class Aether
 		return new ResourceLocation(modid, location);
 	}
 
-	public static ResourceLocation locateLost(String location)
-	{
-		return new ResourceLocation(LOST_MODID, location);
-	}
-
 	public static String modAddress()
 	{
 		return modid + ":";
-	}
-
-	public static String lostModAddress()
-	{
-		return LOST_MODID + ":";
 	}
 
 	public static String doubleDropNotifier()

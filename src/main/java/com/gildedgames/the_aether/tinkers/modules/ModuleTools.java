@@ -1,7 +1,7 @@
 package com.gildedgames.the_aether.tinkers.modules;
 
 import com.gildedgames.the_aether.AetherConfig;
-import com.gildedgames.the_aether.tinkers.TinkersIntegration;
+import com.gildedgames.the_aether.Aether;
 import com.gildedgames.the_aether.tinkers.tools.ToolDart;
 import com.gildedgames.the_aether.tinkers.tools.ToolDartShooter;
 import net.minecraft.item.Item;
@@ -39,7 +39,7 @@ public class ModuleTools {
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
-        TinkersIntegration.LOGGER.info("Tools Module - Begin ItemInit");
+        Aether.TINKERS_LOGGER.info("Tools Module - Begin ItemInit");
 
         if (AetherConfig.tinkers_options.darts) {
             mouthpiece = new ToolPart(Material.VALUE_Ingot);
@@ -64,7 +64,7 @@ public class ModuleTools {
             parts.add(dartTip);
         }
 
-        TinkersIntegration.LOGGER.info("Tools Module - Parts Registered");
+        Aether.TINKERS_LOGGER.info("Tools Module - Parts Registered");
 
         if (AetherConfig.tinkers_options.darts) {
             dartShooter = new ToolDartShooter();
@@ -80,7 +80,7 @@ public class ModuleTools {
             tools.add(dart);
         }
 
-        TinkersIntegration.LOGGER.info("Tools Module - Tools Registered");
+        Aether.TINKERS_LOGGER.info("Tools Module - Tools Registered");
 
         for (final IToolPart part : Collections.unmodifiableList(parts)) {
             for (final ToolCore tool : Collections.unmodifiableList(tools)) {
@@ -92,7 +92,7 @@ public class ModuleTools {
             }
         }
 
-        TinkersIntegration.LOGGER.info("Tools Module - Stencil Crafting Registered");
+        Aether.TINKERS_LOGGER.info("Tools Module - Stencil Crafting Registered");
 
         for (IModifier modifier : new IModifier[]{
                 TinkerModifiers.modBaneOfArthopods,
@@ -116,10 +116,10 @@ public class ModuleTools {
                 TinkerModifiers.modWebbed,
         }) {
             com.gildedgames.the_aether.tinkers.TinkersClientHelper.registerModifierModel(modifier,
-                    new ResourceLocation(TinkersIntegration.MODID, "models/item/modifiers/" + modifier.getIdentifier()));
+                    new ResourceLocation(Aether.modid, "models/item/modifiers/" + modifier.getIdentifier()));
         }
 
-        TinkersIntegration.LOGGER.info("Tools Module - Modifier Models Registered");
-        TinkersIntegration.LOGGER.info("Tools Module - End ItemInit");
+        Aether.TINKERS_LOGGER.info("Tools Module - Modifier Models Registered");
+        Aether.TINKERS_LOGGER.info("Tools Module - End ItemInit");
     }
 }

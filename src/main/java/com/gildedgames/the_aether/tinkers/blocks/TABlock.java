@@ -1,7 +1,7 @@
 package com.gildedgames.the_aether.tinkers.blocks;
 
 import com.gildedgames.the_aether.registry.creative_tabs.AetherCreativeTabs;
-import com.gildedgames.the_aether.tinkers.TinkersIntegration;
+import com.gildedgames.the_aether.Aether;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;
@@ -14,7 +14,7 @@ public class TABlock extends Block {
     public TABlock(String name, Material material) {
         super(material);
         this.setTranslationKey(name);
-        this.setRegistryName(TinkersIntegration.MODID, name);
+        this.setRegistryName(Aether.modid, name);
         this.setCreativeTab(AetherCreativeTabs.aether);
     }
 
