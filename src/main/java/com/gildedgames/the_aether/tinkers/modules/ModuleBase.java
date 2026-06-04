@@ -49,6 +49,9 @@ public class ModuleBase {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
+    // Bow stats for materials that shouldn't have bow capabilities
+    public static final BowMaterialStats NO_BOW_STATS = new BowMaterialStats(0.2f, 0.4f, -1f);
+
     public static final Material skyroot = Materials.mat("skyroot", 0x6C633E);
     public static final Material holystone = Materials.mat("holystone", 0xA8AAA8);
     public static final Material goldenAmber = Materials.mat("golden_amber", 0xFFE41C);
@@ -100,7 +103,7 @@ public class ModuleBase {
                     new HeadMaterialStats(130, 4.10f, 3.00f, IRON),
                     new HandleMaterialStats(0.50f, -50),
                     new ExtraMaterialStats(25),
-                    Aether.PLZ_NO);
+                    NO_BOW_STATS);
             holystone.setCraftable(true).setCastable(false);
             holystone.addItem("holystone", 1, Material.VALUE_Ingot);
             holystone.addTrait(Enlightened.enlightened, MaterialTypes.HEAD);
@@ -115,7 +118,7 @@ public class ModuleBase {
                     new HeadMaterialStats(210, 2.00f, 4.00f, DIAMOND),
                     new HandleMaterialStats(0.9f, 65),
                     new ExtraMaterialStats(50),
-                    Aether.PLZ_NO);
+                    NO_BOW_STATS);
             zanite.setCraftable(true).setCastable(false);
             zanite.addItem("gemZanite", 1, Material.VALUE_Ingot);
             zanite.addItem("blockZanite", 1, Material.VALUE_Block);
@@ -132,7 +135,7 @@ public class ModuleBase {
                     new HeadMaterialStats(950, 7.50f, 5.00f, OBSIDIAN),
                     new HandleMaterialStats(0.9f, 90),
                     new ExtraMaterialStats(90),
-                    Aether.PLZ_NO);
+                    NO_BOW_STATS);
             gravitite.setCraftable(false).setCastable(true);
             gravitite.addItem("blockEnchantedGravitite", 1, Material.VALUE_Ingot);
             gravitite.addTrait(Antigrav.antigrav, MaterialTypes.HEAD);
@@ -148,7 +151,7 @@ public class ModuleBase {
                     new HeadMaterialStats(300, 1.50f, 7.20f, STONE),
                     new HandleMaterialStats(0.7f, 40),
                     new ExtraMaterialStats(30),
-                    Aether.PLZ_NO);
+                    NO_BOW_STATS);
             goldenAmber.setCraftable(true).setCastable(false);
             goldenAmber.addItem("gemGoldenAmber", 1, Material.VALUE_Ingot);
             goldenAmber.addTrait(Gilded.gilded);
@@ -161,7 +164,7 @@ public class ModuleBase {
                     new HeadMaterialStats(1000, 8.0f, 6.50f, COBALT),
                     new HandleMaterialStats(1.0f, 80),
                     new ExtraMaterialStats(70),
-                    Aether.PLZ_NO);
+                    NO_BOW_STATS);
             valkyrie.setCraftable(false).setCastable(true);
             valkyrie.addItem("blockValkyrie", 1, Material.VALUE_Block);
             valkyrie.addItem(valkyrieBlock, Material.VALUE_Block);
@@ -195,7 +198,7 @@ public class ModuleBase {
                     new HeadMaterialStats(250, 2.5f, 5.0f, STONE),
                     new HandleMaterialStats(1.2f, -120),
                     new ExtraMaterialStats(120),
-                    Aether.PLZ_NO);
+                    NO_BOW_STATS);
             candyCane.setCraftable(true).setCastable(false);
             candyCane.addItem("candyCane", 1, Material.VALUE_Ingot);
             candyCane.addTrait(Festive.festive);
@@ -209,7 +212,7 @@ public class ModuleBase {
                     new HeadMaterialStats(2000, 0.5f, 0.0f, STONE),
                     new HandleMaterialStats(0.2f, -500),
                     new ExtraMaterialStats(0),
-                    Aether.PLZ_NO);
+                    NO_BOW_STATS);
             aercloudCold.setCraftable(true).setCastable(false);
             aercloudCold.addItem("aercloudCold", 1, Material.VALUE_Ingot);
             aercloudCold.addTrait(Cushy.cushy);
@@ -222,7 +225,7 @@ public class ModuleBase {
                     new HeadMaterialStats(2000, 0.5f, 0.0f, STONE),
                     new HandleMaterialStats(0.2f, -500),
                     new ExtraMaterialStats(0),
-                    Aether.PLZ_NO);
+                    NO_BOW_STATS);
             aercloudBlue.setCraftable(true).setCastable(false);
             aercloudBlue.addItem("aercloudBlue", 1, Material.VALUE_Ingot);
             aercloudBlue.addTrait(Cushy.cushy);
@@ -237,7 +240,7 @@ public class ModuleBase {
                     new HeadMaterialStats(2500, 1.0f, 0.1f, STONE),
                     new HandleMaterialStats(0.25f, -400),
                     new ExtraMaterialStats(20),
-                    Aether.PLZ_NO);
+                    NO_BOW_STATS);
             aercloudGold.setCraftable(true).setCastable(false);
             aercloudGold.addItem("aercloudGold", 1, Material.VALUE_Ingot);
             aercloudGold.addTrait(Cushy.cushy);
@@ -250,7 +253,7 @@ public class ModuleBase {
                     new HeadMaterialStats(250, 4.20f, 3.50f, IRON),
                     new HandleMaterialStats(0.50f, -20),
                     new ExtraMaterialStats(40),
-                    Aether.PLZ_NO);
+                    NO_BOW_STATS);
             icestone.setCraftable(true).setCastable(false);
             icestone.addItem("icestone", 1, Material.VALUE_Ingot);
             icestone.addTrait(Refrigeration.refrigeration);

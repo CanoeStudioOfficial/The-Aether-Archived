@@ -54,8 +54,6 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
-import slimeknights.tconstruct.library.materials.BowMaterialStats;
-import slimeknights.tconstruct.tools.TinkerMaterials;
 
 @Mod(name = Tags.MOD_NAME, modid = Tags.MOD_ID, version = Tags.VERSION, acceptedMinecraftVersions = "1.12.2", dependencies = "required-after:baubles;after:mantle;after:tconstruct", updateJSON = "https://raw.githubusercontent.com/Modding-Legacy/Aether-Legacy/master/aether-legacy-changelog.json")
 public class Aether 
@@ -69,7 +67,6 @@ public class Aether
 
 	public static final SimpleNetworkWrapper TINKERS_NETWORK = NetworkRegistry.INSTANCE.newSimpleChannel(modid + "network");
 	public static final Logger TINKERS_LOGGER = LogManager.getLogger("TinkersAether");
-	public static final BowMaterialStats PLZ_NO = new BowMaterialStats(0.2f, 0.4f, -1f);
 
 	@Instance(Aether.modid)
 	public static Aether instance;
@@ -137,13 +134,13 @@ public class Aether
 			TINKERS_NETWORK.registerMessage(HandlerExtendedAttack.class, MessageExtendedAttack.class, 0, Side.SERVER);
 			ModuleBase.base.init();
 			if (AetherConfig.tinkers_options.skyroot) {
-				MiscUtils.displace(TinkerMaterials.wood.getIdentifier());
+				MiscUtils.displace(slimeknights.tconstruct.tools.TinkerMaterials.wood.getIdentifier());
 			}
 			if (AetherConfig.tinkers_options.skyrootLeaf || AetherConfig.tinkers_options.goldenOakLeaf || AetherConfig.tinkers_options.crystalLeaf || AetherConfig.tinkers_options.holidayLeaf) {
-				MiscUtils.displace(TinkerMaterials.leaf.getIdentifier());
+				MiscUtils.displace(slimeknights.tconstruct.tools.TinkerMaterials.leaf.getIdentifier());
 			}
 			if (AetherConfig.tinkers_options.goldenFeather) {
-				MiscUtils.displace(TinkerMaterials.feather.getIdentifier());
+				MiscUtils.displace(slimeknights.tconstruct.tools.TinkerMaterials.feather.getIdentifier());
 			}
 		}
 
